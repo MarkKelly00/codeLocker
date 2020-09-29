@@ -2,6 +2,7 @@
   "name": "codelocker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/MarkKelly00/codeLocker",
   "dependencies": {
     "@craco/craco": "^5.7.0",
     "@fullhuman/postcss-purgecss": "^2.3.0",
@@ -9,6 +10,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^7.2.1",
+    "ace-builds": "^1.4.12",
     "autoprefixer": "^9.8.6",
     "axios": "^0.19.2",
     "eslint": "^6.8.0",
@@ -22,6 +24,7 @@
     "express-react-boilerplate": "^4.2.1",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
+    "react-ace": "^9.1.4",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-test-renderer": "^16.13.1",
@@ -34,6 +37,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }

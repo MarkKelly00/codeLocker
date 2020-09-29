@@ -1,11 +1,12 @@
 import React from "react";
-
-import Home from "./pages/home";
-
 import "./App.css";
 
+import Splash from "./components/Splash";
+
 function App() {
-    return <Home />;
+    return <>
+    <Splash />
+    </>
 }
 
 export default App;
