@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/MarkKelly00/codeLocker/static/css/main.71d3f6b3.chunk.css",
+    "main.js": "/MarkKelly00/codeLocker/static/js/main.cb110dff.chunk.js",
+    "main.js.map": "/MarkKelly00/codeLocker/static/js/main.cb110dff.chunk.js.map",
+    "runtime-main.js": "/MarkKelly00/codeLocker/static/js/runtime-main.0f3d05fe.js",
+    "runtime-main.js.map": "/MarkKelly00/codeLocker/static/js/runtime-main.0f3d05fe.js.map",
+    "static/js/2.558e3426.chunk.js": "/MarkKelly00/codeLocker/static/js/2.558e3426.chunk.js",
+    "static/js/2.558e3426.chunk.js.map": "/MarkKelly00/codeLocker/static/js/2.558e3426.chunk.js.map",
+    "index.html": "/MarkKelly00/codeLocker/index.html",
+    "precache-manifest.b0f5de6879ac26119ef2a6eb6a4196d8.js": "/MarkKelly00/codeLocker/precache-manifest.b0f5de6879ac26119ef2a6eb6a4196d8.js",
+    "service-worker.js": "/MarkKelly00/codeLocker/service-worker.js",
+    "static/css/main.71d3f6b3.chunk.css.map": "/MarkKelly00/codeLocker/static/css/main.71d3f6b3.chunk.css.map",
+    "static/js/2.558e3426.chunk.js.LICENSE.txt": "/MarkKelly00/codeLocker/static/js/2.558e3426.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/MarkKelly00/codeLocker/static/media/logo.26ef1cbc.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0f3d05fe.js",
+    "static/js/2.558e3426.chunk.js",
+    "static/css/main.71d3f6b3.chunk.css",
+    "static/js/main.cb110dff.chunk.js"
+  ]
+}
