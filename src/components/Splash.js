@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo.png";
 import "./styles.css";
+
 import ConsoleWrapper from './ConsoleWrapper/consoleWrapper'
 import { console, consoleMessages } from "./AceEditor/consoleLogic"
+
+import LoginButton from "../components/LoginButton";
+import LogoutButton from "../components/LogoutButton"
+
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -12,6 +17,7 @@ import "ace-builds/webpack-resolver";
 
 //sets up new console
 window.console = console;
+
 
 function Splash() {
     
@@ -136,12 +142,8 @@ function Splash() {
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <button
-                                            className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
-                                            type="button"
-                                        >
-                                            Sign In
-                                        </button>
+                                        <LoginButton/>
+                                        <LogoutButton/>
                                         <button
                                             className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
                                             type="button"
