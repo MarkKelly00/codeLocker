@@ -2,31 +2,74 @@ import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo.png";
 import "./styles.css";
+import ConsoleWrapper from './ConsoleWrapper/consoleWrapper'
+import { console, consoleMessages } from "./AceEditor/consoleLogic"
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
+import "ace-builds/webpack-resolver";
+
+//sets up new console
+window.console = console;
 
 function Splash() {
     
-    function onChange(newValue) {
-        setEditor({ userCode: newValue });
-
-        console.log("Editor is: ", editor);
-        console.log("New Value is :", newValue);
-
-        localStorage.setItem("code", newValue);
-    }
-
-    //contexts
-    const [editor, setEditor] = useState({});
+    const [editor, setEditor] = useState({})
+    const [consoleLog, setConsoleLog] = useState([])
 
     useEffect(() => {
-        const previousCode = localStorage.getItem("code");
+        const previousCode = localStorage.getItem("code")
         if (previousCode) {
-            setEditor({ userCode: previousCode });
+            setEditor({ userCode: previousCode })
         }
-    }, []);
+    }, [])
+    
+    //get the Ace editor value as uyer types
+    function onChange(newValue) {
+        setEditor({ userCode: newValue })
+
+    }
+
+    //onclick for copying and excecuting click functions
+    function saveButton() {
+        localStorage.setItem("code", (editor.userCode))
+    }
+
+    function saveConsoleMsgs(mgsArr) {
+
+        setConsoleLog(() => {
+            return { messages: [mgsArr] }
+        });
+
+    }
+
+    function runButton() {
+
+        try {
+            // eslint-disable-next-line
+            new Function(editor.userCode)();
+
+            const messages = consoleMessages.map(msg => {
+                return msg.message
+            })
+
+            saveConsoleMsgs(messages);
+
+
+        } catch (err) {
+            console.error(err)
+        }
+
+    }
+
+    function resetButton() {
+        localStorage.removeItem("code");
+        setEditor({ userCode: " " })
+
+        saveConsoleMsgs([]);
+    }
+
 
     return (
         <body className="bg-blue-600">
@@ -38,14 +81,10 @@ function Splash() {
                     </div>
                     <div id="w-full">
                     <AceEditor
-                        mode="javascript"
-                        theme="monokai"
-                        width="1200px"
-                        onChange={onChange}
-                        fontSize={16}
-                        value={editor.userCode}
-                    />
-                    </div>
+                mode="javascript" theme="monokai"
+                onChange={onChange} fontSize={18} value={editor.userCode} width={"600px"} height={"300px"} />
+                </div>
+            <ConsoleWrapper onSave={saveButton} onExecute={runButton} onReset={resetButton} console={consoleLog} />
                     <div className="px-4 py-4">
                         <div className="flex flex-no-wrap bg-blue-800 justify-center">
                             <div className="w-1/2 flex-none p-2 mx-auto">
