@@ -5,7 +5,7 @@ import ConsoleLog from '../ConsoleLog/ConsoleLog'
 function ConsoleWrapper({ onSave, onExecute, onReset, console }) {
     return (
         <div className="consoleWrapper flex flex-row justify-center">
-            <RunResetButtons onSave={onSave} onExecute={onExecute} onReset={onReset} />
+            <RunResetButtons onExecute={onExecute} onReset={onReset} />
             <ConsoleLog console={console} />
         </div>
 

@@ -16,7 +16,7 @@ window.console = console;
 function AcEditor() {
     //contexts
     const [editor, setEditor] = useState({})
-    const [consoleLog, setConsoleLog] = useState([])
+    // const [consoleLog, setConsoleLog] = useState([])
 
     useEffect(() => {
         const previousCode = localStorage.getItem("code")
@@ -32,43 +32,43 @@ function AcEditor() {
     }
 
     //onclick for copying and excecuting click functions
-    function saveButton() {
-        localStorage.setItem("code", (editor.userCode))
-    }
+    // function saveButton() {
+    //     localStorage.setItem("code", (editor.userCode))
+    // }
 
-    function saveConsoleMsgs(mgsArr) {
+    // function saveConsoleMsgs(mgsArr) {
 
-        setConsoleLog(() => {
-            return { messages: [mgsArr] }
-        });
+    //     setConsoleLog(() => {
+    //         return { messages: [mgsArr] }
+    //     });
 
-    }
+    // }
 
-    function runButton() {
+    // function runButton() {
 
-        try {
-            // eslint-disable-next-line
-            new Function(editor.userCode)();
+    //     try {
+    //         // eslint-disable-next-line
+    //         new Function(editor.userCode)();
 
-            const messages = consoleMessages.map(msg => {
-                return msg.message
-            })
+    //         const messages = consoleMessages.map(msg => {
+    //             return msg.message
+    //         })
 
-            saveConsoleMsgs(messages);
+    //         saveConsoleMsgs(messages);
 
 
-        } catch (err) {
-            console.error(err)
-        }
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
 
-    }
+    // }
 
-    function resetButton() {
-        localStorage.removeItem("code");
-        setEditor({ userCode: " " })
+    // function resetButton() {
+    //     localStorage.removeItem("code");
+    //     setEditor({ userCode: " " })
 
-        saveConsoleMsgs([]);
-    }
+    //     saveConsoleMsgs([]);
+    // }
 
 
 
@@ -79,7 +79,7 @@ function AcEditor() {
             <AceEditor
                 mode="javascript" theme="monokai"
                 onChange={onChange} fontSize={18} value={editor.userCode} width={"600px"} height={"300px"} />
-            <ConsoleWrapper onSave={saveButton} onExecute={runButton} onReset={resetButton} console={consoleLog} />
+            {/* <ConsoleWrapper onSave={saveButton} onExecute={runButton} onReset={resetButton} console={consoleLog} /> */}
         </div>
     )
 }
