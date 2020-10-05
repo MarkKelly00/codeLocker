@@ -31,6 +31,6 @@ const codeSchema = new Schema({
 
 });
 
-const Example = mongoose.model("codeBlock", codeSchema);
+const CodeBlock = mongoose.model("codeBlock", codeSchema);
 
-module.exports = Example;
+module.exports = CodeBlock;

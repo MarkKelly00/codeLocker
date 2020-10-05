@@ -6,13 +6,11 @@ const userSchema = new Schema({
   userName: {
     type: String,
     trim: true,
-    required: "Name is Required"
   },
 
-  _Id: {
-    type: Number,
-    unique: true,
-    required: true
+  password: {
+    type: String,
+    required: "Password is required."
   },
 
   userImage: {
@@ -22,7 +20,8 @@ const userSchema = new Schema({
 
   email: {
     type: String,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+    required: "Email is Required"
   },
 
   date: {
@@ -37,14 +36,14 @@ const userSchema = new Schema({
 
   snipsArr: {
     type: Array,
-    //please update here
+    default: []
   }
 });
 
-schema.statics.login = function login(id, callback) {
+userSchema.statics.login = function login(id, callback) {
   return this.findByIdAndUpdate(id,{'$set' : { 'lastLoginDate' : Date.now()} }, { new : true }, callback);
 };
 
-const userSchema = mongoose.model(userSchema);
+const User = mongoose.model("user", userSchema);
 
-module.exports = userSchema;
+module.exports = User;
