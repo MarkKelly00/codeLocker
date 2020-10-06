@@ -1,9 +1,9 @@
 import React from 'react'
-import Splash from './components/Splash'
+import Dashboard from './components/Dashboard'
 
 function App(){
   return (
-    <Splash />
+    <Dashboard />
   )
 }
 
