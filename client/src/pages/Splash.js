@@ -1,98 +1,100 @@
 import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo.png";
-import "./styles.css";
+import "../components/styles.css";
 
-import ConsoleWrapper from './ConsoleWrapper/consoleWrapper'
-import { console, consoleMessages } from "./AceEditor/consoleLogic"
+import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
+import { console, consoleMessages } from "../utils/consoleLogic";
 
 // import LoginButton from "../components/LoginButton";
 // import LogoutButton from "../components/LogoutButton"
-
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
-import UserSignIn from "./UserSignIn";
+import UserSignIn from "../components/SignIn/UserSignIn";
 
 //sets up new console
 window.console = console;
 
-
 function Splash() {
-    
-    const [editor, setEditor] = useState({})
-    const [consoleLog, setConsoleLog] = useState([])
+    const [editor, setEditor] = useState({});
+    const [consoleLog, setConsoleLog] = useState([]);
 
     useEffect(() => {
-        const previousCode = localStorage.getItem("code")
+        const previousCode = localStorage.getItem("code");
         if (previousCode) {
-            setEditor({ userCode: previousCode })
+            setEditor({ userCode: previousCode });
         }
-    }, [])
-    
+    }, []);
+
     //get the Ace editor value as uyer types
     function onChange(newValue) {
-        setEditor({ userCode: newValue })
-
+        setEditor({ userCode: newValue });
     }
 
     //onclick for copying and excecuting click functions
     function saveButton() {
-        localStorage.setItem("code", (editor.userCode))
+        localStorage.setItem("code", editor.userCode);
     }
 
     function saveConsoleMsgs(mgsArr) {
-
         setConsoleLog(() => {
-            return { messages: [mgsArr] }
+            return { messages: [mgsArr] };
         });
-
     }
 
     function runButton() {
-
         try {
             // eslint-disable-next-line
             new Function(editor.userCode)();
 
-            const messages = consoleMessages.map(msg => {
-                return msg.message
-            })
+            const messages = consoleMessages.map((msg) => {
+                return msg.message;
+            });
 
             saveConsoleMsgs(messages);
-
-
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
-
     }
 
     function resetButton() {
         localStorage.removeItem("code");
-        setEditor({ userCode: " " })
+        setEditor({ userCode: " " });
 
         saveConsoleMsgs([]);
     }
-
 
     return (
         <div className="bg-blue-600">
             <div className="container mx-auto justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                 <div className="max-w-full rounded justify-center overflow-hidden shadow-lg bg-blue-400">
                     <div className="font-bold text-xl mb-2 text-center">
-                        <img src={Logo} alt = "CodeLocker logo" />
+                        <img src={Logo} alt="CodeLocker logo" />
                         <h1>Try It Out</h1>
                     </div>
 
                     <div id="w-full">
-                        <AceEditor mode="javascript" theme="monokai" onChange={onChange} fontSize={18} value={editor.userCode} width={"600px"} height={"300px"} />
+                        <AceEditor
+                            mode="javascript"
+                            theme="monokai"
+                            onChange={onChange}
+                            fontSize={18}
+                            value={editor.userCode}
+                            width={"600px"}
+                            height={"300px"}
+                        />
                     </div>
 
-                    <ConsoleWrapper onSave={saveButton} onExecute={runButton} onReset={resetButton} console={consoleLog} />
-                    
+                    <ConsoleWrapper
+                        onSave={saveButton}
+                        onExecute={runButton}
+                        onReset={resetButton}
+                        console={consoleLog}
+                    />
+
                     <div className="px-4 py-4">
                         <div className="flex flex-no-wrap bg-blue-800 justify-center">
                             <div className="w-1/2 flex-none p-2 mx-auto">
@@ -115,7 +117,7 @@ function Splash() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="px-6 pt-4 pb-2">
                         <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2">
                             #codelocker

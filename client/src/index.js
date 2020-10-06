@@ -11,12 +11,13 @@ ReactDOM.render(
     <Auth0Provider
         domain="dev-e0kk6pg3.us.auth0.com"
         clientId="Kp5dMVqPxEzovXVjECEiWbY4P8IbG2O1"
-        redirectUri={window.location.origin}>
-            <React.StrictMode>
-                <Root>
-                    <App />
-                </Root>
-            </React.StrictMode>
+        redirectUri={window.location.origin}
+    >
+        <React.StrictMode>
+            <Root>
+                <App />
+            </Root>
+        </React.StrictMode>
     </Auth0Provider>,
     document.getElementById("root")
 );
