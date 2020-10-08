@@ -24,10 +24,27 @@ const codeSchema = new Schema({
     required: true
   },
 
-  date: {
+  dateCreated: {
     type: Date,
     default: Date.now
   },
+
+  dateModified: {
+    type: Date,
+    boolean: true,
+  },
+
+  isCloned: {
+    type: Boolean
+  },
+
+  originalId: {
+    type: mongoose.Schema.Types.ObjectId
+  },
+
+  dateCloned: {
+    type: Date
+  }
 
 });
 
