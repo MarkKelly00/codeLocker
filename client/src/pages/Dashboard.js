@@ -21,6 +21,7 @@ window.console = console;
 function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
+    const [viewOnlyCode, setViewOnlyCode] = useState({userCode:""})
     const [consoleLog, setConsoleLog] = useState([]);
 
     useEffect(() => {
@@ -184,9 +185,10 @@ function Dashboard() {
                                                     theme="monokai"
                                                     onChange={onChange}
                                                     fontSize={18}
-                                                    value={editor.userCode}
+                                                    value={viewOnlyCode.userCode}
                                                     width={"550px"}
                                                     height={"300px"}
+                                                    readOnly={true}
                                                 />
                                             <ConsoleCopy
                                                 onExecute={runButton}
