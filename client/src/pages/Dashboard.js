@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AceEditor from "react-ace";
 // import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
-import Logo from "../features/images/clLogo.png";
+import Logo from "../features/images/clLogo2.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
 import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
@@ -71,13 +71,13 @@ function Dashboard() {
 
     return (
         <div>
-            <nav className="bg-blue-700 p-2">
+            <nav className="bg-blue-700 p-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <img
-                                    className="h-20 w-22"
+                                    className="h-32"
                                     src={Logo}
                                     alt="Workflow logo"
                                 />
@@ -165,7 +165,7 @@ function Dashboard() {
             </nav>
 
             <header className="shadow">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
+                <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight text-black">
                         Dashboard
                     </h1>
@@ -180,6 +180,7 @@ function Dashboard() {
                                 <div className="flex overflow-hidden bg-blue-800 justify-center">
                                     <div className="flex flex-wrap xs:w-1/2 sm:w-3/4 overflow-hidden p-2 mx-auto">
                                         <div className="text-gray-700 text-center bg-white h-full p-2">
+                                            <h3>Read Only (Title)</h3>
                                                 <AceEditor
                                                     mode="javascript"
                                                     theme="monokai"
@@ -199,7 +200,7 @@ function Dashboard() {
                                     </div>
                                     <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xl:block">
                                     <div className="text-gray-700 text-center bg-white h-full p-2">
-                                            <div id="w-full">
+                                    <h3>Your Editor (Title)</h3>
                                         <AceEditor
                                             mode="javascript"
                                             theme="monokai"
@@ -209,7 +210,7 @@ function Dashboard() {
                                             width={"550px"}
                                             height={"300px"}
                                         />
-                                        </div>
+                                        
                                         <ConsoleWrapper
                                                 onSave={saveButton}
                                                 onExecute={runButton}
