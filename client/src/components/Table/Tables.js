@@ -1,33 +1,33 @@
 import React from "react";
 import "./style.css";
 
-function Table() {
-    state = {
-        snippet: [],
-        title: [],
-        date: [],
-        language: [],
-        isLoading: true,
-    };
+function Table(sort) {
+    // state = {
+    //     snippet: [],
+    //     title: [],
+    //     date: [],
+    //     language: [],
+    //     isLoading: true,
+    // };
 
-    sort = (event) => {
-        const name = event.target.value;
+    // sort = (event) => {
+    //     const name = event.target.value;
 
-        if (name === "snippet") {
-            const { snippet } = this.state;
-            this.setState({
-                snippet: snippet.sort((snippet1, snippet2) => {
-                    if (snippet1.name < snippet2.name) {
-                        return -1;
-                    }
-                    if (snippet1.name > snippet2.name) {
-                        return 1;
-                    }
-                    return 0;
-                }),
-            });
-        }
-    }
+    //     if (name === "snippet") {
+    //         const { snippet } = this.state;
+    //         this.setState({
+    //             snippet: snippet.sort((snippet1, snippet2) => {
+    //                 if (snippet1.name < snippet2.name) {
+    //                     return -1;
+    //                 }
+    //                 if (snippet1.name > snippet2.name) {
+    //                     return 1;
+    //                 }
+    //                 return 0;
+    //             }),
+    //         });
+    //     }
+    // }
 
     return (
         <div className="flex flex-col bg-blue-700">
@@ -37,19 +37,46 @@ function Table() {
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead>
                                 <tr>
-                                    <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer" data-name="snippet" onClick={() => sort(0)}>
+                                    <th
+                                        className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
+                                        data-name="snippet"
+                                        onClick={() => sort(0)}
+                                    >
                                         Snippet
                                     </th>
-                                    <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer" data-name="title" onClick={() => sort(1)}>
+                                    <th
+                                        className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
+                                        data-name="title"
+                                        onClick={() => sort(1)}
+                                    >
                                         Title
                                     </th>
-                                    <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer" data-name="date" onClick={() => sort(2)}>
+                                    <th
+                                        className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
+                                        data-name="date"
+                                        onClick={() => sort(2)}
+                                    >
                                         Date Modified
                                     </th>
-                                    <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer" data-name="language" onClick={() => sort(3)}>
+                                    <th
+                                        className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
+                                        data-name="language"
+                                        onClick={() => sort(3)}
+                                    >
                                         Language
                                     </th>
-                                    <th className="px-6 py-3 bg-gray-50"></th>
+                                    <th
+                                        className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
+                                        data-name="language">
+                                        Filter By
+                                        <select className="text-gray-700 text-center bg-gray-200 px-4  m-2">
+                                            <option value="All">All Users</option>
+                                            <option value="MyCode">My CodeLocker</option>
+                                            <option value="Favs">
+                                            Favorites
+                                            </option>
+                                        </select>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">

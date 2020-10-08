@@ -165,7 +165,7 @@ function Dashboard() {
             </nav>
 
             <header className="shadow">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
+                <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight text-black">
                         Dashboard
                     </h1>
@@ -180,6 +180,7 @@ function Dashboard() {
                                 <div className="flex overflow-hidden bg-blue-800 justify-center">
                                     <div className="flex flex-wrap xs:w-1/2 sm:w-3/4 overflow-hidden p-2 mx-auto">
                                         <div className="text-gray-700 text-center bg-white h-full p-2">
+                                            <h3>Read Only (Title)</h3>
                                                 <AceEditor
                                                     mode="javascript"
                                                     theme="monokai"
@@ -199,7 +200,7 @@ function Dashboard() {
                                     </div>
                                     <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xl:block">
                                     <div className="text-gray-700 text-center bg-white h-full p-2">
-                                            <div id="w-full">
+                                    <h3>Your Editor (Title)</h3>
                                         <AceEditor
                                             mode="javascript"
                                             theme="monokai"
@@ -209,7 +210,7 @@ function Dashboard() {
                                             width={"550px"}
                                             height={"300px"}
                                         />
-                                        </div>
+                                        
                                         <ConsoleWrapper
                                                 onSave={saveButton}
                                                 onExecute={runButton}

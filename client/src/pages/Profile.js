@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
-import Logo from "../features/images/clLogo.png";
+import Logo from "../features/images/clLogo2.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
 
@@ -15,13 +15,13 @@ function Profile() {
 
     return (
         <div>
-            <nav className="bg-blue-700 p-2">
+            <nav className="bg-blue-700 p-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <img
-                                    className="h-20 w-22"
+                                    className="h-32"
                                     src={Logo}
                                     alt="Workflow logo"
                                 />
@@ -62,7 +62,7 @@ function Profile() {
                                             </a>
 
                                             <a
-                                                href="#"
+                                                href="/"
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                 role="menuitem"
                                             >
@@ -109,7 +109,7 @@ function Profile() {
             </nav>
 
             <header className="shadow">
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
+                <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight text-black">
                         Profile
                     </h1>
