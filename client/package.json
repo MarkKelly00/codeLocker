@@ -2,7 +2,7 @@
   "name": "codelocker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/MarkKelly00/codeLocker",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@auth0/auth0-react": "^1.1.0",
     "@craco/craco": "^5.7.0",
