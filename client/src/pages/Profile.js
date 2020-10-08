@@ -1,72 +1,17 @@
 import React, { useState, useEffect } from "react";
-import AceEditor from "react-ace";
 // import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
 import Logo from "../features/images/clLogo.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
-import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
-import { console, consoleMessages } from "../utils/consoleLogic";
-import Table from "../components/Table/Tables";
-import ConsoleCopy from "../components/ConsoleWrapper/consoleCopy";
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
 
-//sets up new console
-window.console = console;
-
-function Dashboard() {
+function Profile() {
     const [isOpen, setIsOpen] = useState(false);
-    const [editor, setEditor] = useState({});
-    const [consoleLog, setConsoleLog] = useState([]);
-
-    useEffect(() => {
-        const previousCode = localStorage.getItem("code");
-        if (previousCode) {
-            setEditor({ userCode: previousCode });
-        }
-    }, []);
-
-    //get the Ace editor value as uyer types
-    function onChange(newValue) {
-        setEditor({ userCode: newValue });
-    }
-
-    //onclick for copying and excecuting click functions
-    function saveButton() {
-        localStorage.setItem("code", editor.userCode);
-    }
-
-    function saveConsoleMsgs(mgsArr) {
-        setConsoleLog(() => {
-            return { messages: [mgsArr] };
-        });
-    }
-
-    function runButton() {
-        try {
-            // eslint-disable-next-line
-            new Function(editor.userCode)();
-
-            const messages = consoleMessages.map((msg) => {
-                return msg.message;
-            });
-
-            saveConsoleMsgs(messages);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    function resetButton() {
-        localStorage.removeItem("code");
-        setEditor({ userCode: " " });
-
-        saveConsoleMsgs([]);
-    }
 
     return (
         <div>
@@ -117,7 +62,7 @@ function Dashboard() {
                                             </a>
 
                                             <a
-                                                href="/"
+                                                href="#"
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                 role="menuitem"
                                             >
@@ -166,60 +111,59 @@ function Dashboard() {
             <header className="shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight text-black">
-                        Dashboard
+                        Profile
                     </h1>
                 </div>
             </header>
             <Sidebar />
             <main>
                 <div className="bg-blue-400 h-screen">
-                    <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
-                        <div className="justify-center overflow-hidden shadow-lg bg-gray-400 h-full">
-                            <div className="px-4 py-4">
-                                <div className="flex overflow-hidden bg-blue-800 justify-center">
-                                    <div className="flex flex-wrap xs:w-1/2 sm:w-3/4 overflow-hidden p-2 mx-auto">
-                                        <div className="text-gray-700 text-center bg-white h-full p-2">
-                                                <AceEditor
-                                                    mode="javascript"
-                                                    theme="monokai"
-                                                    onChange={onChange}
-                                                    fontSize={18}
-                                                    value={editor.userCode}
-                                                    width={"550px"}
-                                                    height={"300px"}
-                                                />
-                                            <ConsoleCopy
-                                                onExecute={runButton}
-                                                onReset={resetButton}
-                                                console={consoleLog}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xl:block">
-                                    <div className="text-gray-700 text-center bg-white h-full p-2">
-                                            <div id="w-full">
-                                        <AceEditor
-                                            mode="javascript"
-                                            theme="monokai"
-                                            onChange={onChange}
-                                            fontSize={18}
-                                            value={editor.userCode}
-                                            width={"550px"}
-                                            height={"300px"}
-                                        />
-                                        </div>
-                                        <ConsoleWrapper
-                                                onSave={saveButton}
-                                                onExecute={runButton}
-                                                onReset={resetButton}
-                                                console={consoleLog}
-                                            />
-                                        </div>
-                                    </div>
+                    <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
+                        <div className="flex-no-wrap justify-center overflow-hidden shadow-lg bg-blue-700">
+                            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                                <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                        Username Here
+                                    </h3>
                                 </div>
-                            </div>
-                            <div className="px-6 pt-4 pb-2">
-                                    <Table />
+                                <div>
+                                    <dl>
+                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm leading-5 font-medium text-gray-500">
+                                                Full name
+                                            </dt>
+                                            <input class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40" placeholder="List Name Here" />
+                                            <a href="#" class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500">
+                                                Update
+                                            </a>
+                                        </div>
+                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm leading-5 font-medium text-gray-500">
+                                                Password
+                                            </dt>
+                                            <input class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40" placeholder="List Password Here" />
+                                            <a href="#" class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500">
+                                                Update
+                                            </a>
+                                        </div>
+                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm leading-5 font-medium text-gray-500">
+                                                Email address
+                                            </dt>
+                                            <input class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40" placeholder="List Email Here"/>
+                                                
+                                            <a href="#" class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500">
+                                                Update
+                                            </a>
+                                            
+                                        </div>
+                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <a href="#" class="text-sm leading-5 font-medium no-underline hover:underline text-red-400">
+                                                Deactivate Account
+                                            </a>
+                                        </div>
+                                    </dl>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,4 +173,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Profile;

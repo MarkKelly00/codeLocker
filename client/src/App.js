@@ -6,6 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile"
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Splash} />
                 <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/profile" exact component={Profile} />
                 </Switch>
             </Router>
     );
