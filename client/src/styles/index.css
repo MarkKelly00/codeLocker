@@ -14,17 +14,12 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: theme("colors.primary");
+    background-color: #90cdf4;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
-}
-
-.dark-theme body {
-    background-color: theme("colors.dark");
-    color: theme("colors.darkFont");
 }
 
 .btn {
