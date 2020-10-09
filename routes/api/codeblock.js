@@ -5,8 +5,9 @@ router.route("/")
     .post(codeController.saveNewCode);
 
 router.route("/health")
-    .get((req,res)=>{
-        res.status(200).end()
-    })
+    .get(
+        codeController.retrieveCode
+        // res.status(200).end()
+    )
 
 module.exports = router;

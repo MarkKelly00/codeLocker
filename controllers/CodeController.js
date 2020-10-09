@@ -10,7 +10,9 @@ module.exports={
             .catch(err=>res.json(err))
     }, 
 
-    retrieveCode(){
-
+    retrieveCode(req,res){
+        res.json(db.CodeBlock
+            .find()
+        )
     },
 }

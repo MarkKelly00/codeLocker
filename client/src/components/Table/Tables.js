@@ -45,7 +45,7 @@ const Tbody = ({ user, code, title, date, tags, likes }) => (
 
 class Table extends React.Component {
     constructor(props) {
-        super(props);
+        super();
         this.state = {
             data: [
                 {
