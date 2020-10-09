@@ -68,7 +68,7 @@ function Splash() {
     }
 
     return (
-        <div className="bg-blue-300 h-screen my-auto">
+        <div className="bg-blue-300 h-auto">
             <div className="container mx-auto justify-center bg-blue-700 my-auto border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                 <div className="max-w-full rounded justify-center overflow-hidden shadow-lg bg-blue-400">
                     <div className="font-bold text-xl mb-2 text-center">
