@@ -3,7 +3,7 @@ import "./styles.css";
 
 const Toggle = () => {
     return (
-        <label for="isPrivate" className="flex items-center cursor-pointer">
+        <label htmlFor="isPrivate" className="flex items-center cursor-pointer">
             <div className="relative">
                 <input id="isPrivate" type="checkbox" className="hidden" />
                 <div className="toggle__line w-8 h-4 bg-gray-400 rounded-full shadow-inner"></div>
