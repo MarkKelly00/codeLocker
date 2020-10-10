@@ -1,15 +1,15 @@
 import React from 'react'
-import CopyButtons from "../RunResetButtons/CopyButton"
+import DemoButtons from "../RunResetButtons/demoButtons"
 import ConsoleLog from '../ConsoleLog/ConsoleLog'
 
-function ConsoleCopy({ onCopy, onExecute, onReset, console }) {
+function DemoWrapper({ onSave, onExecute, onReset, console }) {
     return (
         <div className="consoleWrapper flex flex-row overflow-hidden justify-center">
-            <CopyButtons onExecute={onExecute} onReset={onReset} onCopy={onCopy}/>
+            <DemoButtons onExecute={onExecute} onReset={onReset} />
             <ConsoleLog console={console} />
         </div>
 
     )
 }
 
-export default ConsoleCopy;
+export default DemoWrapper;

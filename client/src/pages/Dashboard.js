@@ -189,14 +189,14 @@ function Dashboard() {
             </header>
             <Sidebar />
             <main>
-                <div className="bg-blue-400 h-screen">
+                <div className="bg-gray-800 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                         <div className="justify-center overflow-hidden shadow-lg bg-gray-400 h-full">
                             <div className="px-4 py-4">
-                                <div className="flex overflow-hidden bg-blue-800 justify-center">
-                                    <div className="flex flex-wrap xs:w-1/2 sm:w-3/4 overflow-hidden p-2 mx-auto">
-                                        <div className="text-gray-700 text-center bg-white h-full p-2">
-                                            <h3>Read Only (Title)</h3>
+                                <div className="flex flex-wrap overflow-hidden bg-blue-800 justify-center">
+                                    <div className="w-1/2 flex-1 flex-no-wrap p-2 mx-auto hidden xl:block">
+                                        <div className="flex flex-wrap justify-center bg-white h-full p-2">
+                                            <h3 className="mt-2 mb-2">Read Only (Title)</h3>
                                             <AceEditor
                                                 mode="javascript"
                                                 theme="monokai"
@@ -214,9 +214,9 @@ function Dashboard() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xl:block">
-                                        <div className="text-gray-700 text-center bg-white h-full p-2">
-                                            <h3>Your Editor (Title)</h3>
+                                    <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xs:block sm:block md:block">
+                                        <div className="flex flex-wrap justify-center bg-white h-full p-2">
+                                        <input class="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100" placeholder="Input Title Here" />
                                             <AceEditor
                                                 mode="javascript"
                                                 theme="monokai"

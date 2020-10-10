@@ -3,7 +3,7 @@ import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo2.png";
 import "../components/styles.css";
 
-import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
+import ConsoleDemo from "../components/ConsoleWrapper/consoleDemo";
 import { console, consoleMessages } from "../utils/consoleLogic";
 
 // import LoginButton from "../components/LoginButton";
@@ -88,7 +88,7 @@ function Splash() {
                         />
                     </div>
 
-                    <ConsoleWrapper
+                    <ConsoleDemo
                         onSave={saveButton}
                         onExecute={runButton}
                         onReset={resetButton}
