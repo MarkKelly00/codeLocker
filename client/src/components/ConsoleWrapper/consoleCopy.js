@@ -4,7 +4,7 @@ import ConsoleLog from '../ConsoleLog/ConsoleLog'
 
 function ConsoleCopy({ onCopy, onExecute, onReset, console }) {
     return (
-        <div className="consoleWrapper flex flex-row justify-center">
+        <div className="consoleWrapper flex flex-row overflow-hidden justify-center">
             <CopyButtons onExecute={onExecute} onReset={onReset} onCopy={onCopy}/>
             <ConsoleLog console={console} />
         </div>
