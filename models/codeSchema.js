@@ -50,10 +50,6 @@ const codeSchema = new Schema({
     type: Boolean
   }, 
 
-  Auth0Id: {
-    type: String
-  }
-
 });
 
 const CodeBlock = mongoose.model("codeBlock", codeSchema);
