@@ -44,6 +44,14 @@ const codeSchema = new Schema({
 
   dateCloned: {
     type: Date
+  },
+
+  isPrivate: {
+    type: Boolean
+  }, 
+
+  Auth0Id: {
+    type: String
   }
 
 });
