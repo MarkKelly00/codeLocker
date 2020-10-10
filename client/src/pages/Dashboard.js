@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/AuthO/Loading";
+import LogOutButton from "../components/Buttons/LogoutButton";
 import AceEditor from "react-ace";
 import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
@@ -89,46 +92,55 @@ function Dashboard() {
                         <div className="hidden md:block">
                             <div className="ml-4 flex items-center md:ml-6">
                                 <div className="relative ml-3">
-                                        <button
-                                            className="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid transition ease-in-out duration-150"
-                                            id="user-menu"
-                                            aria-label="User menu"
-                                            aria-haspopup="true"
-                                            onClick={() => {
-                                                setIsOpen(!isOpen);
-                                            }}
-                                        >
-                                            <i class="fas fa-user-circle fa-2x"></i>
-                                        </button>
-                                        <Transition
-                                            show={isOpen}
-                                            enter="transition ease-out duration-100 transform"
-                                            enterFrom="opacity-0 scale-95"
-                                            enterTo="opacity-100 scale-100"
-                                            leave="transition ease-in duration-75 transform"
-                                            leaveFrom="opacity-100 scale-100"
-                                            leaveTo="opacity-0 scale-95"
-                                        >
-                                            {(ref) => (
-                                                <div
-                                                    ref={ref}
-                                                    className="absolute right-0 mt-3 px-2 sm:px-0"
-                                                >
-                                                                <div className="origin-top-right mt-2 w-48 rounded-md shadow-lg">
-                                                                    <div ref={ref}
-                                                                        className="py-1 rounded-md bg-white shadow-xs"
-                                                                        role="menu"
-                                                                        aria-orientation="vertical"
-                                                                        aria-labelledby="user-menu"
-                                                                    >
-                                                                        <a
-                                                                            href="/profile"
-                                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                                            role="menuitem"
-                                                                        >
-                                                                            Settings
-                                                                        </a>
+                                    <button
+                                        className="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid transition ease-in-out duration-150"
+                                        id="user-menu"
+                                        aria-label="User menu"
+                                        aria-haspopup="true"
+                                        onClick={() => {
+                                            setIsOpen(!isOpen);
+                                        }}
+                                    >
+                                        <i class="fas fa-user-circle fa-2x"></i>
+                                    </button>
+                                    <Transition
+                                        show={isOpen}
+                                        enter="transition ease-out duration-100 transform"
+                                        enterFrom="opacity-0 scale-95"
+                                        enterTo="opacity-100 scale-100"
+                                        leave="transition ease-in duration-75 transform"
+                                        leaveFrom="opacity-100 scale-100"
+                                        leaveTo="opacity-0 scale-95"
+                                    >
+                                        {/* <a
+                                                href="/profile"
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                role="menuitem"
+                                            >
+                                                Settings
+                                            </a> */}
 
+                                        {(ref) => (
+                                            <div
+                                                ref={ref}
+                                                className="absolute right-0 mt-3 px-2 sm:px-0"
+                                            >
+                                                <div className="origin-top-right mt-2 w-48 rounded-md shadow-lg">
+                                                    <div
+                                                        ref={ref}
+                                                        className="py-1 rounded-md bg-white shadow-xs"
+                                                        role="menu"
+                                                        aria-orientation="vertical"
+                                                        aria-labelledby="user-menu"
+                                                    >
+                                                        <a
+                                                            href="/profile"
+                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                            role="menuitem"
+                                                        >
+                                                            Settings
+                                                        </a>
+                                                        {/* 
                                                                         <a
                                                                             href="/"
                                                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -136,12 +148,13 @@ function Dashboard() {
                                                                         >
                                                                             Sign
                                                                             out
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                            )}
-                                        </Transition>
+                                                                        </a> */}
+                                                        <LogOutButton />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </Transition>
                                 </div>
                                 <div className="mr-2 flex md:hidden">
                                     <button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
@@ -196,7 +209,9 @@ function Dashboard() {
                                 <div className="flex flex-wrap overflow-hidden bg-blue-800 justify-center">
                                     <div className="w-1/2 flex-1 flex-no-wrap p-2 mx-auto hidden xl:block">
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
-                                            <h3 className="mt-2 mb-2">Read Only (Title)</h3>
+                                            <h3 className="mt-2 mb-2">
+                                                Read Only (Title)
+                                            </h3>
                                             <AceEditor
                                                 mode="javascript"
                                                 theme="monokai"
@@ -216,7 +231,10 @@ function Dashboard() {
                                     </div>
                                     <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xs:block sm:block md:block">
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
-                                        <input class="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100" placeholder="Input Title Here" />
+                                            <input
+                                                class="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100"
+                                                placeholder="Input Title Here"
+                                            />
                                             <AceEditor
                                                 mode="javascript"
                                                 theme="monokai"
@@ -248,4 +266,6 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default withAuthenticationRequired(Dashboard, {
+    onRedirecting: () => <Loading />,
+});

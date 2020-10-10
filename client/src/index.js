@@ -1,24 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./App";
 import Root from "./Root";
+import { BrowserRouter as Router } from "react-router-dom";
+import Auth0ProviderWithHistory from "./components/AuthO/AuthOProviderWithHistory";
+
 import * as serviceWorker from "./serviceWorker";
 
 import "./styles/index.css";
 
 ReactDOM.render(
-    <Auth0Provider
-        domain="dev-e0kk6pg3.us.auth0.com"
-        clientId="Kp5dMVqPxEzovXVjECEiWbY4P8IbG2O1"
-        redirectUri={window.location.origin}
-    >
-        <React.StrictMode>
-            <Root>
-                <App />
-            </Root>
-        </React.StrictMode>
-    </Auth0Provider>,
+    <Router>
+        <Auth0ProviderWithHistory>
+            <React.StrictMode>
+                <Root>
+                    <App />
+                </Root>
+            </React.StrictMode>
+        </Auth0ProviderWithHistory>
+    </Router>,
     document.getElementById("root")
 );
 
