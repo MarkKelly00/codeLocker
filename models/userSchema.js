@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 const userSchema = new Schema({
   
   Auth0Id: {
-    type: String
+    type: String 
   },
   
   userName: {

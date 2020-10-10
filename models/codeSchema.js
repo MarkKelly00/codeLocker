@@ -35,7 +35,7 @@ const codeSchema = new Schema({
   },
 
   isCloned: {
-    type: Boolean
+    type: Boolean 
   },
 
   originalId: {
