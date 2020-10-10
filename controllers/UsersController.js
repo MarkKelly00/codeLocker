@@ -1,19 +1,51 @@
 const db = require("../models");
 
 module.exports={
-    createNewUser(req, res){
+    async createNewUser(req, res){
         console.log("req.body in UserController.CreateNewUser, ", req.body);
-        db.User
-            .create(req.body)
-            .then(User=>res.json(User))
-            .catch(err=>res.json(err));
+       
+        try {
+            const newUser = await db.User.create(req.body);
+            res.json(newUser);
+        } catch (err) {
+            res.status(422).json(err);
+        }
     },
 
-    getUser(req,res){
+    async getUser(req,res){
         console.log("req.body in UserController.getUser ", req.params.id);
-        db.User
-            .findOne({auth0id:req.params.id})
-            .then(user=>res.json(user))
-            .catch(err=>res.json(err))
+
+        try {
+            const currentUser = await db.User.findOne({Auth0Id:req.params.id})
+            console.log("Current user is: ",currentUser)
+            res.json(currentUser);
+        } catch (err) {
+            res.status(422).json(err);
+        }
+    },
+
+    async getUserID(req,res){
+        try {
+            console.log("req.body in UserController.getUser ", req.params.id);
+            const userId = await db.User.findOne({Auth0Id:req.params.id},{projection:{_id:1}} )
+            console.log("UserID is: ",userId)
+            res.json(userId)
+        } catch (err) {
+            res.status(422).json(err)
+        }
+    }, 
+
+    async addFavorite(req, res){
+        try {
+            const user = await db.User.findOne({_id:req.body.author})
+            const favorited = await db.User.findOneAndUpdate(
+                {_id:user.author},
+                {$push:{ favoritesArr: req.body.codeId}}
+            )
+
+            res.json(favorited)
+        } catch (err) {
+            res.status(422).json(err)
+        }
     }
 }

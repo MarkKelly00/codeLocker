@@ -3,8 +3,8 @@ const codeController = require("../../controllers/CodeController");
 
 router.route("/")
     .post(codeController.saveNewCode)
-    //schema needs to updated and have isPrivate as part of it
-    // .get(codeController.getAllGlobalCode)
+    // schema needs to updated and have isPrivate as part of it
+    .get(codeController.getAllGlobalCode)
     .put(codeController.replaceOne);
 
 router.route("/author/:id")

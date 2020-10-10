@@ -22,7 +22,7 @@ module.exports = {
         }
     },
 
-    getAllGlobalCode(req, res) {
+    async getAllGlobalCode(req, res) {
         // console.log("req.body in codeController.getAllGlobalCode", req.body);
         try {
             const allCode = await db.CodeBlock.find({isPrivate:false})
@@ -32,7 +32,7 @@ module.exports = {
         }
     },
 
-    getAllUserCode(req, res) {
+    async getAllUserCode(req, res) {
         // console.log("req.body in codeController.getAllUserCode", req.params.id);
         try {
             const userCodes = await db.CodeBlock.find({author:req.params.id})
