@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import {  withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/AuthO/Loading";
+import LogOutButton from "../components/Buttons/LogoutButton"
 // import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
 import Logo from "../features/images/clLogo.png";
@@ -60,14 +63,8 @@ function Profile() {
                                             >
                                                 Settings
                                             </a>
-
-                                            <a
-                                                href="#"
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                role="menuitem"
-                                            >
-                                                Sign out
-                                            </a>
+                                            <LogOutButton />
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -173,4 +170,6 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile, {
+    onRedirecting: () => <Loading />,
+  });
