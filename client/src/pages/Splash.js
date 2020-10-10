@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
-import Logo from "../features/images/clLogo.png";
+import Logo from "../features/images/clLogo2.png";
 import "../components/styles.css";
 
-import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
+import ConsoleDemo from "../components/ConsoleWrapper/consoleDemo";
 import { console, consoleMessages } from "../utils/consoleLogic";
 
 // import LoginButton from "../components/LoginButton";
@@ -68,8 +68,8 @@ function Splash() {
     }
 
     return (
-        <div className="bg-blue-300">
-            <div className="container mx-auto justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
+        <div className="bg-blue-300 h-auto">
+            <div className="container mx-auto justify-center bg-blue-700 my-auto border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                 <div className="max-w-full rounded justify-center overflow-hidden shadow-lg bg-blue-400">
                     <div className="font-bold text-xl mb-2 text-center">
                         <img src={Logo} alt="CodeLocker logo" />
@@ -88,7 +88,7 @@ function Splash() {
                         />
                     </div>
 
-                    <ConsoleWrapper
+                    <ConsoleDemo
                         onSave={saveButton}
                         onExecute={runButton}
                         onReset={resetButton}

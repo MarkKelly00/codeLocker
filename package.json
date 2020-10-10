@@ -17,12 +17,15 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
+    "@tailwindui/react": "^0.1.1",
     "axios": "^0.18.0",
     "express": "^4.16.3",
+    "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
-    "if-env": "^1.0.4"
+    "tailwindcss": "^1.8.12"
   }
 }
