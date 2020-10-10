@@ -1,6 +1,5 @@
 import React from "react";
-import LoginButton from "../Buttons/LoginButton";
-import LogoutButton from "../Buttons/LogoutButton";
+import AuthenticationButton from "../Buttons/Authenticated-Button"
 
 function UserSignIn() {
     return (
@@ -32,8 +31,7 @@ function UserSignIn() {
                 </p>
             </div>
             <div className="flex items-center justify-between">
-                <LoginButton />
-                <LogoutButton />
+                <AuthenticationButton />
                 <button
                     className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
                     type="button"
