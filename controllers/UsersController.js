@@ -37,7 +37,7 @@ module.exports={
 
     async addFavorite(req, res){
         try {
-            const user = await db.User.findOne({_id:req.body.author})
+            const user = await db.User.findOne({_id:req.body.user})
             const favorited = await db.User.findOneAndUpdate(
                 {_id:user.author},
                 {$push:{ favoritesArr: req.body.codeId}}
