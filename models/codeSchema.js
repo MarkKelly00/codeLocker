@@ -50,6 +50,10 @@ const codeSchema = new Schema({
     type: Boolean
   }, 
 
+  likesArr: {
+    type: Array
+  }
+
 });
 
 const CodeBlock = mongoose.model("codeBlock", codeSchema);
