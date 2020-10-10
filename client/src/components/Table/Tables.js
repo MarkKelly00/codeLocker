@@ -18,9 +18,6 @@ const Tbody = ({ user, code, title, date, tags, likes }) => (
                 </div>
             </td>
             <td className="px-6 py-4 whitespace-no-wrap">
-                <div className="text-sm leading-5 text-gray-900">{code}</div>
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap">
                 <div className="text-sm leading-5 text-gray-900">{title}</div>
             </td>
             <td className="px-6 py-4 whitespace-no-wrap">
@@ -107,13 +104,6 @@ class Table extends React.Component {
                                         </th>
                                         <th
                                             className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
-                                            data-name="code"
-                                            onClick={() => this.sortBy("code")}
-                                        >
-                                            Code
-                                        </th>
-                                        <th
-                                            className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
                                             data-name="title"
                                             onClick={() => this.sortBy("title")}
                                         >
@@ -141,8 +131,7 @@ class Table extends React.Component {
                                             Likes
                                         </th>
                                         <th
-                                            className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
-                                            data-name="tags"
+                                            className="float-right px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
                                         >
                                             Filter By
                                             <select className="text-gray-700 text-center bg-gray-200 px-4  m-2">
