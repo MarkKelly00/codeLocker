@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo2.png";
 import "../components/styles.css";
+import Footer from "../components/Footer/Footer"
 
 import ConsoleDemo from "../components/ConsoleWrapper/consoleDemo";
 import { console, consoleMessages } from "../utils/consoleLogic";
@@ -125,6 +126,7 @@ function Splash() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
