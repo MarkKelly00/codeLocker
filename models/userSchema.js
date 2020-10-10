@@ -10,7 +10,7 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    required: "Password is required."
+    required: false
   },
 
   userImage: {
@@ -37,7 +37,14 @@ const userSchema = new Schema({
   snipsArr: {
     type: Array,
     default: []
-  }
+  },
+
+  favoritesArr: {
+    type: Array,
+    default: []
+  },
+
+
 });
 
 userSchema.statics.login = function login(id, callback) {
