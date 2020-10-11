@@ -15,5 +15,11 @@ router.route("/:id")
     .delete(codeController.deleteOne)
     .get(codeController.getCodeBlock);
     
+router.route("/likes")
+    .post(codeController.addLike)
+    .put(codeController.removeLike);
+
+router.route("/likes/:id")
+    .get(codeController.getLikeCount);
 
 module.exports = router;

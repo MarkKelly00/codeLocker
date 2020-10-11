@@ -98,4 +98,50 @@ module.exports = {
             res.status(422).json(error)
         }
     },
+
+    async addLike(req,res){
+        console.log("req.body in codeController.AddLike: ", req.body);
+
+        try {
+            await db.CodeBlock.findOneAndUpdate(
+                {_id:req.body.codeId},
+                {$push:{likesArr:new ObjectId(req.body.userId)}}
+            )
+
+            const likedCode =db.CodeBlock.findOne({_id:req.body.codeId})
+
+            res.json(likedCode)
+        } catch (err) {
+            console.log(err);
+            res.status(422).json(err)
+        }
+    }, 
+
+    async getLikeCount(req, res){
+        console.log("req.params.id in codeController.getLikeCount: ", req.params.id)
+
+        try {
+            const {likesArr} = await db.CodeBlock.findOne({_id:req.params.id});
+            const likes =  likesArr.length;
+            res.json(likes)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },
+
+    async removeLike(req, res){
+        console.log("req.params.id in controller.removeLike: ", req.params.id);
+        try {
+            await db.CodeBlock.findByIdAndUpdate(
+                {_id:req.body.codeId},
+                {$pull:{likesArr:new ObjectId(req.body.userId)}}
+            )
+            const codeblk = db.CodeBlock.findOne({_id:req.body.codeId})
+            res.json(codeblk)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    }
 };
