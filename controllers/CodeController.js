@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const db = require("../models");
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
     //create new code block, retrieve code id, find user then update user snippets array with new code id
@@ -23,9 +24,10 @@ module.exports = {
     },
 
     async getAllGlobalCode(req, res) {
-        // console.log("req.body in codeController.getAllGlobalCode", req.body);
+        console.log("req.body in codeController.getAllGlobalCode", req.body);
         try {
             const allCode = await db.CodeBlock.find({isPrivate:false})
+            console.log("All code is: ", await allCode)
             res.json(allCode)
         } catch (err) {
             res.status(422).json(err)
@@ -69,7 +71,7 @@ module.exports = {
             const author = await db.CodeBlock.findOne({_id:req.params.id})
             await db.User.findOneAndUpdate(
                 {_id:author.author},
-                {$pull:{snipsArr:req.params.id}},
+                {$pull:{snipsArr:new ObjectId(req.params.id)}},
             )
 
             const deleted = await db.CodeBlock.deleteOne({_id:req.params.id})
