@@ -89,7 +89,7 @@ module.exports = {
             const deleted = await db.CodeBlock.deleteMany({author:req.params.id})
             await db.User.findOneAndUpdate(
                 {_id:req.params.id},
-                {$unset:{snipsArr:[]}}
+                {$set:{snipsArr:[]}}
             )
             res.json(deleted)
 
