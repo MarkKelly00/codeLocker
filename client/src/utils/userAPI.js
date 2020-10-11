@@ -1,24 +1,24 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-
-    createUser:function(userData){
-        return axios.post("/api/users", userData)
+    createUser: function (userData) {
+        return axios.post("/api/users", userData);
     },
 
-    getUserProfile:function(Auth0Id){
-        return axios.get("/api/users"+Auth0Id)
+    getUserProfile: function (Auth0Id) {
+        return axios.get("/api/users/" + Auth0Id);
     },
 
-    getUserId:function(Auth0Id){
-        return axios.get("/api/users/usersid/"+Auth0Id)
+    getUserId: async function (Auth0Id) {
+        const userId = await axios.get("/api/users/userid/" + Auth0Id);
+        return userId.data;
     },
 
-    addFavorite:function(codeId, userId){
+    addFavorite: function (codeId, userId) {
         const data = {
-            user:userId,
-            codeId:codeId
-        }
-        return axios.post("/api/users/favorite", data)
-    }
-}
+            user: userId,
+            codeId: codeId,
+        };
+        return axios.post("/api/users/favorite", data);
+    },
+};

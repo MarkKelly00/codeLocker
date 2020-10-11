@@ -6,7 +6,8 @@ import Loading from "../components/AuthO/Loading";
 const UserInfo = () => {
   const { user } = useAuth0();
   const { name, picture, email } = user;
-
+  console.log("user is: ", user);
+  
   return (
     <div>
       <div className="row align-items-center profile-header">
