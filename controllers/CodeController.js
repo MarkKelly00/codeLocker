@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const db = require("../models");
-var ObjectId = require('mongoose').Types.ObjectId; 
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
     //create new code block, retrieve code id, find user then update user snippets array with new code id
@@ -89,7 +89,7 @@ module.exports = {
             const deleted = await db.CodeBlock.deleteMany({author:req.params.id})
             await db.User.findOneAndUpdate(
                 {_id:req.params.id},
-                {$unset:{snipsArr:[]}}
+                {$set:{snipsArr:[]}}
             )
             res.json(deleted)
 
@@ -98,4 +98,50 @@ module.exports = {
             res.status(422).json(error)
         }
     },
+
+    async addLike(req,res){
+        console.log("req.body in codeController.AddLike: ", req.body);
+
+        try {
+            await db.CodeBlock.findOneAndUpdate(
+                {_id:req.body.codeId},
+                {$push:{likesArr:new ObjectId(req.body.userId)}}
+            )
+
+            const likedCode =db.CodeBlock.findOne({_id:req.body.codeId})
+
+            res.json(likedCode)
+        } catch (err) {
+            console.log(err);
+            res.status(422).json(err)
+        }
+    }, 
+
+    async getLikeCount(req, res){
+        console.log("req.params.id in codeController.getLikeCount: ", req.params.id)
+
+        try {
+            const {likesArr} = await db.CodeBlock.findOne({_id:req.params.id});
+            const likes =  likesArr.length;
+            res.json(likes)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },
+
+    async removeLike(req, res){
+        console.log("req.params.id in controller.removeLike: ", req.params.id);
+        try {
+            await db.CodeBlock.findByIdAndUpdate(
+                {_id:req.body.codeId},
+                {$pull:{likesArr:new ObjectId(req.body.userId)}}
+            )
+            const codeblk = await db.CodeBlock.findOne({_id:req.body.codeId})
+            res.json(codeblk)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    }
 };
