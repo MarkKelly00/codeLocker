@@ -1,4 +1,5 @@
 const db = require("../models");
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports={
     async createNewUser(req, res){
@@ -37,15 +38,31 @@ module.exports={
 
     async addFavorite(req, res){
         try {
-            const user = await db.User.findOne({_id:req.body.user})
+
             const favorited = await db.User.findOneAndUpdate(
-                {_id:user.author},
-                {$push:{ favoritesArr: req.body.codeId}}
+                {_id:req.body.userId},
+                {$push:{ favoritesArr:new ObjectId(req.body.codeId)}}
             )
 
             res.json(favorited)
         } catch (err) {
             res.status(422).json(err)
         }
-    }
+    }, 
+
+    async removeFavorite(req, res){
+        try {
+            await db.User.findByIdAndUpdate(
+                {_id:req.body.userId},
+                {$pull:{favoritesArr:new ObjectId(req.body.codeId)}}
+            )
+            const userProfile = await db.User.findOne({_id:req.body.userId})
+            res.json(userProfile)
+
+        } catch (err) {
+            console.log(err);
+            res.status(422).json(err)
+        }
+    }, 
+
 }

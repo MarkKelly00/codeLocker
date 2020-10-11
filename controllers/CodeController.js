@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const db = require("../models");
-var ObjectId = require('mongoose').Types.ObjectId; 
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
     //create new code block, retrieve code id, find user then update user snippets array with new code id
@@ -137,7 +137,7 @@ module.exports = {
                 {_id:req.body.codeId},
                 {$pull:{likesArr:new ObjectId(req.body.userId)}}
             )
-            const codeblk = db.CodeBlock.findOne({_id:req.body.codeId})
+            const codeblk = await db.CodeBlock.findOne({_id:req.body.codeId})
             res.json(codeblk)
         } catch (err) {
             console.log(err)
