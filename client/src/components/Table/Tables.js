@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./style.css";
-// import API from "../../utils/codeBlockAPI";
+import API from "../../utils/codeBlockAPI";
 
-const Tbody = ({ user, title, date, tags, likes }) => (
+const Tbody = ({ user, title, dateCreated, tags, likes }) => (
     <tbody className="bg-white divide-y divide-gray-200">
         <tr>
             <td className="px-6 py-4 whitespace-no-wrap">
@@ -22,7 +22,7 @@ const Tbody = ({ user, title, date, tags, likes }) => (
             </td>
             <td className="px-6 py-4 whitespace-no-wrap">
                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    {date}
+                    {dateCreated}
                 </span>
             </td>
             <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
@@ -43,34 +43,22 @@ const Tbody = ({ user, title, date, tags, likes }) => (
 class Table extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: [
-                {
-                    code: "console",
-                    title: "Task console",
-                    tags: "console.log",
-                    date: "05/23/20",
-                    likes: "33",
-                },
-                {
-                    code: "eerrorr",
-                    title: "Task eerrorr",
-                    tags: "err",
-                    date: "11/3/20",
-                    likes: ">9000",
-                },
-                {
-                    code: "homebrew",
-                    title: "Task homebrew",
-                    tags: "HB",
-                    date: "09/23/20",
-                    likes: "1",
-                },
-            ],
+    this.state = {
+        data: [],
         };
+        console.log('data', this.state.data);
         this.compareBy.bind(this);
         this.sortBy.bind(this);
     }
+    async componentDidMount() {
+        try {
+            const data = await this.getCode();
+            this.state.data = data;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     compareBy(key) {
         return function (a, b) {
             if (a[key] < b[key]) return -1;
@@ -83,6 +71,19 @@ class Table extends React.Component {
         arrayCopy.sort(this.compareBy(key));
         this.setState({ data: arrayCopy });
     }
+    getCode = () => {
+        API.getGlobalCode()
+            .then((response) => {
+            const data = response.data;
+            this.setState({
+                data: data
+            });
+        })
+        .catch(() => {
+            alert('Error retrieving data!');
+        });
+    }
+
 
     render() {
         const rows = this.state.data.map((rowData) => <Tbody {...rowData} />);
@@ -159,5 +160,6 @@ class Table extends React.Component {
         );
     }
 }
+
 
 export default Table;
