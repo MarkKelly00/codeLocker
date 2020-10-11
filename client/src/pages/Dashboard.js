@@ -12,6 +12,8 @@ import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
 import { console, consoleMessages } from "../utils/consoleLogic";
 import Table from "../components/Table/Tables";
 import ConsoleCopy from "../components/ConsoleWrapper/consoleCopy";
+import Auth0Info from "../components/AuthO/Auth0Info"
+import userAPI from "../utils/userAPI";
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -27,12 +29,37 @@ function Dashboard() {
     const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
     const [consoleLog, setConsoleLog] = useState([]);
 
+    const [ userInfo, setUserInfo ] = useState({});
+
     useEffect(() => {
         const previousCode = localStorage.getItem("code");
         if (previousCode) {
             setEditor({ userCode: previousCode });
         }
     }, []);
+
+    useEffect(() => {
+        try{
+            const user = getUserInfo(Auth0Info.sub)
+            setUserInfo(user);
+        }catch(err){
+            console.log(err);
+        }
+    }, []);
+
+    async function getUserInfo(Auth0Id) {
+        try{
+            const userId = await userAPI.getUserId(Auth0Id)
+            const userProfile = await userAPI.getUserProfile(userId)
+
+            return userProfile;
+        }catch(err){
+            const newUser = await userAPI.createUser(Auth0Info.user)
+
+            return newUser;
+        }
+        
+    }
 
     //get the Ace editor value as uyer types
     function onChange(newValue) {
