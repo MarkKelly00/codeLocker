@@ -12,6 +12,7 @@ router.route("/userid/:id")
 
 router.route("/favorite")
     .post(UsersController.addFavorite)
+    .put(UsersController.removeFavorite)
 
 
 module.exports = router;

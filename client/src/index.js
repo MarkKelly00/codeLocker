@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithHistory from "./components/AuthO/AuthOProviderWithHistory";
 
 import * as serviceWorker from "./serviceWorker";
-
 import "./styles/index.css";
 
 ReactDOM.render(

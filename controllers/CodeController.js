@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const db = require("../models");
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
     //create new code block, retrieve code id, find user then update user snippets array with new code id
@@ -23,9 +24,10 @@ module.exports = {
     },
 
     async getAllGlobalCode(req, res) {
-        // console.log("req.body in codeController.getAllGlobalCode", req.body);
+        console.log("req.body in codeController.getAllGlobalCode", req.body);
         try {
             const allCode = await db.CodeBlock.find({isPrivate:false})
+            console.log("All code is: ", await allCode)
             res.json(allCode)
         } catch (err) {
             res.status(422).json(err)
@@ -69,7 +71,7 @@ module.exports = {
             const author = await db.CodeBlock.findOne({_id:req.params.id})
             await db.User.findOneAndUpdate(
                 {_id:author.author},
-                {$pull:{snipsArr:req.params.id}},
+                {$pull:{snipsArr:new ObjectId(req.params.id)}},
             )
 
             const deleted = await db.CodeBlock.deleteOne({_id:req.params.id})
@@ -87,7 +89,7 @@ module.exports = {
             const deleted = await db.CodeBlock.deleteMany({author:req.params.id})
             await db.User.findOneAndUpdate(
                 {_id:req.params.id},
-                {$unset:{snipsArr:[]}}
+                {$set:{snipsArr:[]}}
             )
             res.json(deleted)
 
@@ -96,4 +98,50 @@ module.exports = {
             res.status(422).json(error)
         }
     },
+
+    async addLike(req,res){
+        console.log("req.body in codeController.AddLike: ", req.body);
+
+        try {
+            await db.CodeBlock.findOneAndUpdate(
+                {_id:req.body.codeId},
+                {$push:{likesArr:new ObjectId(req.body.userId)}}
+            )
+
+            const likedCode =db.CodeBlock.findOne({_id:req.body.codeId})
+
+            res.json(likedCode)
+        } catch (err) {
+            console.log(err);
+            res.status(422).json(err)
+        }
+    }, 
+
+    async getLikeCount(req, res){
+        console.log("req.params.id in codeController.getLikeCount: ", req.params.id)
+
+        try {
+            const {likesArr} = await db.CodeBlock.findOne({_id:req.params.id});
+            const likes =  likesArr.length;
+            res.json(likes)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },
+
+    async removeLike(req, res){
+        console.log("req.params.id in controller.removeLike: ", req.params.id);
+        try {
+            await db.CodeBlock.findByIdAndUpdate(
+                {_id:req.body.codeId},
+                {$pull:{likesArr:new ObjectId(req.body.userId)}}
+            )
+            const codeblk = await db.CodeBlock.findOne({_id:req.body.codeId})
+            res.json(codeblk)
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    }
 };

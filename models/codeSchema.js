@@ -35,7 +35,7 @@ const codeSchema = new Schema({
   },
 
   isCloned: {
-    type: Boolean
+    type: Boolean 
   },
 
   originalId: {
@@ -50,8 +50,8 @@ const codeSchema = new Schema({
     type: Boolean
   }, 
 
-  Auth0Id: {
-    type: String
+  likesArr: {
+    type: Array
   }
 
 });

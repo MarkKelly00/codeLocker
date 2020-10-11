@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
+import "./styles"
 import ConsoleWrapper from "../ConsoleWrapper/consoleWrapper";
 import { console, consoleMessages } from "../../utils/consoleLogic";
 // import editorContext from '../utils/editorContext'

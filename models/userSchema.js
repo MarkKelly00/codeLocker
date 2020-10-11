@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const userSchema = new Schema({
+  
+  Auth0Id: {
+    type: String 
+  },
+  
   userName: {
     type: String,
     trim: true,
@@ -14,8 +19,7 @@ const userSchema = new Schema({
   },
 
   userImage: {
-    data: Buffer,
-    contentType: String
+    type: String
   },
 
   email: {

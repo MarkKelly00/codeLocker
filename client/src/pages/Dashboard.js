@@ -14,6 +14,7 @@ import Table from "../components/Table/Tables";
 import ConsoleCopy from "../components/ConsoleWrapper/consoleCopy";
 import Auth0Info from "../components/AuthO/Auth0Info"
 import userAPI from "../utils/userAPI";
+import Footer from "../components/Footer/Footer"
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -139,13 +140,6 @@ function Dashboard() {
                                         leaveFrom="opacity-100 scale-100"
                                         leaveTo="opacity-0 scale-95"
                                     >
-                                        {/* <a
-                                                href="/profile"
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                role="menuitem"
-                                            >
-                                                Settings
-                                            </a> */}
 
                                         {(ref) => (
                                             <div
@@ -167,15 +161,7 @@ function Dashboard() {
                                                         >
                                                             Settings
                                                         </a>
-                                                        {/* 
-                                                                        <a
-                                                                            href="/"
-                                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                                            role="menuitem"
-                                                                        >
-                                                                            Sign
-                                                                            out
-                                                                        </a> */}
+   
                                                         <LogOutButton />
                                                     </div>
                                                 </div>
@@ -192,9 +178,9 @@ function Dashboard() {
                                             viewBox="0 0 24 24"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
                                                 d="M4 6h16M4 12h16M4 18h16"
                                             />
                                         </svg>
@@ -206,9 +192,9 @@ function Dashboard() {
                                             viewBox="0 0 24 24"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
                                                 d="M6 18L18 6M6 6l12 12"
                                             />
                                         </svg>
@@ -288,6 +274,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </main>
         </div>
     );
