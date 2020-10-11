@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Sidebar() {
+function Sidebar({ username }) {
     const [isOn, setIsOn] = useState(false);
 
     return (
@@ -11,14 +11,17 @@ function Sidebar() {
                     <div className="flex flex-col w-64 bg-gray-300 fixed border-t-4 border-b-4 border-teal-500 px-1 py-1 shadow-lg">
                         <div className="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                             <div className="flex items-center flex-shrink-0 px-4 font-serif text-lg text-center">
-                                <a href="/profile" className="flex-shrink-0 w-full group block">
+                                <a
+                                    href="/profile"
+                                    className="flex-shrink-0 w-full group block"
+                                >
                                     <div className="flex items-center">
                                         <div>
                                             <i className="fas fa-user-circle fa-2x" />
                                         </div>
                                         <div className="ml-3">
                                             <p className="text-sm leading-5 font-medium text-gray">
-                                                Name Here
+                                                {username}
                                             </p>
                                             <p className="text-xs leading-4 font-medium text-gray-700 group-hover:text-gray-200 transition ease-in-out duration-150">
                                                 View profile
@@ -122,9 +125,7 @@ function Sidebar() {
                                 </p>
                                 <p className="text-sm leading-5 font-medium text-white">
                                     Favorites
-                                </p> <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
+                                </p>{" "}
                                 <p className="text-sm leading-5 font-medium text-white">
                                     Favorites
                                 </p>
@@ -151,7 +152,11 @@ function Sidebar() {
                                 </p>
                                 <p className="text-sm leading-5 font-medium text-white">
                                     Favorites
-                                </p> <p className="text-sm leading-5 font-medium text-white">
+                                </p>
+                                <p className="text-sm leading-5 font-medium text-white">
+                                    Favorites
+                                </p>{" "}
+                                <p className="text-sm leading-5 font-medium text-white">
                                     Favorites
                                 </p>
                                 <p className="text-sm leading-5 font-medium text-white">

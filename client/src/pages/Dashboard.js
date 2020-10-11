@@ -12,9 +12,9 @@ import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
 import { console, consoleMessages } from "../utils/consoleLogic";
 import Table from "../components/Table/Tables";
 import ConsoleCopy from "../components/ConsoleWrapper/consoleCopy";
-import Auth0Info from "../components/AuthO/Auth0Info"
 import userAPI from "../utils/userAPI";
-import Footer from "../components/Footer/Footer"
+import Footer from "../components/Footer/Footer";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -30,7 +30,39 @@ function Dashboard() {
     const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
     const [consoleLog, setConsoleLog] = useState([]);
 
-    const [ userInfo, setUserInfo ] = useState({});
+    const [userInfo, setUserInfo] = useState({});
+
+    const { user } = useAuth0();
+    const { nickname, picture, email, sub } = user;
+
+    const userObj = {
+        Auth0Id: sub,
+        userName: nickname,
+        userImage: picture,
+        email: email,
+    };
+
+    checkUser();
+
+    async function checkUser(userObj) {
+        try {
+            const userId = getUserId();
+            if (!userId) {
+                const user = createUser();
+                setUserInfo(user);
+                console.log("user from Checkuser is: ", user);
+            } else {
+                const userProfile = await userAPI.getUserProfile(sub);
+                console.log(
+                    "userProfile from checkUser is: ",
+                    userProfile.data
+                );
+                setUserInfo(userProfile.data);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
         const previousCode = localStorage.getItem("code");
@@ -39,27 +71,22 @@ function Dashboard() {
         }
     }, []);
 
-    useEffect(() => {
-        try{
-            const user = getUserInfo(Auth0Info.sub)
-            setUserInfo(user);
-        }catch(err){
+    async function createUser() {
+        try {
+            const newUser = await userAPI.createUser(sub);
+            return newUser;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+    }
+    async function getUserId() {
+        try {
+            const userProfile = await userAPI.getUserId(sub);
+            console.log("userId is: ", userProfile);
+        } catch (err) {
             console.log(err);
         }
-    }, []);
-
-    async function getUserInfo(Auth0Id) {
-        try{
-            const userId = await userAPI.getUserId(Auth0Id)
-            const userProfile = await userAPI.getUserProfile(userId)
-
-            return userProfile;
-        }catch(err){
-            const newUser = await userAPI.createUser(Auth0Info.user)
-
-            return newUser;
-        }
-        
     }
 
     //get the Ace editor value as uyer types
@@ -140,7 +167,6 @@ function Dashboard() {
                                         leaveFrom="opacity-100 scale-100"
                                         leaveTo="opacity-0 scale-95"
                                     >
-
                                         {(ref) => (
                                             <div
                                                 ref={ref}
@@ -161,7 +187,7 @@ function Dashboard() {
                                                         >
                                                             Settings
                                                         </a>
-   
+
                                                         <LogOutButton />
                                                     </div>
                                                 </div>
@@ -213,7 +239,7 @@ function Dashboard() {
                     </h1>
                 </div>
             </header>
-            <Sidebar />
+            <Sidebar username={nickname} />
             <main>
                 <div className="bg-gray-800 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
