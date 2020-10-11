@@ -25,10 +25,8 @@ window.console = console;
 function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
-    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "console.log(\"Hello World!\"); "});
-    const [viewOnlyLog, setViewOnlyLog]= useState([]) 
+    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
     const [consoleLog, setConsoleLog] = useState([]);
-
 
     useEffect(() => {
         const previousCode = localStorage.getItem("code");
@@ -53,11 +51,6 @@ function Dashboard() {
         });
     }
 
-    function saveViewLogMsgs(msgsArr){
-        setViewOnlyLog(()=>{
-            return {messages:[msgsArr]}
-        });
-    }
     function runButton() {
         try {
             // eslint-disable-next-line
@@ -70,23 +63,6 @@ function Dashboard() {
             saveConsoleMsgs(messages);
         } catch (err) {
             console.error(err);
-        }
-    }
-
-    function viewOnlyRunButton(){
-        try {
-            // eslint-disable-next-line no-new-func
-            new Function(viewOnlyCode.userCode)();
-
-            const messages = consoleMessages.map((msg)=>{
-                return msg.message
-            });
-
-            saveViewLogMsgs(messages);
-
-            
-        } catch (err) {
-            console.log(err)
         }
     }
 
@@ -137,13 +113,6 @@ function Dashboard() {
                                         leaveFrom="opacity-100 scale-100"
                                         leaveTo="opacity-0 scale-95"
                                     >
-                                        {/* <a
-                                                href="/profile"
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                role="menuitem"
-                                            >
-                                                Settings
-                                            </a> */}
 
                                         {(ref) => (
                                             <div
@@ -165,15 +134,7 @@ function Dashboard() {
                                                         >
                                                             Settings
                                                         </a>
-                                                        {/* 
-                                                                        <a
-                                                                            href="/"
-                                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                                            role="menuitem"
-                                                                        >
-                                                                            Sign
-                                                                            out
-                                                                        </a> */}
+   
                                                         <LogOutButton />
                                                     </div>
                                                 </div>
@@ -190,9 +151,9 @@ function Dashboard() {
                                             viewBox="0 0 24 24"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
                                                 d="M4 6h16M4 12h16M4 18h16"
                                             />
                                         </svg>
@@ -204,9 +165,9 @@ function Dashboard() {
                                             viewBox="0 0 24 24"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
                                                 d="M6 18L18 6M6 6l12 12"
                                             />
                                         </svg>
@@ -248,9 +209,9 @@ function Dashboard() {
                                                 readOnly={true}
                                             />
                                             <ConsoleCopy
-                                                onExecute={viewOnlyRunButton}
+                                                onExecute={runButton}
                                                 onReset={resetButton}
-                                                console={viewOnlyLog}
+                                                console={consoleLog}
                                             />
                                         </div>
                                     </div>
