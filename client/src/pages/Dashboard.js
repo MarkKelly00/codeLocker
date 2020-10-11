@@ -25,8 +25,10 @@ window.console = console;
 function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
-    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
+    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "console.log(\"Hello World!\"); "});
+    const [viewOnlyLog, setViewOnlyLog]= useState([]) 
     const [consoleLog, setConsoleLog] = useState([]);
+
 
     useEffect(() => {
         const previousCode = localStorage.getItem("code");
@@ -51,6 +53,11 @@ function Dashboard() {
         });
     }
 
+    function saveViewLogMsgs(msgsArr){
+        setViewOnlyLog(()=>{
+            return {messages:[msgsArr]}
+        });
+    }
     function runButton() {
         try {
             // eslint-disable-next-line
@@ -63,6 +70,23 @@ function Dashboard() {
             saveConsoleMsgs(messages);
         } catch (err) {
             console.error(err);
+        }
+    }
+
+    function viewOnlyRunButton(){
+        try {
+            // eslint-disable-next-line no-new-func
+            new Function(viewOnlyCode.userCode)();
+
+            const messages = consoleMessages.map((msg)=>{
+                return msg.message
+            });
+
+            saveViewLogMsgs(messages);
+
+            
+        } catch (err) {
+            console.log(err)
         }
     }
 
@@ -224,9 +248,9 @@ function Dashboard() {
                                                 readOnly={true}
                                             />
                                             <ConsoleCopy
-                                                onExecute={runButton}
+                                                onExecute={viewOnlyRunButton}
                                                 onReset={resetButton}
-                                                console={consoleLog}
+                                                console={viewOnlyLog}
                                             />
                                         </div>
                                     </div>
