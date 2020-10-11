@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 // import API from "../../utils/codeBlockAPI";
 
-const Tbody = ({ user, code, title, date, tags, likes }) => (
+const Tbody = ({ user, title, date, tags, likes }) => (
     <tbody className="bg-white divide-y divide-gray-200">
         <tr>
             <td className="px-6 py-4 whitespace-no-wrap">
