@@ -12,6 +12,7 @@ import ConsoleWrapper from "../components/ConsoleWrapper/consoleWrapper";
 import { console, consoleMessages } from "../utils/consoleLogic";
 import Table from "../components/Table/Tables";
 import ConsoleCopy from "../components/ConsoleWrapper/consoleCopy";
+import Footer from "../components/Footer/Footer"
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -261,6 +262,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </main>
         </div>
     );

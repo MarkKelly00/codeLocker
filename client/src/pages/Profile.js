@@ -8,6 +8,8 @@ import "../components/styles.css";
 import Logo from "../features/images/clLogo2.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
+import Footer from "../components/Footer/Footer"
+
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -222,6 +224,7 @@ function Profile() {
                     </div>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 }

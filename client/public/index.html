@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138899554-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-179706421-1');
+        </script>
+
         <meta charset="utf-8" />
+
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <!-- Fontawesome Kit -->
         <script
@@ -12,12 +22,6 @@
         <link
             href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
             rel="stylesheet"
-        />
-        <!-- Our CSS -->
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="../../src/components/styles.css"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
@@ -40,7 +44,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-        <title>React Recoil App</title>
+        <title>Code Locker</title>
+        <meta name="description" content="Code Locker is an intuitive and secure site built using React and styled with Tailwind CSS, where you can test, store and share your favorite code snippets.">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="Code Locker">
+        <meta itemprop="description" content="Code Locker is an intuitive and secure site built using React and styled with Tailwind CSS, where you can test, store and share your favorite code snippets.">
+        <meta itemprop="image" content="./assets/preview/CodeLockerSS.jpg">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content=""> <!--change once deployed to Heroku-->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Code Locker">
+        <meta property="og:description" content="Code Locker is an intuitive and secure site built using React and styled with Tailwind CSS, where you can test, store and share your favorite code snippets.">
+        <meta property="og:image" content="./assets/preview/CodeLockerSS.jpg">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Code Locker">
+        <meta name="twitter:description" content="Code Locker is an intuitive and secure site built using React and styled with Tailwind CSS , where you can test, store and share your favorite code snippets.">
+        <meta name="twitter:image" content="./assets/preview/CodeLockerSS.jpg">
+
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
