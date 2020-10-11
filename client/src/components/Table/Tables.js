@@ -43,10 +43,10 @@ const Tbody = ({ user, title, dateCreated, tags, likes }) => (
 class Table extends React.Component {
     constructor(props) {
         super(props);
-    this.state = {
-        data: [],
+        this.state = {
+            data: [],
         };
-        console.log('data', this.state.data);
+        console.log("data", this.state.data);
         this.compareBy.bind(this);
         this.sortBy.bind(this);
     }
@@ -74,16 +74,15 @@ class Table extends React.Component {
     getCode = () => {
         API.getGlobalCode()
             .then((response) => {
-            const data = response.data;
-            this.setState({
-                data: data
+                const data = response.data;
+                this.setState({
+                    data: data,
+                });
+            })
+            .catch(() => {
+                alert("Error retrieving data!");
             });
-        })
-        .catch(() => {
-            alert('Error retrieving data!');
-        });
-    }
-
+    };
 
     render() {
         const rows = this.state.data.map((rowData) => <Tbody {...rowData} />);
@@ -131,9 +130,7 @@ class Table extends React.Component {
                                         >
                                             Likes
                                         </th>
-                                        <th
-                                            className="float-right px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
-                                        >
+                                        <th className="float-right px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer">
                                             Filter By
                                             <select className="text-gray-700 text-center bg-gray-200 px-4  m-2">
                                                 <option value="All">
@@ -160,6 +157,5 @@ class Table extends React.Component {
         );
     }
 }
-
 
 export default Table;
