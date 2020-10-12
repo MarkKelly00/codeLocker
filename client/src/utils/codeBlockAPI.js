@@ -1,9 +1,10 @@
 import axios from'axios';
 
 export default {
-    saveCodeBlock:function(codeblock){
+    saveCodeBlock:async function(codeblock){
         //data contains all data for new code block, including userId
-        return axios.post("/api/codeblock", codeblock)
+         const {data} = await axios.post("/api/codeblock", codeblock)
+         return data;
     },
     getGlobalCode:function(){
         return axios.get("/api/codeblock")

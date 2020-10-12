@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/AuthO/Loading";
 import LogOutButton from "../components/Buttons/LogoutButton";
-// import { Transition } from "@tailwindui/react";
 import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
 import Logo from "../features/images/clLogo2.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
-import Footer from "../components/Footer/Footer"
+import Footer from "../components/Footer/Footer";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 import "ace-builds/src-min-noconflict/mode-html";
@@ -18,6 +18,9 @@ import "ace-builds/webpack-resolver";
 
 function Profile() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const { user } = useAuth0();
+    const { nickname, name, picture, email, sub } = user;
 
     return (
         <div>
@@ -48,7 +51,7 @@ function Profile() {
                                             setIsOpen(!isOpen);
                                         }}
                                     >
-                                        <i class="fas fa-user-circle fa-2x"></i>
+                                        <img src={picture} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
                                     </button>
                                     <Transition
                                         show={isOpen}
@@ -59,17 +62,7 @@ function Profile() {
                                         leaveFrom="opacity-100 scale-100"
                                         leaveTo="opacity-0 scale-95"
                                     >
-                                        {/* <a
-                                                href="/profile"
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                role="menuitem"
-                                            >
-                                                Settings
-                                            </a>
-                                             */}
 
-                                        {/* </div>
-                                    </div> */}
                                         {(ref) => (
                                             <div
                                                 ref={ref}
@@ -91,14 +84,6 @@ function Profile() {
                                                             Settings
                                                         </a>
 
-                                                        {/* <a
-                                                                            href="/"
-                                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                                            role="menuitem"
-                                                                        >
-                                                                            Sign
-                                                                            out
-                                                                        </a> */}
                                                         <LogOutButton />
                                                     </div>
                                                 </div>
@@ -158,14 +143,14 @@ function Profile() {
                             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Username Here
+                                        {nickname}
                                     </h3>
                                 </div>
                                 <div>
                                     <dl>
                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm leading-5 font-medium text-gray-500">
-                                                Full name
+                                                {name}
                                             </dt>
                                             <input
                                                 class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
@@ -178,24 +163,9 @@ function Profile() {
                                                 Update
                                             </a>
                                         </div>
-                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm leading-5 font-medium text-gray-500">
-                                                Password
-                                            </dt>
-                                            <input
-                                                class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
-                                                placeholder="List Password Here"
-                                            />
-                                            <a
-                                                href="#"
-                                                class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
-                                            >
-                                                Update
-                                            </a>
-                                        </div>
                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm leading-5 font-medium text-gray-500">
-                                                Email address
+                                                {email}
                                             </dt>
                                             <input
                                                 class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"

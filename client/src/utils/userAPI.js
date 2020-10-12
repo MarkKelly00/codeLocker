@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export default {
-    createUser: function (userData) {
-        return axios.post("/api/users", userData);
+    createUser: async function (userData) {
+        const { data } = await axios.post("/api/users", userData);
+        return data;
     },
 
     getUserProfile: function (Auth0Id) {
@@ -21,4 +22,10 @@ export default {
         };
         return axios.post("/api/users/favorite", data);
     },
+
+    isUser: async function(authoId){
+        const { data } = await axios.get("/api/users/autho/"+authoId);
+        return data;
+    }
+
 };
