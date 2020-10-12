@@ -21,7 +21,6 @@ const codeSchema = new Schema({
   tags: {
     type: Array,
     trim: false,
-    required: true
   },
 
   dateCreated: {

@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Sidebar({ username , userImg}) {
     const [isOn, setIsOn] = useState(false);
+    const { user } = useAuth0();
+    const { nickname, picture, email, sub } = user;
 
     return (
         <>
@@ -17,11 +20,11 @@ function Sidebar({ username , userImg}) {
                                 >
                                     <div className="flex items-center">
                                         <div>
-                                            <img src={userImg} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
+                                            <img src={picture} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
                                         </div>
                                         <div className="ml-3">
                                             <p className="text-sm leading-5 font-medium text-gray">
-                                                {username}
+                                                {nickname}
                                             </p>
                                             <p className="text-xs leading-4 font-medium text-gray-700 group-hover:text-gray-200 transition ease-in-out duration-150">
                                                 View profile
@@ -111,66 +114,6 @@ function Sidebar({ username , userImg}) {
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>{" "}
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>{" "}
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
-                                <p className="text-sm leading-5 font-medium text-white">
-                                    Favorites
-                                </p>
                                 <p className="text-sm leading-5 font-medium text-white">
                                     Favorites
                                 </p>

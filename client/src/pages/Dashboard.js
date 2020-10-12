@@ -16,10 +16,16 @@ import userAPI from "../utils/userAPI";
 import Footer from "../components/Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
+
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
+import codeBlockAPI from "../utils/codeBlockAPI";
+
+const togglePrivate = document.getElementById("isPrivate");
+const codeTitle = document.getElementById("codeTitle")
 
 //sets up new console
 window.console = console;
@@ -29,8 +35,8 @@ function Dashboard() {
     const [editor, setEditor] = useState({});
     const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
     const [consoleLog, setConsoleLog] = useState([]);
-
-    const [userInfo, setUserInfo] = useState({});
+    const [titleInput, setTitleInput] = useState({codeTitle:"Please title your code!"})
+    const [isPrivate, setIsPrivate] = useState(false);
 
     const { user } = useAuth0();
     const { nickname, picture, email, sub } = user;
@@ -47,16 +53,16 @@ function Dashboard() {
     async function checkUser() {
         try {
             const userCheck = await isUser(sub);
-            console.log("userId from checkuser is: ", userCheck)
+            // console.log("userId from checkuser is: ", userCheck)
             if (!userCheck) {
-                const user = createUser(userObj);
-                console.log("user from Checkuser is: ", user);
+                 createUser(userObj);
+                // console.log("user from Checkuser is: ", user);
             } else {
-                const userProfile = await userAPI.getUserProfile(sub);
-                console.log(
-                    "userProfile from checkUser is: ",
-                    userProfile.data
-                );
+                await userAPI.getUserProfile(sub);
+                // console.log(
+                //     "userProfile from checkUser is: ",
+                //     userProfile.data
+                // );
             }
         } catch (err) {
             console.log(err);
@@ -68,6 +74,8 @@ function Dashboard() {
         if (previousCode) {
             setEditor({ userCode: previousCode });
         }
+
+        
     }, []);
 
     async function createUser() {
@@ -95,10 +103,34 @@ function Dashboard() {
     }
 
     //onclick for copying and excecuting click functions
-    function saveButton() {
-        localStorage.setItem("code", editor.userCode);
+    async function saveButton(e) {
+        // localStorage.setItem("code", editor.userCode);
+        e.preventDefault()
+        
+        const {_id} = await userAPI.getUserId(sub)
+
+        const codeBlock = {
+            author:_id,
+            code: editor.userCode,
+            title:titleInput.codeTitle,
+            isPrivate:isPrivate
+        }
+
+        const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
+        console.log("New code block is: ", newCodeBlock);
     }
 
+    function handleToggleChange(e) {
+        console.log("isPrivate toggle value before : ", isPrivate)
+        setIsPrivate(!isPrivate);
+        console.log("isPrivate toggle value after: ", isPrivate);
+        
+    }
+
+    function handleTitleInputChange(e){
+        setTitleInput({codeTitle: e.target.value})
+    }
+    
     function saveConsoleMsgs(mgsArr) {
         setConsoleLog(() => {
             return { messages: [mgsArr] };
@@ -125,6 +157,20 @@ function Dashboard() {
         setEditor({ userCode: " " });
 
         saveConsoleMsgs([]);
+    }
+
+    async function onEditCode(e){
+        e.preventDefault();
+        console.log("I was fired")
+
+        const codeId = e.target.id;
+
+        const {data} = await codeBlockAPI.getCodeBlock(codeId)
+        console.log("codeID ", codeId);
+        console.log("codeBlock: ", data)
+        setTitleInput({codeTitle:data.title});
+        setEditor({userCode:data.code});
+        
     }
 
     return (
@@ -241,8 +287,8 @@ function Dashboard() {
             </header>
             <Sidebar username={nickname} userImg={userObj.userImage}/>
             <main>
-                <div className="bg-gray-800 h-screen">
-                    <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
+                <div className="bg-gray-800 overflow-y-auto">
+                    <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 mb-4 shadow-lg">
                         <div className="justify-center overflow-hidden shadow-lg bg-gray-400 h-full">
                             <div className="px-4 py-4">
                                 <div className="flex flex-wrap overflow-hidden bg-blue-800 justify-center">
@@ -271,8 +317,10 @@ function Dashboard() {
                                     <div className="w-1/2 flex flex-no-wrap p-2 mx-auto hidden xs:block sm:block md:block">
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
                                             <input
+                                                id="codeTitle"
                                                 class="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100"
-                                                placeholder="Input Title Here"
+                                                placeholder={titleInput.codeTitle}
+                                                onChange={handleTitleInputChange}
                                             />
                                             <AceEditor
                                                 mode="javascript"
@@ -289,19 +337,20 @@ function Dashboard() {
                                                 onExecute={runButton}
                                                 onReset={resetButton}
                                                 console={consoleLog}
+                                                onChange= {handleToggleChange}
                                             />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="px-6 pt-4 pb-2">
-                                <Table />
+                                <Table onEdit = {onEditCode}/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Footer />
             </main>
+            <Footer />
         </div>
     );
 }
