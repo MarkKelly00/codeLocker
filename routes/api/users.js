@@ -6,6 +6,8 @@ router.route("/")
 
 router.route("/:id")
     .get(UsersController.getUser);
+router.route("/autho/:id")
+    .get(UsersController.isUser)
 
 router.route("/userid/:id")
     .get(UsersController.getUserID)

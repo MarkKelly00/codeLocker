@@ -1,19 +1,25 @@
-body {
-    height: 100%;
-  }
-
-  @media (min-width: 640px) {
+  @media (min-height: 340px) {
     table {
       display: inline-table !important;
+      height: 15vh;
     }
 
     thead tr:not(:first-child) {
-      display: none;
+    display: none;
     }
-  }
+}
 
+  table{
+    overflow-y: scroll;
+    height: 35vh;
+    display: block;
+  }
   td:not(:last-child) {
     border-bottom: 0;
+  }
+
+  tbody{
+    height: 100%;
   }
 
   th:not(:last-child) {
