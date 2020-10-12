@@ -274,7 +274,7 @@ function Dashboard() {
                                             setIsOpen(!isOpen);
                                         }}
                                     >
-                                        <i class="fas fa-user-circle fa-2x"></i>
+                                        <img src={picture} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
                                     </button>
                                     <Transition
                                         show={isOpen}
@@ -352,7 +352,7 @@ function Dashboard() {
 
             <header className="shadow">
                 <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
-                    <h1 className="text-3xl font-bold leading-tight text-black">
+                    <h1 className="text-3xl font-bold leading-tight">
                         Dashboard
                     </h1>
                 </div>

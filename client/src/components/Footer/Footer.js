@@ -2,11 +2,10 @@ import React from "react";
 
 function Footer() { 
     return (
-        <div className="w-full p-2 pin-b">
-            <footer className="h-4 footer text-center text-gray-200">
-                © Copyright { (new Date()).getFullYear() }
+            <footer className="w-full p-1 pin-b bg-blue-300 h-6 text-center text-white">
+                © Copyright { (new Date()).getFullYear() } <span className="text-gray-700 font-semibold">CodeLocker</span>
+                
             </footer>
-        </div>
     );
 }
 
