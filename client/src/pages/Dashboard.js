@@ -24,8 +24,6 @@ import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
 import codeBlockAPI from "../utils/codeBlockAPI";
 
-const togglePrivate = document.getElementById("isPrivate");
-const codeTitle = document.getElementById("codeTitle")
 
 //sets up new console
 window.console = console;
@@ -37,6 +35,7 @@ function Dashboard() {
     const [consoleLog, setConsoleLog] = useState([]);
     const [titleInput, setTitleInput] = useState({codeTitle:"Please title your code!"})
     const [isPrivate, setIsPrivate] = useState(false);
+    const [editCodeId, seteditCodeId] = useState({codeId:""})
 
     const { user } = useAuth0();
     const { nickname, picture, email, sub } = user;
@@ -52,17 +51,14 @@ function Dashboard() {
 
     async function checkUser() {
         try {
-            const userCheck = await isUser(sub);
+            const userCheck = await userAPI.isUser(sub);
             // console.log("userId from checkuser is: ", userCheck)
             if (!userCheck) {
-                 createUser(userObj);
+                await userAPI.createUser(userObj);
                 // console.log("user from Checkuser is: ", user);
             } else {
                 await userAPI.getUserProfile(sub);
-                // console.log(
-                //     "userProfile from checkUser is: ",
-                //     userProfile.data
-                // );
+
             }
         } catch (err) {
             console.log(err);
@@ -74,28 +70,8 @@ function Dashboard() {
         if (previousCode) {
             setEditor({ userCode: previousCode });
         }
-
         
     }, []);
-
-    async function createUser() {
-        try {
-            const newUser = await userAPI.createUser(userObj);
-            return newUser;
-        } catch (err) {
-            console.log(err);
-            return err;
-        }
-    }
-    async function isUser() {
-        try {
-            const userProfile = await userAPI.isUser(sub);
-            console.log("userId is: ", userProfile);
-            return userProfile;
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     //get the Ace editor value as uyer types
     function onChange(newValue) {
@@ -106,25 +82,30 @@ function Dashboard() {
     async function saveButton(e) {
         // localStorage.setItem("code", editor.userCode);
         e.preventDefault()
-        
-        const {_id} = await userAPI.getUserId(sub)
 
-        const codeBlock = {
-            author:_id,
-            code: editor.userCode,
-            title:titleInput.codeTitle,
-            isPrivate:isPrivate
+        if (editCodeId.codeId ===""){
+            const {_id} = await userAPI.getUserId(sub)
+
+            const codeBlock = {
+                author:_id,
+                code: editor.userCode,
+                title:titleInput.codeTitle,
+                isPrivate:isPrivate
+            }
+
+            const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
+            console.log("New code block is: ", newCodeBlock);
+
+        }else{
+            
         }
-
-        const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
-        console.log("New code block is: ", newCodeBlock);
+        
+        
+        seteditCodeId({codeId:""})
     }
 
     function handleToggleChange(e) {
-        console.log("isPrivate toggle value before : ", isPrivate)
         setIsPrivate(!isPrivate);
-        console.log("isPrivate toggle value after: ", isPrivate);
-        
     }
 
     function handleTitleInputChange(e){
@@ -170,6 +151,7 @@ function Dashboard() {
         console.log("codeBlock: ", data)
         setTitleInput({codeTitle:data.title});
         setEditor({userCode:data.code});
+        seteditCodeId({codeId:codeId})
         
     }
 
