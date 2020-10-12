@@ -31,7 +31,7 @@ window.console = console;
 function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
-    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
+    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "console.log(\"Hello World!\")", title:"Welcome" });
     const [consoleLog, setConsoleLog] = useState([]);
     const [titleInput, setTitleInput] = useState({codeTitle:"Please title your code!"})
     const [isPrivate, setIsPrivate] = useState(false);
@@ -176,6 +176,75 @@ function Dashboard() {
         
     }
 
+    async function onViewCode(e){
+        e.preventDefault();
+
+        const codeId = e.target.id;
+
+        const {data} = await codeBlockAPI.getCodeBlock(codeId);
+        console.log("onViewCode, data is: ", data.code)
+
+        setViewOnlyCode({userCode:data.code, title: data.title});
+        
+    }
+
+    async function onCopyCode(e){
+        e.preventDefault();
+
+        setClipboardText(viewOnlyCode.userCode)
+
+    }
+
+    function setClipboardText(text){
+        const id = "mycustom-clipboard-textarea-hidden-id";
+        let existsTextarea = document.getElementById(id);
+    
+        if(!existsTextarea){
+            console.log("Creating textarea");
+            let textarea = document.createElement("textarea");
+            textarea.id = id;
+            // Place in top-left corner of screen regardless of scroll position.
+            textarea.style.position = 'fixed';
+            textarea.style.top = 0;
+            textarea.style.left = 0;
+    
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textarea.style.width = '1px';
+            textarea.style.height = '1px';
+    
+            // We don't need padding, reducing the size if it does flash render.
+            textarea.style.padding = 0;
+    
+            // Clean up any borders.
+            textarea.style.border = 'none';
+            textarea.style.outline = 'none';
+            textarea.style.boxShadow = 'none';
+    
+            // Avoid flash of white box if rendered for any reason.
+            textarea.style.background = 'transparent';
+            document.querySelector("body").appendChild(textarea);
+            console.log("The textarea now exists :)");
+            existsTextarea = document.getElementById(id);
+        }else{
+            console.log("The textarea already exists :3")
+        }
+    
+        existsTextarea.value = text;
+        existsTextarea.select();
+    
+        try {
+            var status = document.execCommand('copy');
+            if(!status){
+                console.error("Cannot copy text");
+            }else{
+                console.log("The text is now on the clipboard");
+            }
+        } catch (err) {
+            console.log('Unable to copy.');
+        }
+    }
+
     return (
         <div>
             <nav className="bg-blue-700 p-5">
@@ -298,7 +367,7 @@ function Dashboard() {
                                     <div className="w-1/2 flex-1 flex-no-wrap p-2 mx-auto hidden xl:block">
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
                                             <h3 className="mt-2 mb-2">
-                                                Read Only (Title)
+                                                {viewOnlyCode.title} (Read-Only)
                                             </h3>
                                             <AceEditor
                                                 mode="javascript"
@@ -314,6 +383,7 @@ function Dashboard() {
                                                 onExecute={runButton}
                                                 onReset={resetButton}
                                                 console={consoleLog}
+                                                onCopy= {onCopyCode}
                                             />
                                         </div>
                                     </div>
@@ -347,7 +417,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className="px-6 pt-4 pb-2">
-                                <Table onEdit = {onEditCode}/>
+                                <Table onEdit = {onEditCode} onView = {onViewCode}/>
                             </div>
                         </div>
                     </div>
