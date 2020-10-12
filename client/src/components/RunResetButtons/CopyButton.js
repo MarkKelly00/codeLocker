@@ -2,15 +2,15 @@ import React from "react";
 import ShareBTN from "../Buttons/Share";
 import "./styles.css";
 
-function CopyButtons({ onExecute, onLike }) {
-    function onCopy(text) {
-        const elem = document.createElement('textarea');
-   elem.value = text;
-   document.body.appendChild(elem);
-   elem.select();
-   document.execCommand('copy');
-   document.body.removeChild(elem);
-}
+function CopyButtons({ onExecute, onLike , onCopy }) {
+//     function onCopy(text) {
+//         const elem = document.createElement('textarea');
+//    elem.value = text;
+//    document.body.appendChild(elem);
+//    elem.select();
+//    document.execCommand('copy');
+//    document.body.removeChild(elem);
+// }
 
     return (
         <div className="buttonWrapper flex flex-row flex-wrap overflow-hidden justify-center">

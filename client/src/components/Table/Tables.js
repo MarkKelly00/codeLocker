@@ -2,9 +2,7 @@ import React from "react";
 import "./style.css";
 import API from "../../utils/codeBlockAPI";
 
-const Tbody = ({ data, onClick }) => (
-
-     
+const Tbody = ({ data, onClick, onView }) => (
     
         <tr className="bg-white divide-y divide-gray-200 h-full">
             <td className="p-4 ">
@@ -20,7 +18,11 @@ const Tbody = ({ data, onClick }) => (
                 </div>
             </td>
             <td className="p-4 w-1/4">
-                <div className="text-sm leading-5 text-gray-900">{data.title}</div>
+                <div className="text-sm leading-5 text-gray-900">
+                    <a href="/" className="text-indigo-600 hover:text-indigo-900" id={data._id} onClick={onView}>
+                        {data.title}
+                    </a>
+                </div>
             </td>
             <td className="p-4 w-1/4">
                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -91,7 +93,7 @@ class Table extends React.Component {
 
 
     render() {
-        const rows = this.state.data.map((rowData ) => <Tbody data= {rowData} onClick={this.props.onEdit} />);
+        const rows = this.state.data.map((rowData ) => <Tbody data= {rowData} onClick={this.props.onEdit} onView={this.props.onView} />);
 
         return (
             <div className="flex flex-col bg-blue-700">
