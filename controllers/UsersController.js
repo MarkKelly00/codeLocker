@@ -1,3 +1,4 @@
+const { User } = require("../models");
 const db = require("../models");
 const ObjectId = require('mongoose').Types.ObjectId; 
 
@@ -64,5 +65,17 @@ module.exports={
             res.status(422).json(err)
         }
     }, 
+
+    async isUser(req, res){
+        try {
+            const isUser = await db.User.find({Auth0Id:req.params.id}).count()>0
+            console.log(isUser)
+            res.json(isUser) ;
+        } catch (err) {
+            console.log(err);
+            res.status(422).json(err)
+            
+        }
+    }
 
 }

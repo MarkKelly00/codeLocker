@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Sidebar({ username }) {
+function Sidebar({ username , userImg}) {
     const [isOn, setIsOn] = useState(false);
 
     return (
@@ -17,7 +17,7 @@ function Sidebar({ username }) {
                                 >
                                     <div className="flex items-center">
                                         <div>
-                                            <i className="fas fa-user-circle fa-2x" />
+                                            <img src={userImg} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
                                         </div>
                                         <div className="ml-3">
                                             <p className="text-sm leading-5 font-medium text-gray">
@@ -52,7 +52,7 @@ function Sidebar({ username }) {
                                 Dashboard
                             </a>
                             <a
-                                href="#"
+                                href="/#"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg
@@ -72,7 +72,7 @@ function Sidebar({ username }) {
                                 Locker
                             </a>
                             <a
-                                href="#"
+                                href="/#"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg
@@ -91,7 +91,7 @@ function Sidebar({ username }) {
                                 Friends
                             </a>
                             <a
-                                href="#"
+                                href="/#"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg

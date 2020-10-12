@@ -44,12 +44,12 @@ function Dashboard() {
 
     checkUser();
 
-    async function checkUser(userObj) {
+    async function checkUser() {
         try {
-            const userId = getUserId();
-            if (!userId) {
-                const user = createUser();
-                setUserInfo(user);
+            const userCheck = await isUser(sub);
+            console.log("userId from checkuser is: ", userCheck)
+            if (!userCheck) {
+                const user = createUser(userObj);
                 console.log("user from Checkuser is: ", user);
             } else {
                 const userProfile = await userAPI.getUserProfile(sub);
@@ -57,7 +57,6 @@ function Dashboard() {
                     "userProfile from checkUser is: ",
                     userProfile.data
                 );
-                setUserInfo(userProfile.data);
             }
         } catch (err) {
             console.log(err);
@@ -73,17 +72,18 @@ function Dashboard() {
 
     async function createUser() {
         try {
-            const newUser = await userAPI.createUser(sub);
+            const newUser = await userAPI.createUser(userObj);
             return newUser;
         } catch (err) {
             console.log(err);
             return err;
         }
     }
-    async function getUserId() {
+    async function isUser() {
         try {
-            const userProfile = await userAPI.getUserId(sub);
+            const userProfile = await userAPI.isUser(sub);
             console.log("userId is: ", userProfile);
+            return userProfile;
         } catch (err) {
             console.log(err);
         }
@@ -239,7 +239,7 @@ function Dashboard() {
                     </h1>
                 </div>
             </header>
-            <Sidebar username={nickname} />
+            <Sidebar username={nickname} userImg={userObj.userImage}/>
             <main>
                 <div className="bg-gray-800 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
