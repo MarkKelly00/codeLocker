@@ -83,23 +83,44 @@ function Dashboard() {
         // localStorage.setItem("code", editor.userCode);
         e.preventDefault()
 
-        if (editCodeId.codeId ===""){
-            const {_id} = await userAPI.getUserId(sub)
+        console.log("edit code id is: ", editCodeId)
 
-            const codeBlock = {
-                author:_id,
-                code: editor.userCode,
-                title:titleInput.codeTitle,
-                isPrivate:isPrivate
+        try {
+            
+            if (editCodeId.codeId ===""){
+                const {_id} = await userAPI.getUserId(sub)
+    
+                const codeBlock = {
+                    author:_id,
+                    code: editor.userCode,
+                    title:titleInput.codeTitle,
+                    isPrivate:isPrivate
+                }
+    
+                const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
+                console.log("New code block is: ", newCodeBlock);
+    
+            }else{
+                const _id = editCodeId.codeId;
+                const authorId = await userAPI.getUserId(sub)
+    
+                const codeBlock = {
+                    author:authorId,
+                    code:editor.userCode,
+                    title:titleInput.codeTitle,
+                    isPrivate: isPrivate,
+                    dateModified: new Date(),
+                }
+
+                console.log("codeblock is: ", codeBlock)
+    
+                const updatedCodeBlock = await codeBlockAPI.updateCodeBlock(_id, codeBlock);
+                console.log("updated code block is: ", updatedCodeBlock)
             }
 
-            const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
-            console.log("New code block is: ", newCodeBlock);
-
-        }else{
-            
+        } catch (err) {
+            console.log(err)
         }
-        
         
         seteditCodeId({codeId:""})
     }

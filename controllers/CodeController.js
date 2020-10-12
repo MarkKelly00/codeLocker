@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const db = require("../models");
+const { param } = require("../routes/api/codeblock");
 const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
@@ -54,10 +55,12 @@ module.exports = {
         }
     },
 
-    async replaceOne(req, res) {
+    async updateOne(req, res) {
         // console.log("req.body.id in codeController.", req.body.id);
         try {
-            const updated = await db.CodeBlock.replaceOne({_id:req.body.id}, req.body)
+            await db.CodeBlock.findOneAndUpdate({_id:req.params.id}, req.body)
+            const updated = await db.CodeBlock.findOne({_id:req.params.id})
+            console.log(updated)
             res.json(updated)
         } catch (err) {
             res.status(422).json(err)
