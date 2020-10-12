@@ -29,8 +29,8 @@ const codeSchema = new Schema({
   },
 
   dateModified: {
-    type: Date,
-    boolean: true,
+    type: Date
+    
   },
 
   isCloned: {

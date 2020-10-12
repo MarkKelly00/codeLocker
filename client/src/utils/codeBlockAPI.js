@@ -9,9 +9,12 @@ export default {
     getGlobalCode:function(){
         return axios.get("/api/codeblock")
     },
-    updateCodeBlock:function(codeblock){
+    updateCodeBlock: async function(id, codeblock){
         //data is teh entire codeblock
-        return axios.put("/api/codeblock", codeblock)
+        console.log("in codeBlockAPI front end, id is:", id)
+        console.log("in codeBlockAPI front end, id is:", codeblock)
+        const {data}= await axios.put("/api/codeblock/"+id, codeblock)
+        return data;
     },
     getAllUserCode:function(authorID){
         return axios.get("/api/codeblock/author/"+authorID)
