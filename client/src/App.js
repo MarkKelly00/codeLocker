@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile"
 import UserInfo from "./pages/UserInfo"
 import ProtectedRoute from "./components/AuthO/ProtectedRoute";
+import FAQ from "./pages/FAQ"
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/" component={Splash} />
+                <Route exact path="/faq" component={FAQ} />
                 <ProtectedRoute path="/userinfo" exact component={UserInfo} />
                 <ProtectedRoute path="/dashboard" exact component={Dashboard} />
                 <ProtectedRoute path="/profile" exact component={Profile} />
