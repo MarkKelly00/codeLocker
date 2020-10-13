@@ -4,8 +4,8 @@ const codeController = require("../../controllers/CodeController");
 router.route("/")
     .post(codeController.saveNewCode)
     // schema needs to updated and have isPrivate as part of it
-    .get(codeController.getAllGlobalCode)
-    .put(codeController.replaceOne);
+    .get(codeController.getAllGlobalCode);
+    
 
 router.route("/author/:id")
     .get(codeController.getAllUserCode)
@@ -13,7 +13,8 @@ router.route("/author/:id")
 
 router.route("/:id")
     .delete(codeController.deleteOne)
-    .get(codeController.getCodeBlock);
+    .get(codeController.getCodeBlock)
+    .put(codeController.updateOne);
     
 router.route("/likes")
     .post(codeController.addLike)

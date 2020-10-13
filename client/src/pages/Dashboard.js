@@ -24,8 +24,6 @@ import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
 import codeBlockAPI from "../utils/codeBlockAPI";
 
-const togglePrivate = document.getElementById("isPrivate");
-const codeTitle = document.getElementById("codeTitle")
 
 //sets up new console
 window.console = console;
@@ -33,10 +31,11 @@ window.console = console;
 function Dashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
-    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "" });
+    const [viewOnlyCode, setViewOnlyCode] = useState({ userCode: "console.log(\"Hello World!\")", title:"Welcome" });
     const [consoleLog, setConsoleLog] = useState([]);
     const [titleInput, setTitleInput] = useState({codeTitle:"Please title your code!"})
     const [isPrivate, setIsPrivate] = useState(false);
+    const [editCodeId, seteditCodeId] = useState({codeId:""})
 
     const { user } = useAuth0();
     const { nickname, picture, email, sub } = user;
@@ -52,17 +51,14 @@ function Dashboard() {
 
     async function checkUser() {
         try {
-            const userCheck = await isUser(sub);
+            const userCheck = await userAPI.isUser(sub);
             // console.log("userId from checkuser is: ", userCheck)
             if (!userCheck) {
-                 createUser(userObj);
+                await userAPI.createUser(userObj);
                 // console.log("user from Checkuser is: ", user);
             } else {
                 await userAPI.getUserProfile(sub);
-                // console.log(
-                //     "userProfile from checkUser is: ",
-                //     userProfile.data
-                // );
+
             }
         } catch (err) {
             console.log(err);
@@ -74,28 +70,8 @@ function Dashboard() {
         if (previousCode) {
             setEditor({ userCode: previousCode });
         }
-
         
     }, []);
-
-    async function createUser() {
-        try {
-            const newUser = await userAPI.createUser(userObj);
-            return newUser;
-        } catch (err) {
-            console.log(err);
-            return err;
-        }
-    }
-    async function isUser() {
-        try {
-            const userProfile = await userAPI.isUser(sub);
-            console.log("userId is: ", userProfile);
-            return userProfile;
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     //get the Ace editor value as uyer types
     function onChange(newValue) {
@@ -106,25 +82,51 @@ function Dashboard() {
     async function saveButton(e) {
         // localStorage.setItem("code", editor.userCode);
         e.preventDefault()
-        
-        const {_id} = await userAPI.getUserId(sub)
 
-        const codeBlock = {
-            author:_id,
-            code: editor.userCode,
-            title:titleInput.codeTitle,
-            isPrivate:isPrivate
+        console.log("edit code id is: ", editCodeId)
+
+        try {
+            
+            if (editCodeId.codeId ===""){
+                const {_id} = await userAPI.getUserId(sub)
+    
+                const codeBlock = {
+                    author:_id,
+                    code: editor.userCode,
+                    title:titleInput.codeTitle,
+                    isPrivate:isPrivate
+                }
+    
+                const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
+                console.log("New code block is: ", newCodeBlock);
+    
+            }else{
+                const _id = editCodeId.codeId;
+                const authorId = await userAPI.getUserId(sub)
+    
+                const codeBlock = {
+                    author:authorId,
+                    code:editor.userCode,
+                    title:titleInput.codeTitle,
+                    isPrivate: isPrivate,
+                    dateModified: new Date(),
+                }
+
+                console.log("codeblock is: ", codeBlock)
+    
+                const updatedCodeBlock = await codeBlockAPI.updateCodeBlock(_id, codeBlock);
+                console.log("updated code block is: ", updatedCodeBlock)
+            }
+
+        } catch (err) {
+            console.log(err)
         }
-
-        const newCodeBlock = await codeBlockAPI.saveCodeBlock(codeBlock);
-        console.log("New code block is: ", newCodeBlock);
+        
+        seteditCodeId({codeId:""})
     }
 
     function handleToggleChange(e) {
-        console.log("isPrivate toggle value before : ", isPrivate)
         setIsPrivate(!isPrivate);
-        console.log("isPrivate toggle value after: ", isPrivate);
-        
     }
 
     function handleTitleInputChange(e){
@@ -170,7 +172,77 @@ function Dashboard() {
         console.log("codeBlock: ", data)
         setTitleInput({codeTitle:data.title});
         setEditor({userCode:data.code});
+        seteditCodeId({codeId:codeId})
         
+    }
+
+    async function onViewCode(e){
+        e.preventDefault();
+
+        const codeId = e.target.id;
+
+        const {data} = await codeBlockAPI.getCodeBlock(codeId);
+        console.log("onViewCode, data is: ", data.code)
+
+        setViewOnlyCode({userCode:data.code, title: data.title});
+        
+    }
+
+    async function onCopyCode(e){
+        e.preventDefault();
+
+        setClipboardText(viewOnlyCode.userCode)
+
+    }
+
+    function setClipboardText(text){
+        const id = "mycustom-clipboard-textarea-hidden-id";
+        let existsTextarea = document.getElementById(id);
+    
+        if(!existsTextarea){
+            console.log("Creating textarea");
+            let textarea = document.createElement("textarea");
+            textarea.id = id;
+            // Place in top-left corner of screen regardless of scroll position.
+            textarea.style.position = 'fixed';
+            textarea.style.top = 0;
+            textarea.style.left = 0;
+    
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textarea.style.width = '1px';
+            textarea.style.height = '1px';
+    
+            // We don't need padding, reducing the size if it does flash render.
+            textarea.style.padding = 0;
+    
+            // Clean up any borders.
+            textarea.style.border = 'none';
+            textarea.style.outline = 'none';
+            textarea.style.boxShadow = 'none';
+    
+            // Avoid flash of white box if rendered for any reason.
+            textarea.style.background = 'transparent';
+            document.querySelector("body").appendChild(textarea);
+            console.log("The textarea now exists :)");
+            existsTextarea = document.getElementById(id);
+        }else{
+            console.log("The textarea already exists :3")
+        }
+    
+        existsTextarea.value = text;
+        existsTextarea.select();
+    
+        try {
+            var status = document.execCommand('copy');
+            if(!status){
+                console.error("Cannot copy text");
+            }else{
+                console.log("The text is now on the clipboard");
+            }
+        } catch (err) {
+            console.log('Unable to copy.');
+        }
     }
 
     return (
@@ -295,7 +367,7 @@ function Dashboard() {
                                     <div className="w-1/2 flex-1 flex-no-wrap p-2 mx-auto hidden xl:block">
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
                                             <h3 className="mt-2 mb-2">
-                                                Read Only (Title)
+                                                {viewOnlyCode.title} (Read-Only)
                                             </h3>
                                             <AceEditor
                                                 mode="javascript"
@@ -311,6 +383,7 @@ function Dashboard() {
                                                 onExecute={runButton}
                                                 onReset={resetButton}
                                                 console={consoleLog}
+                                                onCopy= {onCopyCode}
                                             />
                                         </div>
                                     </div>
@@ -344,7 +417,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className="px-6 pt-4 pb-2">
-                                <Table onEdit = {onEditCode}/>
+                                <Table onEdit = {onEditCode} onView = {onViewCode}/>
                             </div>
                         </div>
                     </div>
