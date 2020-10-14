@@ -44,19 +44,57 @@ module.exports = {
 
     async addFavorite(req, res) {
         try {
-            const favorited = await db.User.findOneAndUpdate(
-                { _id: req.body.userId },
-                { $push: { favoritesArr: new ObjectId(req.body.codeId) } }
-            );
 
-            res.json(favorited);
+            await db.User.findOneAndUpdate(
+                {_id:req.body.userId},
+                {$push:{ favoritesArr:new ObjectId(req.body.codeId)}}
+            )
+            
+            const newFavorites = await db.User.findOne({_id:req.body.userId})
+
+            res.json(newFavorites)
         } catch (err) {
             res.status(422).json(err);
         }
     },
 
-    async getUserFavorites(req, res) {
-        console.log("I made to the getUserFavorites API")
+    async getUserFavorite(req, res){
+        try {
+            const favorite = await db.User.findOne({_id:req.params.id}, {"favoritesArr":1, _id:0})
+            console.log("favoritesArr is ", favorite);
+            res.json(favorite);
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },    
+
+    async getFavoritesCodeBlock(req, res){
+        try{
+            const favorite = await db.User.findOne({_id:req.body.id}, {"favoritesArr":1, _id:0})
+            
+            console.log("this is favorite:", favorite)
+
+            const favoriteCodeBlock= []
+            console.log("length of favorites arr:", favorite.favoritesArr.length)
+
+            for(let i =0; i<favorite.favoritesArr.length; i++){
+                const code = await db.CodeBlock.findOne({_id:favorite.favoritesArr[i]})
+                // console.log(favorite._id)
+                console.log("code is: ",code)
+                favoriteCodeBlock.push(code)
+            }
+                
+            
+            // console.log("this is fav codeBlock: ", favoriteCodeBlock)
+            res.json(favoriteCodeBlock)
+        }catch(err){
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },
+
+    async removeFavorite(req, res){
         try {
             const favorites = await db.User.findOne(
                 { _id: req.params.id },
@@ -85,13 +123,28 @@ module.exports = {
 
     async isUser(req, res) {
         try {
-            const isUser =
-                (await db.User.find({ Auth0Id: req.params.id }).count()) > 0;
-            console.log(isUser);
-            res.json(isUser);
+            const isUser = await db.User.find({Auth0Id:req.params.id}).countDocuments()>0
+            console.log(isUser)
+            res.json(isUser) ;
         } catch (err) {
             console.log(err);
             res.status(422).json(err);
         }
-    },
-};
+    } ,
+
+    async deleteUser(req, res){
+        try {
+            const deleteRes = await db.CodeBlock.deleteMany({author:req.params.id})
+            console.log("Delete res is:", deleteRes)
+            const deleteUser = await db.User.deleteOne({_id:req.params.id})
+            console.log("Delete user res:", deleteUser)
+
+            res.json(deleteUser)
+
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    }
+
+}
