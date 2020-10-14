@@ -23,22 +23,31 @@ export default {
         return axios.post("/api/users/favorite", data);
     },
 
-    isUser: async function(authoId){
-        const { data } = await axios.get("/api/users/autho/"+authoId);
+    getFavorites: async function (userId) {
+        console.log('user ID', userId);
+        const { data } = await axios.get("/api/users/favorite/" + userId);
+        
+        console.log('this is data', data);
         return data;
     },
 
-    getFavoritesCodeBlock: async function(userId){
-        const body = {
-            id:userId
-        }
-        const { data } = await axios.get("/api/users/favorite", body);
+    getFavoritesCodeBlock: async function(id){
+        
+
+       
+        const { data } = await axios.get("/api/users/favoritecode/"+id)
+
+        console.log("data is: ", data)
         return data;
     },
 
     deleteUser: async function(userId){
         const { data } = await axios.delete("/api/users/"+userId)
         return data;        
-    }
+    },
 
+    isUser: async function (authoId) {
+        const { data } = await axios.get("/api/users/autho/" + authoId);
+        return data;
+    },
 };
