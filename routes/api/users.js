@@ -13,7 +13,10 @@ router.route("/userid/:id")
 router.route("/favorite")
     .post(UsersController.addFavorite)
     .put(UsersController.removeFavorite)
-    .get(UsersController.getFavoritesCodeBlock);
+
+router.route("/favoritecode/:id")
+    .get(UsersController.getFavoritesCodeBlock)
+
 router.route("/:id")
     .get(UsersController.getUser)
     .delete(UsersController.deleteUser);

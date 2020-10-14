@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
-import API from "../../utils/codeBlockAPI";
 import userAPI from "../../utils/userAPI";
+import codeBlockAPI from "../../utils/codeBlockAPI"
 
 const Tbody = ({ data, onClick, onView }) => {
     return (
@@ -65,7 +65,6 @@ function Table({
     onView,
     setCodeSnips,
     filter,
-    setFilter,
     Auth0Id,
 }) {
     function compareBy(key) {
@@ -84,80 +83,33 @@ function Table({
 
 
     async function handleFilter(e) {
-
+        e.preventDefault();
         const filterSelection = e.target.value
-
-        console.log(filterSelection)
-
         const { _id } = await userAPI.getUserId(Auth0Id);
+        
+        switch (filterSelection) {
+            case "author":
+                // console.log("I made it to Author")
+                const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
+                setCodeSnips(FilteredByAuth);
+                break;
+                
+            case "Favs":
+                const favoriteCodes = await userAPI.getFavoritesCodeBlock(_id);
+                console.log("this is favorite",favoriteCodes)
+                setCodeSnips(favoriteCodes);
+            break;
+        
+            case "All":
+                const {data} = await codeBlockAPI.getGlobalCode()
+                console.log("allCode is: ",data)
+                setCodeSnips(data);
+            break;
 
-        // console.log("userAPI Id is: ", _id);
-        // console.log(
-        //     "codesnips is: ",
-        //     codeSnips.filter((c) => c.author === _id)
-        // );
-        // const { codeSnips } = this.state;
+            default:
 
-        if (filterSelection === "All") {
-            // set employees to allEmployees
-            this.setState({
-                author: _id,
-            });
-        } else {
-            this.setState({
-                // filter by gender
-                author: _id.filter((data) => {
-                    if (data.author === filterSelection) {
-                        return true;
-                    }
-                    return false;
-                }),
-            });
+                break;
         }
-        
-
-
-
-        // switch (filterSelection) {
-        //     case "author":
-        //         console.log("I made it to Author")
-        //         const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
-        //         setCodeSnips(FilteredByAuth);
-        //         break;
-                
-        //     case "Favs":
-        //         const favs = await userAPI.getFavorites(_id);
-        //         console.log("this is favorites", favs)
-
-        //         const filter = []
-                
-
-        //         for(let i = 0; i<codeSnips.length; i++){
-        //             // console.log("I'm at codesnips.id", codeSnips[i]._id)
-
-        //             if(codeSnips[i]._id===favs._id){
-        //                 filter.push(codeSnips[i])
-        //             }
-        //             // for(let j = 0; j<favs.length; j++){
-        //             //     console.log("I'm inner loop favs: ", favs[j])
-        //             //     if(codeSnips[i]._id === favs[j]._id){
-        //             //         console.log("looping: codeSnips[i]: ", codeSnips[i]._id)
-        //             //         filter.push(codeSnips[i])
-        //             //     }
-        //             // }
-        //         }
-                
-
-        //         // const filtered = codeSnips.filter(function(e){return this.indexOf(e)<0}, favs)
-
-        //         console.log("favorite array", favs);
-        //         console.log("filtered  array", filter);
-        //         setCodeSnips(filter);
-        //     break;
-        
-        //     default:
-        //         break;
-        // }
 
     }
 
@@ -210,7 +162,6 @@ function Table({
                                     <th className="float-right px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer">
                                         Filter By
                                         <select
-                                            value={filter}
                                             onChange={handleFilter}
                                             className="text-gray-700 text-center bg-gray-200 px-4  m-2"
                                         >

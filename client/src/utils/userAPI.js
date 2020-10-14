@@ -31,11 +31,13 @@ export default {
         return data;
     },
 
-    getFavoritesCodeBlock: async function(userId){
-        const body = {
-            id:userId
-        }
-        const { data } = await axios.get("/api/users/favorite", body);
+    getFavoritesCodeBlock: async function(id){
+        
+
+       
+        const { data } = await axios.get("/api/users/favoritecode/"+id)
+
+        console.log("data is: ", data)
         return data;
     },
 
