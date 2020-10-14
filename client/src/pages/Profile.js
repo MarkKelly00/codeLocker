@@ -29,11 +29,13 @@ function Profile() {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <img
-                                    className="h-32"
-                                    src={Logo}
-                                    alt="Workflow logo"
-                                />
+                                <a href="/dashboard">
+                                    <img
+                                        className="h-32"
+                                        src={Logo}
+                                        alt="Workflow logo"
+                                    />
+                                </a>
                             </div>
                             <div className="ml-10 flex items-baseline space-x-4">
                                 <Search />
@@ -51,7 +53,12 @@ function Profile() {
                                             setIsOpen(!isOpen);
                                         }}
                                     >
-                                        <img src={picture} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
+                                        <img
+                                            src={picture}
+                                            alt="user profile "
+                                            className="shadow rounded-full max-w-full h-auto align-middle border-none"
+                                            style={{ width: 50 }}
+                                        />
                                     </button>
                                     <Transition
                                         show={isOpen}
@@ -62,7 +69,6 @@ function Profile() {
                                         leaveFrom="opacity-100 scale-100"
                                         leaveTo="opacity-0 scale-95"
                                     >
-
                                         {(ref) => (
                                             <div
                                                 ref={ref}
