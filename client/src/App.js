@@ -13,6 +13,7 @@ import Profile from "./pages/Profile"
 import UserInfo from "./pages/UserInfo"
 import ProtectedRoute from "./components/AuthO/ProtectedRoute";
 import FAQ from "./pages/FAQ"
+import AboutUs from "./pages/AboutUs"
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Splash} />
                 <Route exact path="/faq" component={FAQ} />
+                <Route exact path="/aboutus" component={AboutUs} />
                 <ProtectedRoute path="/userinfo" exact component={UserInfo} />
                 <ProtectedRoute path="/dashboard" exact component={Dashboard} />
                 <ProtectedRoute path="/profile" exact component={Profile} />
