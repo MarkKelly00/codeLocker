@@ -1,5 +1,6 @@
 import React from "react";
 import AuthenticationButton from "../Buttons/Authenticated-Button"
+import SignupButton from "../Buttons/SignUpButton";
 
 function UserSignIn() {
     return (
@@ -32,12 +33,7 @@ function UserSignIn() {
             </div>
             <div className="flex items-center justify-between">
                 <AuthenticationButton />
-                <button
-                    className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"
-                    type="button"
-                >
-                    Sign Up
-                </button>
+                <SignupButton />
                 <a
                     className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
                     href="/"
