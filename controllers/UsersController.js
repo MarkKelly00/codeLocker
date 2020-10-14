@@ -1,5 +1,6 @@
 const { User } = require("../models");
 const db = require("../models");
+const { deleteUserCode } = require("./CodeController");
 const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports={
@@ -40,16 +41,29 @@ module.exports={
     async addFavorite(req, res){
         try {
 
-            const favorited = await db.User.findOneAndUpdate(
+            await db.User.findOneAndUpdate(
                 {_id:req.body.userId},
                 {$push:{ favoritesArr:new ObjectId(req.body.codeId)}}
             )
+            
+            const newFavorites = await db.User.findOne({_id:req.body.userId})
 
-            res.json(favorited)
+            res.json(newFavorites)
         } catch (err) {
             res.status(422).json(err)
         }
     }, 
+
+    async getUserFavorite(req, res){
+        try {
+            const favorite = await db.User.findOne({_id:req.params.id}, {"favoritesArr":1, _id:0})
+            console.log("favoritesArr is ", favorite);
+            res.json(favorite);
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },    
 
     async removeFavorite(req, res){
         try {
@@ -68,7 +82,7 @@ module.exports={
 
     async isUser(req, res){
         try {
-            const isUser = await db.User.find({Auth0Id:req.params.id}).count()>0
+            const isUser = await db.User.find({Auth0Id:req.params.id}).countDocuments()>0
             console.log(isUser)
             res.json(isUser) ;
         } catch (err) {
