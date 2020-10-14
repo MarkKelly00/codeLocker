@@ -43,11 +43,7 @@ const userSchema = new Schema({
     default: []
   },
 
-  favoritesArr: {
-    type: Array,
-    default: []
-  },
-
+  favoritesArr: [{type:Schema.Types.ObjectId, ref:"codeBlock"}],
 
 });
 

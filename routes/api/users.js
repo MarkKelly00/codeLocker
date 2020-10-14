@@ -13,6 +13,7 @@ router
     .post(UsersController.addFavorite)
     .put(UsersController.removeFavorite);
 
-router.route("/favorite/:id").get(UsersController.getUserFavorites);
+router.route("/favorite/:id")
+    .get(UsersController.getUserFavorites);
 
 module.exports = router;

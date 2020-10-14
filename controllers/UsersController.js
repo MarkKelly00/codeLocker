@@ -60,8 +60,8 @@ module.exports = {
             const favorites = await db.User.findOne(
                 { _id: req.params.id },
                 { projection: { favoritesArr: 1 } }
-            );
-
+            ).populate("codeBlock")
+            console.log(favoritesArr)
             res.json(favorites);
         } catch (err) {
             res.status(422).json(err);

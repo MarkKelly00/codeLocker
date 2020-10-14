@@ -91,26 +91,22 @@ function Sidebar({ username , userImg}) {
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                                     />
                                 </svg>
-                                Friends
+                                About Us
                             </a>
                             <a
                                 href="/#"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
-                                <svg
-                                    className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                                    />
+                                <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path 
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
+                                    </path>
                                 </svg>
-                                Projects
+                                    FAQ
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
@@ -178,26 +174,22 @@ function Sidebar({ username , userImg}) {
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                             />
                         </svg>
-                        Friends
+                        About Us
                     </a>
                     <a
                         href="#"
                         className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-small text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                     >
-                        <svg
-                            className="mr-1 h-6 w-4 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                            />
-                        </svg>
-                        Projects
+                        <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path 
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
+                                    </path>
+                                </svg>
+                        FAQ
                     </a>
                 </div>
             </nav>
