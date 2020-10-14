@@ -30,11 +30,13 @@ function FAQ() {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <img
-                                    className="h-32"
-                                    src={Logo}
-                                    alt="Workflow logo"
-                                />
+                                <a href="/dashboard">
+                                    <img
+                                        className="h-32"
+                                        src={Logo}
+                                        alt="Workflow logo"
+                                    />
+                                </a>
                             </div>
                             <div className="ml-10 flex items-baseline space-x-4">
                                 <Search />
@@ -142,10 +144,9 @@ function FAQ() {
             </header>
             <Sidebar />
             <main>
-                
                 <div className="bg-blue-400 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
-                    <FAQContainer />
+                        <FAQContainer />
                     </div>
                 </div>
             </main>

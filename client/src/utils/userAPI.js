@@ -26,6 +26,19 @@ export default {
     isUser: async function(authoId){
         const { data } = await axios.get("/api/users/autho/"+authoId);
         return data;
+    },
+
+    getFavoritesCodeBlock: async function(userId){
+        const body = {
+            id:userId
+        }
+        const { data } = await axios.get("/api/users/favorite", body);
+        return data;
+    },
+
+    deleteUser: async function(userId){
+        const { data } = await axios.delete("/api/users/"+userId)
+        return data;        
     }
 
 };

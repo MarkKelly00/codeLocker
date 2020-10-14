@@ -252,11 +252,13 @@ function Dashboard() {
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
+                                <a href= "/dashboard">
                                 <img
                                     className="h-32"
                                     src={Logo}
                                     alt="Workflow logo"
                                 />
+                                </a>
                             </div>
                             <div className="ml-10 flex items-baseline space-x-4">
                                 <Search />
