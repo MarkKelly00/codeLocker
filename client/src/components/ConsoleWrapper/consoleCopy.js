@@ -8,7 +8,6 @@ function ConsoleCopy({ onCopy, onExecute, onReset, console }) {
             <CopyButtons onExecute={onExecute} onReset={onReset} onCopy={onCopy}/>
             <ConsoleLog console={console} />
         </div>
-
     )
 }
 
