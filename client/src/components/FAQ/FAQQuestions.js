@@ -3,7 +3,7 @@ import React from "react";
 
 
 
-import "../styles.css";
+// import "../styles.css";
 
 
 
@@ -15,108 +15,69 @@ import "ace-builds/webpack-resolver";
 function Questions(props) {
     return (
         <dl>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
+        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
+            <a  className="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
+                href="#Q1"
                 onClick={() => props.handleAnswerChange("Q1")}
                 className={
                     props.currentQuestion === "Q1"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link active float-right text-sm leading-5 font-bold no-underline hover:underline text-blue-900"
+                        : "nav-link float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                 }
             >
-                Question 1
+                What is CodeLocker?
             </a>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
+        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
+            <a  className="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
+                href="#Q2"
                 onClick={() => props.handleAnswerChange("Q2")}
                 className={
                     props.currentQuestion === "Q2"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link active float-right text-sm leading-5 font-bold no-underline hover:underline text-blue-900"
+                        : "nav-link float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                 }
             >
-                Question 2
+                How do I cancel my account?
             </a>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
+        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
+            <a  className="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
+                href="#Q3"
                 onClick={() => props.handleAnswerChange("Q3")}
                 className={
                     props.currentQuestion === "Q3"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link active float-right text-sm leading-5 font-bold no-underline hover:underline text-blue-900"
+                        : "nav-link float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                 }
             >
-                Question 3
+                How do I save and retrieve a code snippet?
             </a>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
+        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
+            <a  className="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
+                href="#Q4"
                 onClick={() => props.handleAnswerChange("Q4")}
                 className={
                     props.currentQuestion === "Q4"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link active float-right text-sm leading-5 font-bold no-underline hover:underline text-blue-900"
+                        : "nav-link float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                 }
             >
-                Question 4
+                How can I change my name and email address?
             </a>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
+        {/* <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
+            <a  className="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
+                href="#Q5"
                 onClick={() => props.handleAnswerChange("Q5")}
                 className={
                     props.currentQuestion === "Q5"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link active float-right text-sm leading-5 font-bold no-underline hover:underline text-blue-900"
+                        : "nav-link float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                 }
             >
                 Question 5
-            </a>
-        </div>
-        {/* <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
-                onClick={() => props.handleAnswerChange("Q6")}
-                className={
-                    props.currentQuestion === "Q6"
-                        ? "nav-link active"
-                        : "nav-link"
-                }
-            >
-                Question 6
-            </a>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
-                onClick={() => props.handleAnswerChange("Q7")}
-                className={
-                    props.currentQuestion === "Q7"
-                        ? "nav-link active"
-                        : "nav-link"
-                }
-            >
-                Question 7
-            </a>
-        </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-            <a  class="float-right text-sm leading-5 font-medium no-underline hover:underline    text-blue-500"
-                href="#home"
-                onClick={() => props.handleAnswerChange("Q8")}
-                className={
-                    props.currentQuestion === "Q8"
-                        ? "nav-link active"
-                        : "nav-link"
-                }
-            >
-                Question 8
             </a>
         </div> */}
         </dl>

@@ -54,18 +54,14 @@ class FAQContainer extends Component {
                         </h3>
                     </div>
                     <div>
-                            <Questions 
-                                currentQuestion={this.state.currentQuestion}
-                                handleAnswerChange={this.handleAnswerChange}
-                            />
+                        <Questions 
+                            currentQuestion={this.state.currentQuestion}
+                            handleAnswerChange={this.handleAnswerChange}
+                        />
                     </div>
                 </div>
             </div>
-            
-            
-        
-
-            <div className="flex-no-wrap justify-center overflow-hidden shadow-lg bg-blue-700">
+            <div className="flex-no-wrap justify-center overflow-hidden shadow-lg bg-blue-700 mt-4">
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                     <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -75,7 +71,7 @@ class FAQContainer extends Component {
                     <div>
                         <dl>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-                                <div class="float-right text-sm leading-5 font-medium no-underline text-black-500">
+                                <div class="float-right text-sm leading-5 font-medium no-underline text-blue-800">
                                 {this.renderAnswer()}
                                 </div>
                             </div>

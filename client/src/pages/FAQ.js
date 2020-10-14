@@ -142,7 +142,6 @@ function FAQ() {
             </header>
             <Sidebar />
             <main>
-                
                 <div className="bg-blue-400 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                     <FAQContainer />
