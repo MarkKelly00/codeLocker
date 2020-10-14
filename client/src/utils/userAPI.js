@@ -23,9 +23,13 @@ export default {
         return axios.post("/api/users/favorite", data);
     },
 
-    isUser: async function(authoId){
-        const { data } = await axios.get("/api/users/autho/"+authoId);
+    getFavorites: async function (userId) {
+        const { data } = await axios.get("/api/users/favorite/" + userId);
         return data;
-    }
+    },
 
+    isUser: async function (authoId) {
+        const { data } = await axios.get("/api/users/autho/" + authoId);
+        return data;
+    },
 };
