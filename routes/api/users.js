@@ -6,6 +6,7 @@ router.route("/")
 
 router.route("/:id")
     .get(UsersController.getUser)
+    .delete(UsersController.deleteUser);
 
 router.route("/autho/:id")
     .get(UsersController.isUser);

@@ -90,6 +90,21 @@ module.exports={
             res.status(422).json(err)
             
         }
+    } ,
+
+    async deleteUser(req, res){
+        try {
+            const deleteRes = await db.CodeBlock.deleteMany({author:req.params.id})
+            console.log("Delete res is:", deleteRes)
+            const deleteUser = await db.User.deleteOne({_id:req.params.id})
+            console.log("Delete user res:", deleteUser)
+
+            res.json(deleteUser)
+
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
     }
 
 }
