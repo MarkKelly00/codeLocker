@@ -82,54 +82,82 @@ function Table({
         setCodeSnips(arrayCopy);
     }
 
+
     async function handleFilter(e) {
-        console.log("e is", e.target.value);
-        //5f84e7fa7cd56264749b7e03
 
         const filterSelection = e.target.value
 
+        console.log(filterSelection)
+
         const { _id } = await userAPI.getUserId(Auth0Id);
 
-        console.log("userAPI Id is: ", _id);
-        console.log(
-            "codesnips is: ",
-            codeSnips.filter((c) => c.author === _id)
-        );
+        // console.log("userAPI Id is: ", _id);
+        // console.log(
+        //     "codesnips is: ",
+        //     codeSnips.filter((c) => c.author === _id)
+        // );
+        // const { codeSnips } = this.state;
 
-        switch (filterSelection) {
-            case "author":
-                console.log("I made it to Author")
-                const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
-                setCodeSnips(FilteredByAuth);
-                break;
-            case "Favs":
-                const favs = await userAPI.getFavorites(_id);
-                console.log("this is favorites", favs)
-                
-                const filtered = []
-
-                for(let i = 0; i < codeSnips.length; i++ ){
-                    for(let j = 0; j< favs.length; j++) {
-                        console.log("codesnips I: ", codeSnips[i]._id)
-                        console.log("favs J: ", favs[j])
-                    if(codeSnips[i]._id === favs._id){
-                        filtered.push(codeSnips[i])
+        if (filterSelection === "All") {
+            // set employees to allEmployees
+            this.setState({
+                author: _id,
+            });
+        } else {
+            this.setState({
+                // filter by gender
+                author: _id.filter((data) => {
+                    if (data.author === filterSelection) {
+                        return true;
                     }
-                }
-                }
-
-                // const filtered = favs.map((favorite) => {
-                //     return favorite._id === codeSnips._id;
-                // });
-
-                console.log("favorite array", favs);
-                console.log("filtered  array", filtered);
-                setCodeSnips(filtered);
-            break;
-        
-            default:
-                break;
+                    return false;
+                }),
+            });
         }
+        
+
+
+
+        // switch (filterSelection) {
+        //     case "author":
+        //         console.log("I made it to Author")
+        //         const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
+        //         setCodeSnips(FilteredByAuth);
+        //         break;
+                
+        //     case "Favs":
+        //         const favs = await userAPI.getFavorites(_id);
+        //         console.log("this is favorites", favs)
+
+        //         const filter = []
+                
+
+        //         for(let i = 0; i<codeSnips.length; i++){
+        //             // console.log("I'm at codesnips.id", codeSnips[i]._id)
+
+        //             if(codeSnips[i]._id===favs._id){
+        //                 filter.push(codeSnips[i])
+        //             }
+        //             // for(let j = 0; j<favs.length; j++){
+        //             //     console.log("I'm inner loop favs: ", favs[j])
+        //             //     if(codeSnips[i]._id === favs[j]._id){
+        //             //         console.log("looping: codeSnips[i]: ", codeSnips[i]._id)
+        //             //         filter.push(codeSnips[i])
+        //             //     }
+        //             // }
+        //         }
+                
+
+        //         // const filtered = codeSnips.filter(function(e){return this.indexOf(e)<0}, favs)
+
+        //         console.log("favorite array", favs);
+        //         console.log("filtered  array", filter);
+        //         setCodeSnips(filter);
+        //     break;
+        
+        //     default:
+        //         break;
+        // }
 
     }
 

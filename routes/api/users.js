@@ -8,8 +8,7 @@ router.route("/autho/:id").get(UsersController.isUser);
 
 router.route("/userid/:id").get(UsersController.getUserID);
 
-router
-    .route("/favorite")
+router.route("/favorite")
     .post(UsersController.addFavorite)
     .put(UsersController.removeFavorite);
 

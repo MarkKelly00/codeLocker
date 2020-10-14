@@ -56,12 +56,13 @@ module.exports = {
     },
 
     async getUserFavorites(req, res) {
+        console.log("I made to the getUserFavorites API")
         try {
             const favorites = await db.User.findOne(
                 { _id: req.params.id },
                 { projection: { favoritesArr: 1 } }
-            ).populate("codeBlock")
-            console.log(favoritesArr)
+            )
+            console.log("Here is the favorites", favorites)
             res.json(favorites);
         } catch (err) {
             res.status(422).json(err);

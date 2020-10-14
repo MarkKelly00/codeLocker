@@ -24,7 +24,10 @@ export default {
     },
 
     getFavorites: async function (userId) {
+        console.log('user ID', userId);
         const { data } = await axios.get("/api/users/favorite/" + userId);
+        
+        console.log('this is data', data);
         return data;
     },
 
