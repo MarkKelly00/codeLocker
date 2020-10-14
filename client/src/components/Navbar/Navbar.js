@@ -94,7 +94,7 @@ function Sidebar({ username , userImg}) {
                                 Friends
                             </a>
                             <a
-                                href="/#"
+                                href="/faq"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg
@@ -110,7 +110,7 @@ function Sidebar({ username , userImg}) {
                                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
                                     />
                                 </svg>
-                                Projects
+                                FAQ's
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
