@@ -65,6 +65,31 @@ module.exports={
         }
     },    
 
+    async getFavoritesCodeBlock(req, res){
+        try{
+            const favorite = await db.User.findOne({_id:req.body.id}, {"favoritesArr":1, _id:0})
+            
+            console.log("this is favorite:", favorite)
+
+            const favoriteCodeBlock= []
+            console.log("length of favorites arr:", favorite.favoritesArr.length)
+
+            for(let i =0; i<favorite.favoritesArr.length; i++){
+                const code = await db.CodeBlock.findOne({_id:favorite.favoritesArr[i]})
+                // console.log(favorite._id)
+                console.log("code is: ",code)
+                favoriteCodeBlock.push(code)
+            }
+                
+            
+            // console.log("this is fav codeBlock: ", favoriteCodeBlock)
+            res.json(favoriteCodeBlock)
+        }catch(err){
+            console.log(err)
+            res.status(422).json(err)
+        }
+    },
+
     async removeFavorite(req, res){
         try {
             await db.User.findByIdAndUpdate(
