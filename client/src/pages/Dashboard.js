@@ -99,11 +99,12 @@ function Dashboard() {
         e.preventDefault();
 
         console.log("edit code id is: ", editCodeId);
+        const { _id } = await userAPI.getUserId(sub);
+        console.log("User is:", _id)
 
         try {
             if (editCodeId.codeId === "") {
-                const { _id } = await userAPI.getUserId(sub);
-
+                
                 const codeBlock = {
                     author: _id,
                     code: editor.userCode,
@@ -115,10 +116,26 @@ function Dashboard() {
                     codeBlock
                 );
                 setCodeSnips([...codeSnips, newCodeBlock]);
-            } else if(editCodeId.authorId !=="" ){
+            } else if(editCodeId.authorId !== _id ){
+                console.log("I made it to the specified area")
 
+                const codeBlock = {
+                    author:editCodeId.author,
+                    title: titleInput.codeTitle,
+                    isPrivate: isPrivate,
+                    dateModified: new Date(),
+                    isCloned:true,
+                    originalId:editCodeId.codeId,
+                    dateCloned: new Date(),
+                    code: editor.userCode
+                }
+                console.log("codeBlock from specificied area is: ", codeBlock)
+
+                const clonedBlock = await codeBlockAPI.saveCodeBlock(codeBlock)
+
+                console.log("newCodeBlock is: ", clonedBlock)
             }else{
-                const _id = editCodeId.codeId;
+                const codeBlockId = editCodeId.codeId;
                 const authorId = await userAPI.getUserId(sub);
 
                 const codeBlock = {
@@ -132,7 +149,7 @@ function Dashboard() {
                 console.log("codeblock is: ", codeBlock);
 
                 const updatedCodeBlock = await codeBlockAPI.updateCodeBlock(
-                    _id,
+                    codeBlockId,
                     codeBlock
                 );
                 console.log("updated code block is: ", updatedCodeBlock);
@@ -195,6 +212,7 @@ function Dashboard() {
     function resetButton() {
         localStorage.removeItem("code");
         setEditor({ userCode: " " });
+        seteditCodeId({ codeId: "" , authorId:""})
 
         saveConsoleMsgs([]);
     }
