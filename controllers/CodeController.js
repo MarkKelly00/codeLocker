@@ -7,7 +7,7 @@ module.exports = {
     //create new code block, retrieve code id, find user then update user snippets array with new code id
     async saveNewCode(req, res){
         try {
-            console.log(req.body)
+            console.log('we are in saveNewCode with body: ', req.body);
             const newCode = await db.CodeBlock.create(req.body);
             const { _id } = newCode;
             

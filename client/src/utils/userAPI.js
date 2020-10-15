@@ -34,7 +34,6 @@ export default {
     getFavoritesCodeBlock: async function(id){
         
 
-       
         const { data } = await axios.get("/api/users/favoritecode/"+id)
 
         console.log("data is: ", data)

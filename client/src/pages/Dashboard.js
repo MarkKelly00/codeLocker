@@ -62,7 +62,6 @@ function Dashboard() {
         email: email,
     };
 
-    checkUser();
 
     async function checkUser() {
         try {
@@ -81,6 +80,7 @@ function Dashboard() {
 
     useEffect(() => {
         const previousCode = localStorage.getItem("code");
+        checkUser();
         getCode();
         if (previousCode) {
             setEditor({ userCode: previousCode });
