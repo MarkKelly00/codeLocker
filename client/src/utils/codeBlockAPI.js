@@ -11,8 +11,8 @@ export default {
     },
     updateCodeBlock: async function(id, codeblock){
         //data is teh entire codeblock
-        console.log("in codeBlockAPI front end, id is:", id)
-        console.log("in codeBlockAPI front end, id is:", codeblock)
+        // console.log("in codeBlockAPI front end, id is:", id)
+        // console.log("in codeBlockAPI front end, id is:", codeblock)
         const {data}= await axios.put("/api/codeblock/"+id, codeblock)
         return data;
     },

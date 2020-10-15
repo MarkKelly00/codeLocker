@@ -411,14 +411,14 @@ function Dashboard() {
                 </div> */}
             </nav>
 
-            {/* <header className="shadow">
+            <header className="shadow">
                 <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight">
                         Dashboard
                     </h1>
                 </div>
-            </header> */}
-            {/* <Sidebar username={nickname} userImg={userObj.userImage} /> */}
+            </header>
+            <Sidebar username={nickname} userImg={userObj.userImage} />
             <main>
                 <div className="bg-gray-800 overflow-y-auto">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 mb-4 shadow-lg">
@@ -482,7 +482,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className="px-6 pt-4 pb-2">
+                            <div className="px-6 pt-4 pb-2">
                                 <Table
                                     codeSnips={codeSnips}
                                     setCodeSnips={setCodeSnips}
@@ -492,7 +492,7 @@ function Dashboard() {
                                     setFileter={setFilter}
                                     Auth0Id={sub}
                                 />
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>

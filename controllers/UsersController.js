@@ -125,7 +125,7 @@ module.exports = {
     async isUser(req, res) {
         try {
             const isUser = await db.User.find({Auth0Id:req.params.id}).countDocuments()>0
-            console.log('we are in isUser');
+            // console.log('we are in isUser');
             res.json(isUser) ;
         } catch (err) {
             console.log(err);
