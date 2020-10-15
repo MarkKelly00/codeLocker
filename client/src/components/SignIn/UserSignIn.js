@@ -5,7 +5,7 @@ import SignupButton from "../Buttons/SignUpButton";
 function UserSignIn() {
     return (
         <div className="text-gray-700 text-center bg-gray-400 p-2">
-            <div className="mb-4">
+            {/* <div className="mb-4">
                 <label className="block text-grey-darker text-sm font-bold mb-2">
                     Username
                     <input
@@ -30,16 +30,24 @@ function UserSignIn() {
                 <p className="text-red text-xs italic">
                     Please choose a password.
                 </p>
+            </div> */}
+            <div className="text-gray-700 text-center bg-gray-400 h-full p-2">
+                <div className="font-bold text-xl mb-2">
+                    Create an account or sign in to access you <b>CodeLocker</b>
+                </div>
+                <p className="text-gray-700 text-base">
+                    
+                </p>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-center">
                 <AuthenticationButton />
                 <SignupButton />
-                <a
+                {/* <a
                     className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
                     href="/"
                 >
                     Forgot Password?
-                </a>
+                </a> */}
             </div>
         </div>
     );
