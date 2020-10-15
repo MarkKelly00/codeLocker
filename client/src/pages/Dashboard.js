@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/AuthO/Loading";
@@ -39,7 +40,7 @@ function Dashboard() {
         codeTitle: "Please title your code!",
     });
     const [isPrivate, setIsPrivate] = useState(false);
-    const [editCodeId, seteditCodeId] = useState({ codeId: "" });
+    const [editCodeId, seteditCodeId] = useState({ codeId: "" , authorId:""});
     // data that appears in table component
     const [codeSnips, setCodeSnips] = useState([]);
 
@@ -114,7 +115,9 @@ function Dashboard() {
                     codeBlock
                 );
                 setCodeSnips([...codeSnips, newCodeBlock]);
-            } else {
+            } else if(editCodeId.authorId !=="" ){
+
+            }else{
                 const _id = editCodeId.codeId;
                 const authorId = await userAPI.getUserId(sub);
 
@@ -201,13 +204,15 @@ function Dashboard() {
         console.log("I was fired");
 
         const codeId = e.target.id;
+        const codeAuthor = e.target.getAttribute("data-author");
+        console.log("CodeAuthor from event listener is ", codeAuthor)
 
         const { data } = await codeBlockAPI.getCodeBlock(codeId);
         console.log("codeID ", codeId);
         console.log("codeBlock: ", data);
         setTitleInput({ codeTitle: data.title });
         setEditor({ userCode: data.code });
-        seteditCodeId({ codeId: codeId });
+        seteditCodeId({ codeId: codeId , authorId:codeAuthor});
     }
 
     async function onViewCode(e) {

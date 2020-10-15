@@ -50,6 +50,7 @@ const Tbody = ({ data, onClick, onView }) => {
                     href="/"
                     className="text-indigo-600 hover:text-indigo-900"
                     id={data._id}
+                    data-author={data.author}
                     onClick={onClick}
                 >
                     Edit

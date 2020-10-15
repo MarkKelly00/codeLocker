@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === "production"){
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI,  { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true } );
+mongoose.connect("mongodb://localhost/codelocker" , { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true } );
 
 app.listen(PORT, ()=>{
     // eslint-disable-next-line no-console
