@@ -422,6 +422,7 @@ function Dashboard() {
                                                 onReset={resetButton}
                                                 console={viewOnlyLog}
                                                 onCopy={onCopyCode}
+                                                onShare={viewOnlyCode}
                                             />
                                         </div>
                                     </div>
