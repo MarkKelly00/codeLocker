@@ -5,7 +5,7 @@ import codeBlockAPI from "../../utils/codeBlockAPI"
 
 const Tbody = ({ data, onClick, onView }) => {
     return (
-        <tr className="bg-white divide-y divide-gray-200 h-full">
+        <tr className="bg-white divide-y divide-gray-200 h-full" >
             <td className="p-4 ">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
@@ -180,11 +180,12 @@ function Table({
                                 </tr>
                             </thead>
                             <tbody className="justify-between flex flex-col overflow-y-scroll w-full">
-                                {codeSnips.map((rowData) => (
+                                {codeSnips.map((rowData, index) => (
                                     <Tbody
                                         data={rowData}
                                         onClick={onEdit}
                                         onView={onView}
+                                        key={index}
                                     />
                                 ))}
                             </tbody>
