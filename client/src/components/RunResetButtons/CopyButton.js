@@ -3,14 +3,6 @@ import ShareBTN from "../Buttons/Share";
 import "./styles.css";
 
 function CopyButtons({ onExecute, onLike , onCopy, onShare }) {
-//     function onCopy(text) {
-//         const elem = document.createElement('textarea');
-//    elem.value = text;
-//    document.body.appendChild(elem);
-//    elem.select();
-//    document.execCommand('copy');
-//    document.body.removeChild(elem);
-// }
 
     return (
         <div className="buttonWrapper flex flex-row flex-wrap overflow-hidden justify-center">

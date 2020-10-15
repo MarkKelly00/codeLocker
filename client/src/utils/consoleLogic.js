@@ -50,7 +50,7 @@ let console = (function (oldConsole) {
                 class: `log log--default`
             });
 
-            oldConsole.log(consoleMessages);
+            // oldConsole.log(consoleMessages);
             return consoleMessages;
         },
         logSingleArgument: function (logItem) {
@@ -60,7 +60,7 @@ let console = (function (oldConsole) {
                 class: `log log--${this.getType(logItem)}`
             });
 
-            oldConsole.log(consoleMessages);
+            // oldConsole.log(consoleMessages);
             return consoleMessages
         },
         log: function (text) {

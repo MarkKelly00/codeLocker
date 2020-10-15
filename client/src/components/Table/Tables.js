@@ -5,11 +5,11 @@ import codeBlockAPI from "../../utils/codeBlockAPI"
 
 const Tbody = ({ data, onClick, onView }) => {
     return (
-        <tr className="bg-white divide-y divide-gray-200 h-full">
+        <tr className="bg-white divide-y divide-gray-200 h-full" >
             <td className="p-4 ">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
-                        <i class="fas fa-user-circle fa-2x"></i>
+                        <i className="fas fa-user-circle fa-2x"></i>
                     </div>
                     <div className="ml-4">
                         <div className="text-sm leading-5 font-medium text-gray-900">
@@ -50,6 +50,7 @@ const Tbody = ({ data, onClick, onView }) => {
                     href="/"
                     className="text-indigo-600 hover:text-indigo-900"
                     id={data._id}
+                    data-author={data.author}
                     onClick={onClick}
                 >
                     Edit
@@ -89,20 +90,17 @@ function Table({
         
         switch (filterSelection) {
             case "author":
-                // console.log("I made it to Author")
                 const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
                 setCodeSnips(FilteredByAuth);
                 break;
                 
             case "Favs":
                 const favoriteCodes = await userAPI.getFavoritesCodeBlock(_id);
-                console.log("this is favorite",favoriteCodes)
                 setCodeSnips(favoriteCodes);
             break;
         
             case "All":
                 const {data} = await codeBlockAPI.getGlobalCode()
-                console.log("allCode is: ",data)
                 setCodeSnips(data);
             break;
 
@@ -179,11 +177,12 @@ function Table({
                                 </tr>
                             </thead>
                             <tbody className="justify-between flex flex-col overflow-y-scroll w-full">
-                                {codeSnips.map((rowData) => (
+                                {codeSnips.map((rowData, index) => (
                                     <Tbody
                                         data={rowData}
                                         onClick={onEdit}
                                         onView={onView}
+                                        key={index}
                                     />
                                 ))}
                             </tbody>

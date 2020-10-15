@@ -25,10 +25,10 @@ module.exports = {
     },
 
     async getAllGlobalCode(req, res) {
-        console.log("req.body in codeController.getAllGlobalCode", req.body);
+        // console.log("req.body in codeController.getAllGlobalCode", req.body);
         try {
             const allCode = await db.CodeBlock.find({isPrivate:false})
-            console.log("All code is: ", await allCode)
+            // console.log("All code is: ", await allCode)
             res.json(allCode)
         } catch (err) {
             res.status(422).json(err)
@@ -60,7 +60,7 @@ module.exports = {
         try {
             await db.CodeBlock.findOneAndUpdate({_id:req.params.id}, req.body)
             const updated = await db.CodeBlock.findOne({_id:req.params.id})
-            console.log(updated)
+            // console.log(updated)
             res.json(updated)
         } catch (err) {
             res.status(422).json(err)
@@ -103,7 +103,7 @@ module.exports = {
     },
 
     async addLike(req,res){
-        console.log("req.body in codeController.AddLike: ", req.body);
+        // console.log("req.body in codeController.AddLike: ", req.body);
 
         try {
             await db.CodeBlock.findOneAndUpdate(
@@ -134,7 +134,7 @@ module.exports = {
     },
 
     async removeLike(req, res){
-        console.log("req.params.id in controller.removeLike: ", req.params.id);
+        // console.log("req.params.id in controller.removeLike: ", req.params.id);
         try {
             await db.CodeBlock.findByIdAndUpdate(
                 {_id:req.body.codeId},

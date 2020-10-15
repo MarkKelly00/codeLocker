@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/AuthO/Loading";
@@ -39,7 +40,7 @@ function Dashboard() {
         codeTitle: "Please title your code!",
     });
     const [isPrivate, setIsPrivate] = useState(false);
-    const [editCodeId, seteditCodeId] = useState({ codeId: "" });
+    const [editCodeId, seteditCodeId] = useState({ codeId: "" , authorId:""});
     // data that appears in table component
     const [codeSnips, setCodeSnips] = useState([]);
 
@@ -98,11 +99,12 @@ function Dashboard() {
         e.preventDefault();
 
         console.log("edit code id is: ", editCodeId);
+        const { _id } = await userAPI.getUserId(sub);
+        console.log("User is:", _id)
 
         try {
             if (editCodeId.codeId === "") {
-                const { _id } = await userAPI.getUserId(sub);
-
+                
                 const codeBlock = {
                     author: _id,
                     code: editor.userCode,
@@ -114,8 +116,26 @@ function Dashboard() {
                     codeBlock
                 );
                 setCodeSnips([...codeSnips, newCodeBlock]);
-            } else {
-                const _id = editCodeId.codeId;
+            } else if(editCodeId.authorId !== _id ){
+                console.log("I made it to the specified area")
+
+                const codeBlock = {
+                    author:editCodeId.author,
+                    title: titleInput.codeTitle,
+                    isPrivate: isPrivate,
+                    dateModified: new Date(),
+                    isCloned:true,
+                    originalId:editCodeId.codeId,
+                    dateCloned: new Date(),
+                    code: editor.userCode
+                }
+                console.log("codeBlock from specificied area is: ", codeBlock)
+
+                const clonedBlock = await codeBlockAPI.saveCodeBlock(codeBlock)
+
+                console.log("newCodeBlock is: ", clonedBlock)
+            }else{
+                const codeBlockId = editCodeId.codeId;
                 const authorId = await userAPI.getUserId(sub);
 
                 const codeBlock = {
@@ -129,7 +149,7 @@ function Dashboard() {
                 console.log("codeblock is: ", codeBlock);
 
                 const updatedCodeBlock = await codeBlockAPI.updateCodeBlock(
-                    _id,
+                    codeBlockId,
                     codeBlock
                 );
                 console.log("updated code block is: ", updatedCodeBlock);
@@ -192,6 +212,7 @@ function Dashboard() {
     function resetButton() {
         localStorage.removeItem("code");
         setEditor({ userCode: " " });
+        seteditCodeId({ codeId: "" , authorId:""})
 
         saveConsoleMsgs([]);
     }
@@ -201,13 +222,15 @@ function Dashboard() {
         console.log("I was fired");
 
         const codeId = e.target.id;
+        const codeAuthor = e.target.getAttribute("data-author");
+        console.log("CodeAuthor from event listener is ", codeAuthor)
 
         const { data } = await codeBlockAPI.getCodeBlock(codeId);
         console.log("codeID ", codeId);
         console.log("codeBlock: ", data);
         setTitleInput({ codeTitle: data.title });
         setEditor({ userCode: data.code });
-        seteditCodeId({ codeId: codeId });
+        seteditCodeId({ codeId: codeId , authorId:codeAuthor});
     }
 
     async function onViewCode(e) {
@@ -279,7 +302,7 @@ function Dashboard() {
     return (
         <div>
             <nav className="bg-blue-700 p-5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -385,7 +408,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </nav>
 
             <header className="shadow">
@@ -430,7 +453,7 @@ function Dashboard() {
                                         <div className="flex flex-wrap justify-center bg-white h-full p-2">
                                             <input
                                                 id="codeTitle"
-                                                class="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100"
+                                                className="mt-2 text-md leading-5 text-black text-center sm:mt-0 sm:col-span-2 w-40 outline-none focus:shadow-outline focus:bg-blue-100"
                                                 placeholder={
                                                     titleInput.codeTitle
                                                 }
