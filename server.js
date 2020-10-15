@@ -1,8 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require("./routes")
-
-
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,7 +15,7 @@ if(process.env.NODE_ENV === "production"){
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codelocker",  { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true } );
+mongoose.connect(process.env.MONGODB_URI,  { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true } );
 
 app.listen(PORT, ()=>{
     // eslint-disable-next-line no-console

@@ -30,14 +30,13 @@ module.exports = {
 
     async getUserID(req, res) {
         try {
-            // console.log("req.body in UserController.getUser ", req.params.id);
             const userId = await db.User.findOne(
                 { Auth0Id: req.params.id },
-                { projection: { _id: 1 } }
+                { _id: 1 }
             );
-            // console.log("UserID is: ", userId);
             res.json(userId);
         } catch (err) {
+            console.log('error in getUserID is: ', err);
             res.status(422).json(err);
         }
     },
@@ -126,7 +125,7 @@ module.exports = {
     async isUser(req, res) {
         try {
             const isUser = await db.User.find({Auth0Id:req.params.id}).countDocuments()>0
-            console.log(isUser)
+            console.log('we are in isUser');
             res.json(isUser) ;
         } catch (err) {
             console.log(err);
