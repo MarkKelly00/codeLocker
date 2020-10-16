@@ -1,11 +1,33 @@
 import React from "react";
 // import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import userAPI from "../../utils/userAPI"
+import codeBlockAPI from "../../utils/codeBlockAPI";
 
-function Sidebar() {
+function Sidebar({setCodeSnips, codeSnips}) {
     // const [isOn, setIsOn] = useState(false);
     const { user } = useAuth0();
-    const { nickname, picture } = user;
+    const { nickname, picture, sub } = user;
+
+ 
+    async function onClick(e){
+        e.preventDefault()
+
+        // eslint-disable-next-line no-restricted-globals
+        // if(location.href.includes("faq"||"aboutus")) {
+        //     const { _id } = await userAPI.getUserId(sub);
+
+        //     const allCode = await codeBlockAPI.getAllUserCode()
+        //     const FilteredByAuth = allCode.filter((c) => c.author === _id)
+        //         setCodeSnips(FilteredByAuth);
+
+        //     console.log("codesnips in faq to locker is", codeSnips)
+        // };
+        
+        const { _id } = await userAPI.getUserId(sub);
+        const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
+                setCodeSnips(FilteredByAuth);
+    }
 
     return (
         <>
@@ -55,8 +77,9 @@ function Sidebar() {
                                 Dashboard
                             </a>
                             <a
-                                href="/#"
+                                href="/locker"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
+                                onClick={onClick}
                             >
                                 <svg
                                     fill="currentColor"

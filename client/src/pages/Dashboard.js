@@ -46,8 +46,12 @@ function Dashboard() {
 
     async function getCode() {
         try {
-            const { data } = await codeBlockAPI.getGlobalCode();
-            setCodeSnips(data);
+            console.log("here is getSnips from getCode",codeSnips)
+            if(codeSnips.length<1){
+               const { data } = await codeBlockAPI.getGlobalCode();
+            setCodeSnips(data); 
+            }
+        
         } catch (e) {
             console.log(e);
         }
@@ -80,8 +84,16 @@ function Dashboard() {
     }
 
     useEffect(() => {
+        let timeout;
+
+        clearTimeout(timeout)
+
+        timeout= setTimeout(()=>{
+            checkUser();
+        }, 1500)
+
         const previousCode = localStorage.getItem("code");
-        checkUser();
+        
         getCode();
         if (previousCode) {
             setEditor({ userCode: previousCode });
@@ -302,7 +314,7 @@ function Dashboard() {
     return (
         <div>
             <nav className="bg-blue-700 p-5">
-                {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
@@ -315,7 +327,7 @@ function Dashboard() {
                                 </a>
                             </div>
                             <div className="ml-10 flex items-baseline space-x-4">
-                                <Search />
+                                <Search codeSnips={codeSnips} setCodeSnips = {setCodeSnips}/>
                             </div>
                         </div>
                         <div className="hidden md:block">
@@ -408,7 +420,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </nav>
 
             <header className="shadow">
@@ -418,7 +430,7 @@ function Dashboard() {
                     </h1>
                 </div>
             </header>
-            <Sidebar username={nickname} userImg={userObj.userImage} />
+            <Sidebar codeSnips={codeSnips} setCodeSnips={setCodeSnips} />
             <main>
                 <div className="bg-gray-800 overflow-y-auto">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 mb-4 shadow-lg">
