@@ -8,8 +8,8 @@ import Logo from "../features/images/clLogo2.png";
 import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
 import Footer from "../components/Footer/Footer";
-import FAQContainer from "../components/FAQ/FAQContainer"
 import { useAuth0 } from "@auth0/auth0-react";
+import AboutUsContainer from "../components/AboutUsContainer/AboutUsContainer";
 
 
 import "ace-builds/src-min-noconflict/mode-html";
@@ -17,7 +17,8 @@ import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
 import "ace-builds/webpack-resolver";
 
-function FAQ() {
+
+function AboutUs() {
     const [isOpen, setIsOpen] = useState(false);
 
     const { user } = useAuth0();
@@ -138,23 +139,19 @@ function FAQ() {
             <header className="shadow">
                 <div className="max-w-7xl mx-auto border-t-2 border-gray-600 py-6 px-4 sm:px-6 lg:px-8 bg-gray-300">
                     <h1 className="text-3xl font-bold leading-tight text-black">
-                        FAQ
+                        About Us
                     </h1>
                 </div>
             </header>
             <Sidebar />
             <main>
-                <div className="bg-blue-400 h-screen">
-                    <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
-                        <FAQContainer />
-                    </div>
-                </div>
+                <AboutUsContainer />
             </main>
             <Footer />
         </div>
     );
 }
 
-export default withAuthenticationRequired(FAQ, {
+export default withAuthenticationRequired(AboutUs, {
     onRedirecting: () => <Loading />,
 });

@@ -1,0 +1,4 @@
+.about-us-imgs {
+    display: flex;
+    flex-direction: row;
+}
