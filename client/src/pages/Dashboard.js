@@ -47,10 +47,9 @@ function Dashboard() {
     async function getCode() {
         try {
             console.log("here is getSnips from getCode",codeSnips)
-            if(codeSnips.length<1){
-               const { data } = await codeBlockAPI.getGlobalCode();
+            const { data } = await codeBlockAPI.getGlobalCode();
             setCodeSnips(data); 
-            }
+
         
         } catch (e) {
             console.log(e);
@@ -430,7 +429,7 @@ function Dashboard() {
                     </h1>
                 </div>
             </header>
-            <Sidebar codeSnips={codeSnips} setCodeSnips={setCodeSnips} />
+            <Sidebar codeSnips={codeSnips} setCodeSnips={setCodeSnips} onView = {onViewCode}/>
             <main>
                 <div className="bg-gray-800 overflow-y-auto">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 mb-4 shadow-lg">

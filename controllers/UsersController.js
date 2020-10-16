@@ -95,18 +95,6 @@ module.exports = {
         }
     },
 
-    async removeFavorite(req, res){
-        try {
-            const favorites = await db.User.findOne(
-                { _id: req.params.id },
-                { projection: { favoritesArr: 1 } }
-            )
-            // console.log("Here is the favorites", favorites)
-            res.json(favorites);
-        } catch (err) {
-            res.status(422).json(err);
-        }
-    },
 
     async removeFavorite(req, res) {
         try {

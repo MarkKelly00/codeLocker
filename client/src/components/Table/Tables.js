@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import userAPI from "../../utils/userAPI";
 import codeBlockAPI from "../../utils/codeBlockAPI"
+import { useAuth0 } from "@auth0/auth0-react";
+import StarIcon from "../Star/Star";
 
 const Tbody = ({ data, onClick, onView }) => {
+    const { user } = useAuth0();
+    const { nickname, picture, sub } = user;
+
     return (
         <tr className="bg-white divide-y divide-gray-200 h-full" >
             <td className="p-4 ">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
-                        <i className="fas fa-user-circle fa-2x"></i>
+                    <img
+                                            src={picture}
+                                            alt="user profile "
+                                            className="shadow rounded-full max-w-full h-auto align-middle border-none"
+                                            style={{ width: 50 }}
+                                        />
                     </div>
                     <div className="ml-4">
                         <div className="text-sm leading-5 font-medium text-gray-900">
@@ -37,7 +47,7 @@ const Tbody = ({ data, onClick, onView }) => {
             </td>
             <td className="p-4 w-1/4 text-sm leading-5 text-gray-500">
                 <div className="text-sm leading-5 text-gray-900">
-                    {data.tags}
+                    <StarIcon codeId={data._id}/>
                 </div>
             </td>
             <td className="p-4 w-1/4 text-sm leading-5 text-gray-500">
@@ -148,7 +158,7 @@ function Table({
                                         data-name="tags"
                                         onClick={() => sortBy("tags")}
                                     >
-                                        Tags
+                                        Favorites
                                     </th>
                                     <th
                                         className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-white uppercase tracking-wider cursor-pointer"
