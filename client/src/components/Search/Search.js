@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import codeBlockAPI from "../../utils/codeBlockAPI";
 
-function Search() {
+function Search({codeSnips, setCodeSnips}) {
+    const [searchState, setSearchState] = useState({code: codeSnips});
+    const [searchTermState, setSearchTerm] = useState({term: ""})
+
+
+    async function editSearchTerm(e){
+
+        if(e.target.value ===""){
+            const {data} = await codeBlockAPI.getGlobalCode()
+            setCodeSnips(data);
+        }else{
+            setSearchTerm({term: e.target.value})
+            console.log("Searchstate.code", searchState.code)
+            const filtered = codeSnips.filter(name => name.code.toLowerCase().includes(searchTermState.term.toLowerCase()));
+    
+            setCodeSnips(filtered);
+        }
+        
+    }
+
     return (
         <div class="relative mr-6 my-2">
             <input
                 type="search"
-                name="serch"
+                onChange={editSearchTerm}
                 placeholder="Search"
-                class="bg-white h-10 px-6 pr-10 rounded-full text-sm focus:outline-none"
+                className="bg-white h-10 px-6 pr-10 rounded-full text-sm focus:outline-none"
             />
-            <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+            <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
                 <svg
-                    class="h-4 w-4 fill-current"
+                    className="h-4 w-4 fill-current"
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"
                     id="Capa_1"

@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import userAPI from "../../utils/userAPI"
+import codeBlockAPI from "../../utils/codeBlockAPI";
 
-function Sidebar() {
+function Sidebar({setCodeSnips, codeSnips, onView}) {
     // const [isOn, setIsOn] = useState(false);
     const { user } = useAuth0();
-    const { nickname, picture } = user;
+    const { nickname, picture, sub } = user;
+    const [favoritesArr, setFavoritesArr] = useState([])
+
+
+    useEffect( ()=>{
+        getUserFavorites()
+    
+    }, [])
+   
+    
+    async function getUserFavorites(){
+        const userID= await userAPI.getUserId(sub);
+        // console.log("UserId from nav", userID._id)
+        const code = await userAPI.getFavoritesCodeBlock(userID._id);
+        // console.log("favoritesArr is NavBar is",code)
+        setFavoritesArr(code)
+        // console.log("favoritesArr is NavBar is",code)
+    }
+
+    const FavoritesTitle = (favorite, )=>{
+        console.log("favorite from favorites Title",favorite.favorite.title)
+        return (<p className="text-mg leading-5 font-medium text-white"><a
+        href="/"
+        className="text-white hover:text-blue-400"
+        id={favorite.favorite._id}
+        onClick={onView}
+    >
+        {favorite.favorite.title}
+    </a></p>)
+    }
 
     return (
         <>
@@ -55,7 +86,7 @@ function Sidebar() {
                                 Dashboard
                             </a>
                             <a
-                                href="/#"
+                                href="/locker"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg
@@ -110,9 +141,16 @@ function Sidebar() {
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
-                                <p className="text-sm leading-5 font-medium text-white">
+                                <p className="text-lg leading-5 tracking-wider font-extrabold text-gray-400 mb-2">
                                     Favorites
                                 </p>
+                                {favoritesArr.map((code, index)=>(
+                                    
+                                    <FavoritesTitle 
+                                    favorite = {code}
+                                    key={index}
+                                    />
+                                ))}
                             </div>
                         </nav>
                     </div>

@@ -47,4 +47,14 @@ export default {
         const { data } = await axios.get("/api/users/autho/" + authoId);
         return data;
     },
+
+    removeFavorite: async function (userId, codeId){
+        const favObj = {
+            userId:userId,
+            codeId:codeId
+        }
+        const{data} = await axios.put("/api/users/favorite", favObj)
+        return data;
+    }
 };
+
