@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const UsersController = require("../../controllers/UsersController");
 
-router.route("/")
-    .post(UsersController.createNewUser);
+router.route("/").post(UsersController.createNewUser);
 
 
 router.route("/autho/:id")
@@ -14,14 +13,16 @@ router.route("/userid/:id")
 router.route("/favorite")
     .post(UsersController.addFavorite)
     .put(UsersController.removeFavorite)
-    .get(UsersController.getFavoritesCodeBlock);
+
+router.route("/favoritecode/:id")
+    .get(UsersController.getFavoritesCodeBlock)
+
 router.route("/:id")
     .get(UsersController.getUser)
     .delete(UsersController.deleteUser);
 
 router.route("/favorite/:id")
     .get(UsersController.getUserFavorite);
-
 
 
 module.exports = router;

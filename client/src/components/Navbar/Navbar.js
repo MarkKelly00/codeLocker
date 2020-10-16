@@ -1,15 +1,15 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function Sidebar({ username , userImg}) {
-    const [isOn, setIsOn] = useState(false);
+function Sidebar() {
+    // const [isOn, setIsOn] = useState(false);
     const { user } = useAuth0();
-    const { nickname, picture, email, sub } = user;
+    const { nickname, picture } = user;
 
     return (
         <>
-            <nav class="flex-row md:justify-between">
+            <nav className="flex-row md:justify-between">
                 <div className="hidden lg:block xl:block">
                     <div className="flex flex-col w-64 bg-gray-300 fixed border-t-4 border-b-4 border-teal-500 px-1 py-1 shadow-lg">
                         <div className="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
@@ -91,26 +91,22 @@ function Sidebar({ username , userImg}) {
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                                     />
                                 </svg>
-                                Friends
+                                About Us
                             </a>
                             <a
-                                href="/#"
+                                href="/faq"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
-                                <svg
-                                    className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                                    />
+                                <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path 
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
+                                    </path>
                                 </svg>
-                                Projects
+                                    FAQ
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
@@ -123,7 +119,7 @@ function Sidebar({ username , userImg}) {
                 </div>
                 <div className="mx-auto p-1 flex lg:hidden bg-blue-700">
                     <a
-                        href="#"
+                        href=" "
                         className="group flex items-center px-2 py-2 text-sm leading-5 font-small text-white rounded-md bg-gray-900 focus:outline-none focus:bg-blue-400 transition ease-in-out duration-150"
                     >
                         <svg
@@ -142,7 +138,7 @@ function Sidebar({ username , userImg}) {
                         Dashboard
                     </a>
                     <a
-                        href="#"
+                        href=" "
                         className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-small text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                     >
                         <svg
@@ -162,7 +158,7 @@ function Sidebar({ username , userImg}) {
                         Locker
                     </a>
                     <a
-                        href="#"
+                        href=" "
                         className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-small text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                     >
                         <svg
@@ -178,26 +174,22 @@ function Sidebar({ username , userImg}) {
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                             />
                         </svg>
-                        Friends
+                        About Us
                     </a>
                     <a
-                        href="#"
+                        href="/faq"
                         className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-small text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                     >
-                        <svg
-                            className="mr-1 h-6 w-4 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
+                        <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                            fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path 
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                            />
+                                d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
+                            </path>
                         </svg>
-                        Projects
+                        FAQ
                     </a>
                 </div>
             </nav>

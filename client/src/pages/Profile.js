@@ -10,7 +10,6 @@ import Search from "../components/Search/Search";
 import Footer from "../components/Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
 import "ace-builds/src-min-noconflict/snippets/html";
@@ -18,12 +17,88 @@ import "ace-builds/webpack-resolver";
 
 function Profile() {
     const [isOpen, setIsOpen] = useState(false);
+    const [showModal, setShowModal] = React.useState(false);
 
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
 
     return (
         <div>
+            {showModal ? (
+                <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 transition-opacity">
+                            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" />
+                        &#8203;
+                        <div
+                            className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="modal-headline"
+                        >
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                        <svg
+                                            className="h-6 w-6 text-red-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                        <h3
+                                            className="text-lg leading-6 font-medium text-gray-900"
+                                            id="modal-headline"
+                                        >
+                                            Deactivate account
+                                        </h3>
+                                        <div className="mt-2">
+                                            <p className="text-sm leading-5 text-gray-500">
+                                                Are you sure you want to
+                                                deactivate your account? All of
+                                                your data will be permanently
+                                                removed. This action cannot be
+                                                undone.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                                    <button
+                                        type="button"
+                                        style={{ transition: "all .15s ease" }}
+                                        className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                        onClick={() => setShowModal(true)}
+                                    >
+                                        Deactivate
+                                    </button>
+                                </span>
+                                <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
+                                    <button
+                                        type="button"
+                                        className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                    >
+                                        Cancel
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
             <nav className="bg-blue-700 p-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
@@ -143,52 +218,52 @@ function Profile() {
             </header>
             <Sidebar />
             <main>
-                <div className="bg-blue-400 h-screen">
+                <div className="bg-gray-800 h-screen">
                     <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                         <div className="flex-no-wrap justify-center overflow-hidden shadow-lg bg-blue-700">
-                            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                                <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+                                <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+                                    <h3 className="text-lg leading-6 font-medium text-gray-900">
                                         {nickname}
                                     </h3>
                                 </div>
                                 <div>
                                     <dl>
-                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm leading-5 font-medium text-gray-500">
+                                        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt className="text-sm leading-5 font-medium text-gray-500">
                                                 {name}
                                             </dt>
                                             <input
-                                                class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
+                                                className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
                                                 placeholder="List Name Here"
                                             />
                                             <a
                                                 href="#"
-                                                class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
+                                                className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
                                             </a>
                                         </div>
-                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm leading-5 font-medium text-gray-500">
+                                        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt className="text-sm leading-5 font-medium text-gray-500">
                                                 {email}
                                             </dt>
                                             <input
-                                                class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
+                                                className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 w-40"
                                                 placeholder="List Email Here"
                                             />
 
                                             <a
                                                 href="#"
-                                                class="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
+                                                className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
                                             </a>
                                         </div>
-                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <a
                                                 href="#"
-                                                class="text-sm leading-5 font-medium no-underline hover:underline text-red-400"
+                                                className="text-sm leading-5 font-medium no-underline hover:underline text-red-400"
                                             >
                                                 Deactivate Account
                                             </a>
