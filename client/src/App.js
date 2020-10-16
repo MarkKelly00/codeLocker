@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import Locker from "./pages/Locker";
 import Loading from "./components/AuthO/Loading";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile"
@@ -32,6 +32,7 @@ function App() {
                 <ProtectedRoute path="/userinfo" exact component={UserInfo} />
                 <ProtectedRoute path="/dashboard" exact component={Dashboard} />
                 <ProtectedRoute path="/profile" exact component={Profile} />
+                <ProtectedRoute path="/locker" exact component={Locker} />
                 </Switch>
             </Router>
     );
