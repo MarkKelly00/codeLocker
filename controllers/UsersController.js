@@ -29,6 +29,7 @@ module.exports = {
     },
 
     async getUserID(req, res) {
+        console.log("params in getUserID from UsersController is: ", req.params.id)
         try {
             const userId = await db.User.findOne(
                 { Auth0Id: req.params.id },

@@ -11,7 +11,9 @@ export default {
     },
 
     getUserId: async function (Auth0Id) {
+        console.log("UserSub is: ", Auth0Id);
         const userId = await axios.get("/api/users/userid/" + Auth0Id);
+        console.log("UserID from UserAPI is: ", userId);
         return userId.data;
     },
 
@@ -25,22 +27,23 @@ export default {
 
     getFavorites: async function (userId) {
         // console.log('user ID', userId);
+
         const { data } = await axios.get("/api/users/favorite/" + userId);
-        
-        console.log('this is data', data);
+
+        console.log("this is data", data);
         return data;
     },
 
-    getFavoritesCodeBlock: async function(id){
-        const { data } = await axios.get("/api/users/favoritecode/"+id)
+    getFavoritesCodeBlock: async function (id) {
+        const { data } = await axios.get("/api/users/favoritecode/" + id);
 
         // console.log("data is: ", data)
         return data;
     },
 
-    deleteUser: async function(userId){
-        const { data } = await axios.delete("/api/users/"+userId)
-        return data;        
+    deleteUser: async function (userId) {
+        const { data } = await axios.delete("/api/users/" + userId);
+        return data;
     },
 
     isUser: async function (authoId) {
@@ -48,13 +51,12 @@ export default {
         return data;
     },
 
-    removeFavorite: async function (userId, codeId){
+    removeFavorite: async function (userId, codeId) {
         const favObj = {
-            userId:userId,
-            codeId:codeId
-        }
-        const{data} = await axios.put("/api/users/favorite", favObj)
+            userId: userId,
+            codeId: codeId,
+        };
+        const { data } = await axios.put("/api/users/favorite", favObj);
         return data;
-    }
+    },
 };
-
