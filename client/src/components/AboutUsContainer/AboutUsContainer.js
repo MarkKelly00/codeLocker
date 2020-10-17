@@ -22,7 +22,7 @@ function AboutUsContainer() {
                                         <div className="w-1/3 px-2 text-center">
                                             <strong>Joe</strong>
                                             <img className="w-48" src={"https://avatars2.githubusercontent.com/u/62780709?s=400&u=d54ce8e65d1021a95c4dedde6157ae0710e7a71b&v=4"} alt="Joe Mengis headshot" />
-                                            <a href="https://github.com/joemengis">
+                                            <a href="https://github.com/joemengis" target="_blank">
                                             <button
                                                 className="text-blue-700 font-bold m-2 border-b-4 border-blue-700 hover:border-blue-500 font-bold shadow sm:shadow-md">
                                                     Github
@@ -40,7 +40,7 @@ function AboutUsContainer() {
                                         <div className="w-1/3 px-2 text-center">
                                             <strong>Beki</strong>
                                             <img className="w-48" src={"https://avatars3.githubusercontent.com/u/63758052?s=400&u=7b60715a5c4d37dcc9b502d5594fefa727e4be9f&v=4"} alt="Rebeca Gonzalez headshot" />
-                                            <a href="https://github.com/Beki-G">
+                                            <a href="https://github.com/Beki-G" target="_blank">
                                             <button
                                                 className="text-blue-700 font-bold m-2 border-b-4 border-blue-700 hover:border-blue-500 font-bold shadow sm:shadow-md">
                                                     Github
@@ -57,7 +57,7 @@ function AboutUsContainer() {
                                         <div className="w-1/3 px-2 text-center">
                                             <strong>Mark</strong>
                                             <img className="w-48" src={"https://avatars3.githubusercontent.com/u/35087238?s=400&u=8f37f1327a494ba2de43a59631c9c952951de52e&v=4"} alt="Mark Kelly headshot" />
-                                            <a href="https://github.com/MarkKelly00">
+                                            <a href="https://github.com/MarkKelly00" target="_blank">
                                                 <button
                                                     className="text-blue-700 font-bold m-2 border-b-4 border-blue-700 hover:border-blue-500 font-bold shadow sm:shadow-md">
                                                         Github
@@ -74,7 +74,7 @@ function AboutUsContainer() {
                                         <div className="w-1/3 px-2 text-center">
                                             <strong>Josh</strong>
                                             <img className="w-48" src={"https://avatars3.githubusercontent.com/u/63118162?s=400&u=2466ce7d8754afea5cfb3a0ce5c8638c4c0bf251&v=4"} alt="Josh Blank headshot" />
-                                            <a href="https://github.com/Jmnblnk54">
+                                            <a href="https://github.com/Jmnblnk54" target="_blank">
                                             <button
                                                     className="text-blue-700 font-bold m-2 border-b-4 border-blue-700 hover:border-blue-500 font-bold shadow sm:shadow-md">
                                                         Github
