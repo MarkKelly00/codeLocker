@@ -15,11 +15,11 @@ const Tbody = ({ data, onClick, onView }) => {
                 <div className="flex items-center">
                     <div className="flex-shrink-0 w-10 h-10">
                     <img
-                                            src={picture}
-                                            alt="user profile "
-                                            className="shadow rounded-full max-w-full h-auto align-middle border-none"
-                                            style={{ width: 50 }}
-                                        />
+                        src={picture}
+                        alt="user profile "
+                        className="shadow rounded-full max-w-full h-auto align-middle border-none"
+                        style={{ width: 50 }}
+                    />
                     </div>
                     <div className="ml-4">
                         <p className="text-gray-900 whitespace-no-wrap">
@@ -52,7 +52,7 @@ const Tbody = ({ data, onClick, onView }) => {
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p className="text-gray-900 whitespace-no-wrap">
-                    {data.likes}
+                    {data.likesArr.length}
                 </p>
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -102,7 +102,8 @@ function Table({
         
         switch (filterSelection) {
             case "author":
-                const FilteredByAuth = codeSnips.filter((c) => c.author === _id)
+                const response = await codeBlockAPI.getGlobalCode()
+                const FilteredByAuth = response.data.filter((c) => c.author === _id)
                 setCodeSnips(FilteredByAuth);
                 break;
                 
