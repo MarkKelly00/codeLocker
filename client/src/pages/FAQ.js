@@ -19,7 +19,7 @@ import "ace-builds/webpack-resolver";
 
 function FAQ() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const { logout } = useAuth0();
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
 
@@ -90,8 +90,13 @@ function FAQ() {
                                                         >
                                                             Settings
                                                         </a>
-
-                                                        <LogOutButton />
+                                                        <a
+                                                            href="/profile"
+                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                            role="menuitem" onClick={() => logout({ returnTo: window.location.origin })}
+                                                        >
+                                                            Sign Out
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,7 +149,7 @@ function FAQ() {
             </header>
             <Sidebar />
             <main>
-                <div className="bg-gray-800 h-full">
+                <div className="bg-gray-800 h-full pb-6">
                     <div className="container mx-auto h-screen lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                         <FAQContainer />
                     </div>
