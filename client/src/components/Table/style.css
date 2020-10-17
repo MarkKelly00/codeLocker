@@ -1,27 +1,27 @@
-  @media (min-height: 340px) {
+@media (min-height: 340px) {
     table {
-      display: inline-table !important;
-      height: 15vh;
+        display: inline-table !important;
+        height: 15vh;
     }
 
     thead tr:not(:first-child) {
-    display: none;
+        display: none;
     }
 }
 
-  table{
+/* table {
     overflow-y: scroll;
     height: 35vh;
     display: block;
-  }
-  td:not(:last-child) {
+}
+td:not(:last-child) {
     border-bottom: 0;
-  }
+}
 
-  tbody{
+tbody {
     height: 100%;
-  }
+}
 
-  th:not(:last-child) {
-    border-bottom: 2px solid rgba(0, 0, 0, .1);
-  }
+th:not(:last-child) {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+} */
