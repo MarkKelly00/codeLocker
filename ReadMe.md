@@ -25,7 +25,7 @@ Next we need to check the development settings:
 2. in routes/api/.index.js comment out lines 7-9 if they are not already. 
 3. in components/Auth0/Auth/providerWithHistory.js set "http://localhost:3000/dashboard" as the redirectUri on line 19. 
 
-To start the application, cd into the Devlop folder and run npm start.
+To start the application, cd into the Develop folder and run npm start.
 
 ## Usage
 
