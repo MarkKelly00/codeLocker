@@ -436,7 +436,7 @@ function Dashboard() {
             </header>
             <Sidebar codeSnips={codeSnips} setCodeSnips={setCodeSnips} onView = {onViewCode}/>
             <main>
-                <div className="bg-gray-800 overflow-y-auto">
+                <div className="bg-gray-800 h-full pb-6">
                     <div className="container mx-auto lg:w-3/6 xl:w-2/3 justify-center bg-blue-700 h-full border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 mb-4 shadow-lg">
                         <div className="justify-center overflow-hidden shadow-lg bg-gray-400 h-full">
                             <div className="px-4 py-4">

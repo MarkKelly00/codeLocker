@@ -24,7 +24,7 @@ function Profile() {
 
     return (
         <div>
-            {showModal ? (
+            {/* {showModal ? (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div className="fixed inset-0 transition-opacity">
@@ -98,7 +98,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            ) : null}
+            ) : null} */}
             <nav className="bg-blue-700 p-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
