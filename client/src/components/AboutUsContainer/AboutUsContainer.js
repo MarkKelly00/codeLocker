@@ -91,14 +91,14 @@ function AboutUsContainer() {
 
                                     </div>
                                     <br></br>
-                                        <p> 
+                                        <p className="text-center text-lg"> 
                                             Your Code Locker team, consisting of Joe, Beki, Mark and Josh bring to the table a diverse set of professional backgrounds such as: a Missile and Space Systems Maintenance Tech in the Air Force, Cusotomer Service, Human Resouces, Psychology, Admin, Touring Musician and Session Artist and Pro Audio Engineer. These backgrounds combined with excellent comunication skills create an ideal environment for creativity in problem solving, resourcefulness, and mastery of Web Development, even in spite of our recent immersion into the Full Stack skill set. CodeLocker is not yet complete with all of the ideas we have.
                                         </p>
-                                        <p>
+                                        <p className="text-center text-lg">
                                             Please contact any one of us above with your suggestions, comments, or bugs, we will be happy to address them.
                                         </p>
                                 </div>
-                                                                    
+
                                     
                             </div>
                         </div>
