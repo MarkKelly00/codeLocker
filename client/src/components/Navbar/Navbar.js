@@ -27,14 +27,14 @@ function Sidebar({setCodeSnips, codeSnips, onView}) {
     }
 
     const FavoritesTitle = (favorite, )=>{
-        console.log("favorite from favorites Title",favorite.favorite.title)
+        // console.log("favorite from favorites Title",favorite.favorite.title)
         return (<p className="text-mg leading-5 font-medium text-white"><a
         href="/"
         className="text-white hover:text-blue-400"
-        id={favorite.favorite._id}
+        id={favorite.favorite?._id}
         onClick={onView}
     >
-        {favorite.favorite.title}
+        {favorite.favorite?.title}
     </a></p>)
     }
 
