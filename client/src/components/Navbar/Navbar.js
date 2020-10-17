@@ -25,21 +25,21 @@ function Sidebar({ setCodeSnips, codeSnips, onView }) {
         // console.log(userID);
     }
 
-    const FavoritesTitle = (favorite) => {
-        console.log("favorite from favorites Title", favorite.favorite.title);
+    const FavoritesTitle = (favorite, )=>{
+        // console.log("favorite from favorites Title",favorite.favorite.title)
         return (
-            <p className="text-mg leading-5 font-medium text-white">
-                <a
-                    href="/"
-                    className="text-white hover:text-blue-400"
-                    id={favorite.favorite._id}
-                    onClick={onView}
-                >
-                    {favorite.favorite.title}
-                </a>
-            </p>
-        );
-    };
+        <p className="text-mg leading-5 font-medium text-white">
+            <a
+                href="/"
+                className="text-white hover:text-blue-400"
+                id={favorite.favorite?._id}
+                onClick={onView}
+            >
+            {favorite.favorite?.title}
+            </a>
+        </p>
+        )
+    }
 
     return (
         <>
