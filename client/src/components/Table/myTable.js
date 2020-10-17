@@ -79,8 +79,8 @@ function MyTable({ codeSnips, onEdit, onView, setCodeSnips, filter, Auth0Id }) {
                                     </th>
                                     <th
                                         className="px-5 py-3 border-b-2 border-gray-200 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider text-center"
-                                        data-name="tags"
-                                        onClick={() => sortBy("tags")}
+                                        data-name="Favs"
+                                        onClick={() => sortBy("Favs")}
                                     >
                                         Favorites
                                     </th>
@@ -91,22 +91,9 @@ function MyTable({ codeSnips, onEdit, onView, setCodeSnips, filter, Auth0Id }) {
                                     >
                                         Likes
                                     </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                                        Filter By
-                                        <select
-                                            onChange={handleFilter}
-                                            className="text-gray-700 text-center bg-gray-200 px-4  m-2"
-                                        >
-                                            <option value="All">
-                                                All Users
-                                            </option>
-                                            <option value="author">
-                                                My CodeLocker
-                                            </option>
-                                            <option value="Favs">
-                                                Favorites
-                                            </option>
-                                        </select>
+                                    <th
+                                        className="px-5 py-3 border-b-2 border-gray-200 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider"
+                                    >
                                     </th>
 
                             </thead>
