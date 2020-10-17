@@ -18,13 +18,13 @@ import "ace-builds/webpack-resolver";
 function Profile() {
     const [isOpen, setIsOpen] = useState(false);
     const [showModal, setShowModal] = React.useState(false);
-    const { logout } = useAuth0();
+
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
 
     return (
         <div>
-            {/* {showModal ? (
+            {showModal ? (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div className="fixed inset-0 transition-opacity">
@@ -98,7 +98,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            ) : null} */}
+            ) : null}
             <nav className="bg-blue-700 p-5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
@@ -164,21 +164,8 @@ function Profile() {
                                                         >
                                                             Settings
                                                         </a>
-                                                        <a
-                                                            href="/"
-                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                            role="menuitem"
-                                                            onClick={() =>
-                                                                logout({
-                                                                    returnTo:
-                                                                        window
-                                                                            .location
-                                                                            .origin,
-                                                                })
-                                                            }
-                                                        >
-                                                            Sign Out
-                                                        </a>
+
+                                                        <LogOutButton />
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,7 +264,6 @@ function Profile() {
                                             <a
                                                 href="#"
                                                 className="text-sm leading-5 font-medium no-underline hover:underline text-red-400"
-                                                onClick={setShowModal(true)}
                                             >
                                                 Deactivate Account
                                             </a>
