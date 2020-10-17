@@ -27,5 +27,21 @@ export default {
     },
     getCodeBlock:function(codeId){
         return axios.get("/api/codeblock/"+codeId)
+    }, 
+    addLike: async function(codeId, userId){
+        const body ={
+            codeId:codeId,
+            userId:userId
+        }
+        const {data} = await axios.post("/api/codeblock/likes", body)
+        return data;
+    }, 
+    getLikeCount: async function(codeId){
+        const { data }= await axios.get("/api/codeblock/likes/"+codeId)
+        return data;
+    },
+    getLikeArr: async function(codeId){
+        const {data} = await axios.get("/api/codeblock/likesarr/"+codeId)
+        return data;
     }
 }
