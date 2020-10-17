@@ -144,8 +144,8 @@ function FAQ() {
             </header>
             <Sidebar />
             <main>
-                <div className="bg-gray-800 h-screen">
-                    <div className="container mx-auto lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
+                <div className="bg-gray-800 h-full">
+                    <div className="container mx-auto h-screen lg:w-3/6 xl:w-3/5 justify-center bg-blue-700 border-t-4 border-b-4 border-teal-500 rounded-b px-4 py-3 shadow-lg">
                         <FAQContainer />
                     </div>
                 </div>
