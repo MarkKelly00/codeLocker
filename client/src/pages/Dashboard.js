@@ -27,6 +27,7 @@ import codeBlockAPI from "../utils/codeBlockAPI";
 window.console = console;
 
 function Dashboard() {
+    const { logout } = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
     const [editor, setEditor] = useState({});
     const [viewOnlyCode, setViewOnlyCode] = useState({
@@ -376,8 +377,13 @@ function Dashboard() {
                                                         >
                                                             Settings
                                                         </a>
-
-                                                        <LogOutButton />
+                                                        <a
+                                                            href="/profile"
+                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                            role="menuitem" onClick={() => logout({ returnTo: window.location.origin })}
+                                                        >
+                                                            Sign Out
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

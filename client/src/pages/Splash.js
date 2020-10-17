@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Logo from "../features/images/clLogo2.png";
 import "../components/styles.css";
-import Footer from "../components/Footer/Footer"
+import Footer from "../components/Footer/Footer";
 
 import ConsoleDemo from "../components/ConsoleWrapper/consoleDemo";
 import { console, consoleMessages } from "../utils/consoleLogic";
@@ -82,8 +82,7 @@ function Splash() {
                         </a>
                         <h1>Try It Out</h1>
                     </div>
-
-                    <div id="w-full">
+                    <div id="flex flex-wrap justify-center bg-white h-full">
                         <AceEditor
                             mode="javascript"
                             theme="monokai"
@@ -92,6 +91,7 @@ function Splash() {
                             value={editor.userCode}
                             width={"600px"}
                             height={"300px"}
+                            style={{ margin: "0 auto" }}
                         />
                     </div>
 
@@ -101,7 +101,6 @@ function Splash() {
                         onReset={resetButton}
                         console={consoleLog}
                     />
-
                     <div className="px-4 py-4">
                         <div className="flex flex-no-wrap bg-blue-800 justify-center">
                             <div className="w-1/2 flex-none p-2 mx-auto">

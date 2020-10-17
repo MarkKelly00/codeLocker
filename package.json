@@ -29,6 +29,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "popper.js": "1.15.0",
+    "react-dom": "^16.14.0",
     "react-popper": "^2.2.3",
     "tailwindcss": "^1.8.12"
   }

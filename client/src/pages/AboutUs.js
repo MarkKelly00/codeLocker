@@ -20,6 +20,7 @@ import "ace-builds/webpack-resolver";
 
 function AboutUs() {
     const [isOpen, setIsOpen] = useState(false);
+    const { logout } = useAuth0();
 
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
@@ -91,8 +92,13 @@ function AboutUs() {
                                                         >
                                                             Settings
                                                         </a>
-
-                                                        <LogOutButton />
+                                                        <a
+                                                            href="/profile"
+                                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                            role="menuitem" onClick={() => logout({ returnTo: window.location.origin })}
+                                                        >
+                                                            Sign Out
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
