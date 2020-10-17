@@ -49,7 +49,6 @@ function Dashboard() {
             console.log("here is getSnips from getCode",codeSnips)
             const { data } = await codeBlockAPI.getGlobalCode();
             setCodeSnips(data); 
-
         
         } catch (e) {
             console.log(e);
@@ -251,7 +250,7 @@ function Dashboard() {
 
         const { data } = await codeBlockAPI.getCodeBlock(codeId);
 
-        setViewOnlyCode({ userCode: data.code, title: data.title });
+        setViewOnlyCode({ userCode: data.code, title: data.title, codeId:data._id});
     }
 
     async function onCopyCode(e) {
@@ -457,6 +456,7 @@ function Dashboard() {
                                                 console={viewOnlyLog}
                                                 onCopy={onCopyCode}
                                                 onShare={viewOnlyCode}
+                                                viewOnlyCode={viewOnlyCode}
                                             />
                                         </div>
                                     </div>

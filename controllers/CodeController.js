@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const db = require("../models");
-const { param } = require("../routes/api/codeblock");
 const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
@@ -111,14 +110,27 @@ module.exports = {
                 {$push:{likesArr:new ObjectId(req.body.userId)}}
             )
 
-            const likedCode =db.CodeBlock.findOne({_id:req.body.codeId})
+            const likedCode = await db.CodeBlock.findOne({_id:req.body.codeId})
 
             res.json(likedCode)
+
         } catch (err) {
             console.log(err);
             res.status(422).json(err)
         }
     }, 
+
+    async getLikeArr(req, res){
+        try {
+            const likesArr = await db.CodeBlock.findOne({ _id:req.params.id}, {"likesArr":1, _id:0})
+
+            res.json(likesArr);
+
+        } catch (err) {
+            console.log("err in getLikeArr in codeController is: ", err)
+            res.status(422).json(err)
+        }
+    },
 
     async getLikeCount(req, res){
         console.log("req.params.id in codeController.getLikeCount: ", req.params.id)
@@ -135,11 +147,13 @@ module.exports = {
 
     async removeLike(req, res){
         // console.log("req.params.id in controller.removeLike: ", req.params.id);
+        console.log("I was fired");
         try {
-            await db.CodeBlock.findByIdAndUpdate(
+            const deletedLike = await db.CodeBlock.findByIdAndUpdate(
                 {_id:req.body.codeId},
                 {$pull:{likesArr:new ObjectId(req.body.userId)}}
             )
+            console.log("deleted like is: ", deletedLike)
             const codeblk = await db.CodeBlock.findOne({_id:req.body.codeId})
             res.json(codeblk)
         } catch (err) {
