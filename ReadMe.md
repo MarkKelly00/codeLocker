@@ -2,7 +2,7 @@
 ![badgeLogo](https://img.shields.io/badge/CodeLocker-Version%201.1-blue?style=plastic&logo=undefined)
 ## Description
 
-A place to save and share code snippets!
+A place to save and share code Snippets!
 
 ## Table of Contents
 
@@ -17,13 +17,13 @@ A place to save and share code snippets!
 ## Installation
 
 Dependancies:
-1. Open the development folder and beginning by running the command "npm i".  
+1. Open the development folder and begin by running the command "npm i".  
 2. After those installations have ran, cd into the client folder and run the command "npm i". 
 
 Next we need to check the development settings: 
 1. In server.js, remove "process.env.MONGODB_URI ||" if it is there. 
 2. in routes/api/.index.js comment out lines 7-9 if they are not already. 
-3. in components/Auth0/Auth)providerWithHistory.js. set "http://localhost:3000/dashboard" as the redirectUri on line 19. 
+3. in components/Auth0/Auth/providerWithHistory.js set "http://localhost:3000/dashboard" as the redirectUri on line 19. 
 
 To start the application, cd into the Devlop folder and run npm start.
 
@@ -33,13 +33,13 @@ To start the application, cd into the Devlop folder and run npm start.
 
 <img width="600" alt="CodeLocker Splash" src="https://user-images.githubusercontent.com/62780709/96330951-1dc57b00-100e-11eb-878d-b30a4239894b.png">
 
-When you arrive at the CodeLocker Splash page, there is a code editor for you to try writing and running a code snippet.  Click inside the code editor, write a javascript function and click run to show your result in the output window below the code editor.  To clear the code editor, you can click the reset button.  To save your Code Snippet, click the save button.  If you have an account, your code snippet will be save.  If you do not, you will be prompted to create an account or log in.  To log in or sign up for a free account with CodeLocker, Click the Log In or Sign Up button to be redirect to the Log In or Sign Up page.
+When you arrive at the CodeLocker Splash page, there is a code editor for you to try writing and running a code snippet.  Click inside the code editor, write a javascript function and click run to show your result in the output window below the code editor.  To clear the code editor, you can click the reset button.  To save your Code Snippet, click the save button.  If you have an account, your code snippet will be saved.  If you do not, you will be prompted to create an account or log in.  To log in or sign up for a free account with CodeLocker, click the log in or sign up button to be redirect to the Log In or Sign Up page.
 
 #### The Dashboard
 
 <img width="600" alt="CodeLocker Dash" src="https://user-images.githubusercontent.com/62780709/96331144-c1fbf180-100f-11eb-9376-68f512d26570.png">
 
-After loggin in or signing up, you will be directed back to the Dashboard.  The Dashboard is the heart of CodeLocker and where most of the functionality lives.  Let's get familiar with the dashboard.  
+After loggin in or signing up, you will be directed back to the Dashboard.  The Dashboard is the heart of CodeLocker and is where most of the functionality lives.  Let's get familiar with the dashboard.  
 
 ##### The Code Editors
 
@@ -51,7 +51,7 @@ In the main window, you will see two code editors side by side.  The left code e
 
 <img width="600" alt="CodeLocker Main Table" src="https://user-images.githubusercontent.com/62780709/96331163-eeb00900-100f-11eb-9644-13417d80434e.png">
 
-Below the code editors, is the main codelocker table.  This is an easy and convenient place to retrieve code snippets.  Code Snippets that have been saved will show up here and can be filtered using the filter by toggle at the top right hand of the table.  Click on the filter by toggle and choose to show All Users, My CodeLocker or Favorites.  All Users will populate all public Code Snippets.  My CodeLocker will show all saved Code Snippets of the current user who is logged in.  Favorites will show only Code Snippets that have been favorited by the user. At any time, you can click on the column header titles to organize the table by user, title, date modified, favorites and likes.  
+Below the code editors, is the main CodeLocker table.  This is an easy and convenient place to retrieve code Snippets.  Code Snippets that have been saved will show up here and can be filtered using the filter by toggle at the top right hand of the table.  Click on the filter by toggle and choose to show All Users, My CodeLocker or Favorites.  All Users will populate all public Code Snippets.  My CodeLocker will show all saved Code Snippets of the current user who is logged in.  Favorites will show only Code Snippets that have been favorited by the user. At any time, you can click on the column header titles to organize the table by user, title, date modified, favorites and likes.  
 
 To view a Code Snippet, click on the Title of the Snippet and it will populate in the read-only code editor.
 
@@ -59,13 +59,13 @@ To view a Code Snippet, click on the Title of the Snippet and it will populate i
 
 <img width="256" alt="CodeLocker SideBar" src="https://user-images.githubusercontent.com/62780709/96330940-0be3d800-100e-11eb-9cf5-85ed8c42ba32.png">
 
-The sidebar is located on the left side of the screen and is a static window making it easy to access at all times while using the site.  At the top of the side bar is your profile name and image and a quick link to the profile page.  Under your profile image, you can navigate to your personal locker, the about us page and the faq page by clicking the corresponding buttons.  There is also a short list of your favorite Snippets in the sidebar.  This allows you to quickly acces your most used or favorite snippets.
+The sidebar is located on the left side of the screen and is a static window making it easy to access at all times while using the site.  At the top of the side bar is your profile name and image and a quick link to the profile page.  Under your profile image, you can navigate to your personal locker, the about us page and the faq page by clicking the corresponding buttons.  There is also a short list of your favorite Snippets in the sidebar.  This allows you to quickly access your most used or favorite Snippets.
 
 ##### Search Field
 
 <img width="407" alt="CodeLocker Search" src="https://user-images.githubusercontent.com/62780709/96330937-08505100-100e-11eb-8c28-0b5295b9889c.png">
 
-At any time, you can type a query into the search field at the top or the page.  This field will search the body of code snippets and show all Snippets that contain that query.  For example, if you wanted to find a code snippet that used "array.length" you would type that in the search and return all Code Snippets with "array.lenght" in the code body.
+At any time, you can type a query into the search field at the top or the page.  This field will search the body of Code Snippets and show all Snippets that contain that query.  For example, if you wanted to find a Code Snippet that used "array.length" you would type that in the search and return all Code Snippets with "array.lenghth" in the code body.
 
 
 ## License
