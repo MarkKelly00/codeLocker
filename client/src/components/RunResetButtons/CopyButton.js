@@ -1,8 +1,47 @@
 import React from "react";
+import codeBlockAPI from "../../utils/codeBlockAPI";
+import userAPI from "../../utils/userAPI";
 import ShareBTN from "../Buttons/Share";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./styles.css";
 
-function CopyButtons({ onExecute, onLike , onCopy, onShare }) {
+function CopyButtons({ onExecute, onCopy, onShare, viewOnlyCode }) {
+    const { user } = useAuth0();
+    const { sub } = user;
+
+    async function onLike(){
+        
+        const isLiked = await isUserInLikesArr();
+        // console.log("isLiked is", isLiked)
+        
+        if (isLiked){
+            console.log("it's been previously liked")
+        } else {
+            console.log("Will be liked")
+            likeCode()
+        }
+
+    }
+
+    async function isUserInLikesArr(){
+        const userId = await userAPI.getUserId(sub);
+        // console.log("userId in isUserInLikesArr")
+
+        const {likesArr} = await codeBlockAPI.getLikeArr(viewOnlyCode.codeId);
+        // console.log("likeArr is: ", likesArr )
+
+        const authorLiked = likesArr.includes(userId)
+        // console.log("authorliked is: ", authorLiked)
+
+        return authorLiked;
+    }
+
+    async function likeCode(){
+        const {_id} = await userAPI.getUserId(sub);
+        await codeBlockAPI.addLike(viewOnlyCode.codeId, _id)
+
+        // console.log("liked from likeCode is: ", liked)
+    }
 
     return (
         <div className="buttonWrapper flex flex-row flex-wrap overflow-hidden justify-center">

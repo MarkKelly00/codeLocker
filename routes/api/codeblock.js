@@ -23,4 +23,7 @@ router.route("/likes")
 router.route("/likes/:id")
     .get(codeController.getLikeCount);
 
+router.route("/likesarr/:id")
+    .get(codeController.getLikeArr);
+
 module.exports = router;

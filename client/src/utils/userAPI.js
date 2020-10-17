@@ -15,12 +15,14 @@ export default {
         return userId.data;
     },
 
-    addFavorite: function (codeId, userId) {
-        const data = {
-            user: userId,
+    addFavorite: async function (codeId, userId) {
+        const body = {
+            userId: userId,
             codeId: codeId,
         };
-        return axios.post("/api/users/favorite", data);
+        console.log("body from addFavorite userAPI is: ", body)
+        const {data} = await axios.post("/api/users/favorite", body);
+        return data;
     },
 
     getFavorites: async function (userId) {

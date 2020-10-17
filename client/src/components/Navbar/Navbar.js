@@ -1,41 +1,44 @@
 import React, { useEffect, useState } from "react";
 // import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import userAPI from "../../utils/userAPI"
+import userAPI from "../../utils/userAPI";
 import codeBlockAPI from "../../utils/codeBlockAPI";
 
-function Sidebar({setCodeSnips, codeSnips, onView}) {
+function Sidebar({ setCodeSnips, codeSnips, onView }) {
     // const [isOn, setIsOn] = useState(false);
     const { user } = useAuth0();
     const { nickname, picture, sub } = user;
-    const [favoritesArr, setFavoritesArr] = useState([])
+    const [favoritesArr, setFavoritesArr] = useState([]);
 
+    useEffect(() => {
+        getUserFavorites();
+    }, []);
 
-    useEffect( ()=>{
-        getUserFavorites()
-    
-    }, [])
-   
-    
-    async function getUserFavorites(){
-        const userID= await userAPI.getUserId(sub);
-        // console.log("UserId from nav", userID._id)
+    async function getUserFavorites() { 
+        console.log("sub from getuser favorites is ", sub);
+        const userID = await userAPI.getUserId(sub);
+        console.log("UserId from nav", userID._id)
         const code = await userAPI.getFavoritesCodeBlock(userID._id);
         // console.log("favoritesArr is NavBar is",code)
         setFavoritesArr(code)
         // console.log("favoritesArr is NavBar is",code)
+        // console.log(userID);
     }
 
     const FavoritesTitle = (favorite, )=>{
-        console.log("favorite from favorites Title",favorite.favorite.title)
-        return (<p className="text-mg leading-5 font-medium text-white"><a
-        href="/"
-        className="text-white hover:text-blue-400"
-        id={favorite.favorite._id}
-        onClick={onView}
-    >
-        {favorite.favorite.title}
-    </a></p>)
+        // console.log("favorite from favorites Title",favorite.favorite.title)
+        return (
+        <p className="text-mg leading-5 font-medium text-white">
+            <a
+                href="/"
+                className="text-white hover:text-blue-400"
+                id={favorite.favorite?._id}
+                onClick={onView}
+            >
+            {favorite.favorite?.title}
+            </a>
+        </p>
+        )
     }
 
     return (
@@ -51,7 +54,12 @@ function Sidebar({setCodeSnips, codeSnips, onView}) {
                                 >
                                     <div className="flex items-center">
                                         <div>
-                                            <img src={picture} alt="user profile " className="shadow rounded-full max-w-full h-auto align-middle border-none" style={{width: 50}}/>
+                                            <img
+                                                src={picture}
+                                                alt="user profile "
+                                                className="shadow rounded-full max-w-full h-auto align-middle border-none"
+                                                style={{ width: 50 }}
+                                            />
                                         </div>
                                         <div className="ml-3">
                                             <p className="text-sm leading-5 font-medium text-gray">
@@ -106,7 +114,7 @@ function Sidebar({setCodeSnips, codeSnips, onView}) {
                                 Locker
                             </a>
                             <a
-                                href="/#"
+                                href="/aboutus"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
                                 <svg
@@ -128,27 +136,28 @@ function Sidebar({setCodeSnips, codeSnips, onView}) {
                                 href="/faq"
                                 className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                             >
-                                <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                <svg
+                                    className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                                     fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path 
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
-                                    </path>
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z"
+                                    ></path>
                                 </svg>
-                                    FAQ
+                                FAQ
                             </a>
                             <div className="flex-col bg-blue-400 border"></div>
                             <div className="overflow-y-auto h-64 flex-1 text-center px-4 py-2 bg-blue-700 p-2 my-auto justify-center">
                                 <p className="text-lg leading-5 tracking-wider font-extrabold text-gray-400 mb-2">
                                     Favorites
                                 </p>
-                                {favoritesArr.map((code, index)=>(
-                                    
-                                    <FavoritesTitle 
-                                    favorite = {code}
-                                    key={index}
+                                {favoritesArr.map((code, index) => (
+                                    <FavoritesTitle
+                                        favorite={code}
+                                        key={index}
                                     />
                                 ))}
                             </div>
@@ -218,14 +227,16 @@ function Sidebar({setCodeSnips, codeSnips, onView}) {
                         href="/faq"
                         className="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-small text-gray-300 rounded-md hover:text-white hover:bg-blue-400 focus:outline-none focus:text-white focus:bg-blue-400 transition ease-in-out duration-150"
                     >
-                        <svg className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                        <svg
+                            className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                             fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path 
+                            viewBox="0 0 24 24"
+                        >
+                            <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z">
-                            </path>
+                                d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2zM20 5H4v10h13a1 1 0 0 1 .7.3l2.3 2.29V5z"
+                            ></path>
                         </svg>
                         FAQ
                     </a>
