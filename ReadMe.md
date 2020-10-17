@@ -230,7 +230,7 @@ https://www.contributor-covenant.org/translations.
 
 If you have any questions about the repo, please contact us directly!
 
-#####CodeLocker Team
+##### CodeLocker Team
 
 Beki Gonzalez 
 rebgon93@gmail.com
@@ -241,7 +241,7 @@ joe.mengis@gmail.com
 Josh Blank 
 Jmnblank@gmail.com 
 
-#####More of our work
+##### More of our work
 
 Beki Gonzalez 
 https://github.com/Beki-G
