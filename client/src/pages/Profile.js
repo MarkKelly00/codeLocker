@@ -32,8 +32,6 @@ function Profile() {
                         .location
                         .origin,
             })
-        
-
     }
 
     return (
