@@ -21,6 +21,9 @@ router.route("/:id")
     .get(UsersController.getUser)
     .delete(UsersController.deleteUser);
 
+router.route("/internaluser/:id")
+    .get(UsersController.getUserByInternalId)
+
 router.route("/favorite/:id")
     .get(UsersController.getUserFavorite);
 

@@ -18,6 +18,7 @@ import "ace-builds/webpack-resolver";
 function Profile() {
     const [isOpen, setIsOpen] = useState(false);
     const [showModal, setShowModal] = React.useState(false);
+
     const { logout } = useAuth0();
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
@@ -94,7 +95,7 @@ function Profile() {
                                 <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                     <button
                                         type="button"
-                                        style={{ transition: "all .15s ease" }}
+                                        style={{ transition: "all 0.15s ease" }}
                                         className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                                         onClick={deactivateUser}
                                     >
@@ -265,7 +266,7 @@ function Profile() {
                                                 placeholder="List Name Here"
                                             />
                                             <a
-                                                href="#"
+                                                href="/profile"
                                                 className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
@@ -281,7 +282,7 @@ function Profile() {
                                             />
 
                                             <a
-                                                href="#"
+                                                href="/profile"
                                                 className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
@@ -293,7 +294,7 @@ function Profile() {
                                                 className="text-sm leading-5 font-medium no-underline hover:underline text-red-400"
                                                 type="button"
                                                 style={{
-                                                    transition: "all .15s ease",
+                                                    transition: "all 0.15s ease",
                                                 }}
                                                 onClick={() =>
                                                     setShowModal(true)

@@ -134,6 +134,17 @@ module.exports = {
             console.log(err)
             res.status(422).json(err)
         }
+    }, 
+
+    async getUserByInternalId(req, res){
+        try {
+            const userProfile = await db.User.findOne({_id:req.params.id}, {userName:1, userImage:1, _id:0})
+            // console.log("User Profile", userProfile)
+            res.json(userProfile);
+        } catch (err) {
+            console.log(err)
+            res.status(422).json(err)
+        }
     }
 
 }
