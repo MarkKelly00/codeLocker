@@ -200,13 +200,7 @@ function AboutUsContainer() {
                                         Joshua Blank
                                     </div>
                                     <p className="text-gray-700 text-base">
-                                        Experienced Receptionist with a
-                                        demonstrated history of working in the
-                                        civil engineering industry. Skilled in
-                                        Microsoft Offices, Various databases,
-                                        Spanish, and Teamwork. Strong
-                                        administrative professional with
-                                        interpersonal and coding skills.{" "}
+                                        Experienced Business Owner with a demonstrated history of working in the consumer services industry. Skilled in Sales Management, Event Management, Team Building, Public Speaking, and Account Management. Strong business development professional with a BS in Psychology and currently earning the Certificate of Management in Human Resources from Southern Oregon University. 
                                     </p>
                                     <div className="mb-8"></div>
                                 </div>
