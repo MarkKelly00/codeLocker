@@ -57,6 +57,12 @@ export default {
         }
         const{data} = await axios.put("/api/users/favorite", favObj)
         return data;
+    },
+
+    getAuthorDetails: async function(internalID){
+        const { data } = await axios.get("/api/users/internaluser/"+internalID)
+
+        return data;
     }
 };
 

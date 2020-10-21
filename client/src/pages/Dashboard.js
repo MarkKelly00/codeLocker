@@ -128,7 +128,7 @@ function Dashboard() {
                 );
                 setCodeSnips([...codeSnips, newCodeBlock]);
             } else if(editCodeId.authorId !== _id ){
-                console.log("I made it to the specified area")
+                // console.log("I made it to the specified area")
 
                 const codeBlock = {
                     author:editCodeId.author,
@@ -140,11 +140,11 @@ function Dashboard() {
                     dateCloned: new Date(),
                     code: editor.userCode
                 }
-                console.log("codeBlock from specificied area is: ", codeBlock)
+                // console.log("codeBlock from specificied area is: ", codeBlock)
 
                 const clonedBlock = await codeBlockAPI.saveCodeBlock(codeBlock)
 
-                console.log("newCodeBlock is: ", clonedBlock)
+                // console.log("newCodeBlock is: ", clonedBlock)
             }else{
                 const codeBlockId = editCodeId.codeId;
                 const authorId = await userAPI.getUserId(sub);
@@ -157,13 +157,13 @@ function Dashboard() {
                     dateModified: new Date(),
                 };
 
-                console.log("codeblock is: ", codeBlock);
+                // console.log("codeblock is: ", codeBlock);
 
                 const updatedCodeBlock = await codeBlockAPI.updateCodeBlock(
                     codeBlockId,
                     codeBlock
                 );
-                console.log("updated code block is: ", updatedCodeBlock);
+                // console.log("updated code block is: ", updatedCodeBlock);
             }
         } catch (err) {
             console.log(err);
@@ -230,15 +230,15 @@ function Dashboard() {
 
     async function onEditCode(e) {
         e.preventDefault();
-        console.log("I was fired");
+        // console.log("I was fired");
 
         const codeId = e.target.id;
         const codeAuthor = e.target.getAttribute("data-author");
-        console.log("CodeAuthor from event listener is ", codeAuthor)
+        // console.log("CodeAuthor from event listener is ", codeAuthor)
 
         const { data } = await codeBlockAPI.getCodeBlock(codeId);
-        console.log("codeID ", codeId);
-        console.log("codeBlock: ", data);
+        // console.log("codeID ", codeId);
+        // console.log("codeBlock: ", data);
         setTitleInput({ codeTitle: data.title });
         setEditor({ userCode: data.code });
         seteditCodeId({ codeId: codeId , authorId:codeAuthor});
@@ -265,7 +265,7 @@ function Dashboard() {
         let existsTextarea = document.getElementById(id);
 
         if (!existsTextarea) {
-            console.log("Creating textarea");
+            // console.log("Creating textarea");
             let textarea = document.createElement("textarea");
             textarea.id = id;
             // Place in top-left corner of screen regardless of scroll position.
@@ -289,10 +289,10 @@ function Dashboard() {
             // Avoid flash of white box if rendered for any reason.
             textarea.style.background = "transparent";
             document.querySelector("body").appendChild(textarea);
-            console.log("The textarea now exists :)");
+            // console.log("The textarea now exists :)");
             existsTextarea = document.getElementById(id);
         } else {
-            console.log("The textarea already exists :3");
+            // console.log("The textarea already exists :3");
         }
 
         existsTextarea.value = text;
