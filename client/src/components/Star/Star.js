@@ -1,6 +1,6 @@
 import React, {useState, useEffect}from "react";
 import userAPI from "../../utils/userAPI";
-import codeBlockAPI from "../../utils/codeBlockAPI"
+import codeBlockAPI from "../../utils/codeBlockAPI";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const StarIcon = ({ data, onView, codeId, onClick }) => {
