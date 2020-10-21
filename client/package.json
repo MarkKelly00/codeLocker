@@ -24,6 +24,7 @@
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-react-hooks": "^2.5.1",
     "express-react-boilerplate": "^4.2.1",
+    "moment": "^2.29.1",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-ace": "^9.1.4",

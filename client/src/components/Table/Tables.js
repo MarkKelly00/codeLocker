@@ -91,7 +91,6 @@ function Table({
     onEdit,
     onView,
     setCodeSnips,
-    filter,
     Auth0Id,
 }) {
     function compareBy(key) {
@@ -107,7 +106,6 @@ function Table({
         arrayCopy.sort(compareBy(key));
         setCodeSnips(arrayCopy);
     }
-
 
     async function handleFilter(e) {
         e.preventDefault();
@@ -169,7 +167,7 @@ function Table({
                                     </th>
                                     <th
                                         className="px-5 py-3 border-b-2 border-gray-200 bg-blue-700 text-left text-xs font-semibold text-white uppercase tracking-wider text-center"
-                                        data-name="Favs"
+                                        data-name="favorite"
                                         onClick={() => sortBy("Favs")}
                                     >
                                         Favorites

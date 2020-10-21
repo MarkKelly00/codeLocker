@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from "../components/AuthO/Loading";
-import LogOutButton from "../components/Buttons/LogoutButton";
 import { Transition } from "@tailwindui/react";
 import "../components/styles.css";
 import Logo from "../features/images/clLogo2.png";
@@ -9,6 +8,7 @@ import Sidebar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
 import Footer from "../components/Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
+import userAPI from '../utils/userAPI';
 
 import "ace-builds/src-min-noconflict/mode-html";
 import "ace-builds/src-min-noconflict/theme-monokai";
@@ -23,10 +23,25 @@ function Profile() {
     const { user } = useAuth0();
     const { nickname, name, picture, email, sub } = user;
 
+    async function deactivateUser() {
+        const userID= await userAPI.getUserId(sub);
+        
+        userAPI.deleteUser(userID._id);
+        logout({
+                returnTo:
+                    window
+                        .location
+                        .origin,
+            })
+    }
+
     return (
         <div>
             {showModal ? (
-                <div className="fixed z-10 inset-0 overflow-y-auto">
+                <div
+                    className="fixed z-10 inset-0 overflow-y-auto"
+                    onClick={() => setShowModal(false)}
+                >
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                         <div className="fixed inset-0 transition-opacity">
                             <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -80,9 +95,9 @@ function Profile() {
                                 <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
                                     <button
                                         type="button"
-                                        style={{ transition: "all .15s ease" }}
+                                        style={{ transition: "all 0.15s ease" }}
                                         className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                                        onClick={() => setShowModal(true)}
+                                        onClick={deactivateUser}
                                     >
                                         Deactivate
                                     </button>
@@ -165,9 +180,7 @@ function Profile() {
                                                         >
                                                             Settings
                                                         </a>
-
-                                                        <a
-                                                            href="/"
+                                                        <button
                                                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                             role="menuitem"
                                                             onClick={() =>
@@ -180,7 +193,7 @@ function Profile() {
                                                             }
                                                         >
                                                             Sign Out
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,7 +266,7 @@ function Profile() {
                                                 placeholder="List Name Here"
                                             />
                                             <a
-                                                href="#"
+                                                href="/profile"
                                                 className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
@@ -269,19 +282,26 @@ function Profile() {
                                             />
 
                                             <a
-                                                href="#"
+                                                href="/profile"
                                                 className="float-right text-sm leading-5 font-medium no-underline hover:underline text-blue-500"
                                             >
                                                 Update
                                             </a>
                                         </div>
-                                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <a
+                                        <div className="float-right bg-white px-4 py-5 sm:grid">
+                                            <button
                                                 href="#"
                                                 className="text-sm leading-5 font-medium no-underline hover:underline text-red-400"
+                                                type="button"
+                                                style={{
+                                                    transition: "all 0.15s ease",
+                                                }}
+                                                onClick={() =>
+                                                    setShowModal(true)
+                                                }
                                             >
                                                 Deactivate Account
-                                            </a>
+                                            </button>
                                         </div>
                                     </dl>
                                 </div>
