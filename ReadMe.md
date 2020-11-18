@@ -5,6 +5,7 @@
 A place to save and share code Snippets!
 
 ## Table of Contents
+ * [Deployment](#deployment)
 
  * [Installation](#installation)
 
@@ -13,6 +14,9 @@ A place to save and share code Snippets!
  * [License](#license)
 
  * [Badges](#badges)
+
+## Deployment
+Check out the deployment: [https://codel0cker.herokuapp.com/](https://codel0cker.herokuapp.com/)
 
 ## Installation
 
