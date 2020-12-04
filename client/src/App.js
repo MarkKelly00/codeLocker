@@ -14,6 +14,8 @@ import UserInfo from "./pages/UserInfo"
 import ProtectedRoute from "./components/AuthO/ProtectedRoute";
 import FAQ from "./pages/FAQ"
 import AboutUs from "./pages/AboutUs"
+import UserSessionProvider from "./utils/UserContext";
+
 
 function App() {
 
@@ -24,7 +26,8 @@ function App() {
   }
 
     return (
-            <Router>
+      <UserSessionProvider>
+        <Router>
               <Switch>
                 <Route exact path="/" component={Splash} />
                 <Route exact path="/faq" component={FAQ} />
@@ -35,6 +38,8 @@ function App() {
                 <ProtectedRoute path="/locker" exact component={Locker} />
                 </Switch>
             </Router>
+      </UserSessionProvider>
+            
     );
 }
 
