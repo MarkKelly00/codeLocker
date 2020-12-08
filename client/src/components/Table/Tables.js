@@ -20,7 +20,6 @@ const Tbody = ({ data, onClick, onView }) => {
 
         console.log("author Profile is: ", authorProfle);
         setAuthorData({authorImg:authorProfle.userImage, authorName:authorProfle.userName })
-
     }
 
     return (

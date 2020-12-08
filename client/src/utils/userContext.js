@@ -28,9 +28,7 @@ export default function UserSessionProvider({ children }) {
 
 
     async function fetchUserData() {
-
         let dbProfile;
-
 
         if (user !== undefined){
             console.log('user in fetchUserData: ', user)
@@ -45,12 +43,13 @@ export default function UserSessionProvider({ children }) {
 
             const isUser = await userAPI.isUser(userNewProfile.Auth0Id);
 
-
-            isUser
-                ? (dbProfile= await userAPI.getUserProfile(userNewProfile.Auth0Id))
-                : (dbProfile= await userAPI.createUser(userNewProfile))
-
-            setUserProfile(dbProfile)
+            if (isUser) {
+                dbProfile= await userAPI.getUserProfile(userNewProfile.Auth0Id)
+                setUserProfile(dbProfile.data)
+            } else {
+                dbProfile= await userAPI.createUser(userNewProfile)
+                setUserProfile(dbProfile)
+            }
 
         } else {
             setUserProfile({userName: "Guest"})

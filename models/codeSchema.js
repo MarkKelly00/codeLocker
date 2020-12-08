@@ -4,7 +4,8 @@ const {Schema} = mongoose;
 
 const codeSchema = new Schema({
   author: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
+    ref: 'user'
   },
 
   code: {
@@ -29,8 +30,8 @@ const codeSchema = new Schema({
   },
 
   dateModified: {
-    type: Date
-    
+    type: Date,
+    default: Date.now,
   },
 
   isCloned: {
