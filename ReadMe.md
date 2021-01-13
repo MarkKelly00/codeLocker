@@ -74,7 +74,7 @@ At any time, you can type a query into the search field at the top or the page. 
 
 ## License
 
-MIT License Copyright (c) 2020 Beki Gonzalez, Mark Kelley, Joseph Mengis, Josh Blank
+MIT License Copyright (c) 2020 Beki Gonzalez, Mark Kelly, Joseph Mengis, Josh Blank
             
             Permission is hereby granted, free of charge, to any person obtaining a copy
             of this software and associated documentation files (the "Software"), to deal
@@ -238,7 +238,7 @@ If you have any questions about the repo, please contact us directly!
 
 Beki Gonzalez 
 rebgon93@gmail.com
-Mark Kelley 
+Mark Kelly 
 kellymark0101@gmail.com 
 Joe Mengis 
 joe.mengis@gmail.com 
@@ -249,7 +249,7 @@ Jmnblank@gmail.com
 
 Beki Gonzalez 
 https://github.com/Beki-G
-Mark Kelley 
+Mark Kelly 
 https://github.com/MarkKelly00
 Joe Mengis 
 https://github.com/joemengis
