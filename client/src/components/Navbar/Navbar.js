@@ -12,17 +12,21 @@ function Sidebar({ setCodeSnips, codeSnips, onView }) {
 
     useEffect(() => {
         getUserFavorites();
-    }, []);
+    }, [user]);
 
     async function getUserFavorites() { 
         console.log("sub from getuser favorites is ", sub);
         const userID = await userAPI.getUserId(sub);
-        console.log("UserId from nav", userID._id)
-        const code = await userAPI.getFavoritesCodeBlock(userID._id);
-        // console.log("favoritesArr is NavBar is",code)
-        setFavoritesArr(code)
-        // console.log("favoritesArr is NavBar is",code)
-        // console.log(userID);
+        console.log("UserID: ", userID)
+        if (userID !== null) {
+            const code = await userAPI.getFavoritesCodeBlock(userID._id);
+            console.log("UserId from nav", userID._id)
+            // console.log("favoritesArr is NavBar is",code)
+            setFavoritesArr(code)
+            // console.log("favoritesArr is NavBar is",code)
+            // console.log(userID);
+        }
+       
     }
 
     const FavoritesTitle = (favorite, )=>{

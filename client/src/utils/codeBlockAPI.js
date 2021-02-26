@@ -3,8 +3,8 @@ import axios from'axios';
 export default {
     saveCodeBlock:async function(codeblock){
         //data contains all data for new code block, including userId
-         const {data} = await axios.post("/api/codeblock", codeblock)
-         return data;
+        const {data} = await axios.post("/api/codeblock", codeblock)
+        return data;
     },
     getGlobalCode:function(){
         return axios.get("/api/codeblock")
@@ -42,6 +42,11 @@ export default {
     },
     getLikeArr: async function(codeId){
         const {data} = await axios.get("/api/codeblock/likesarr/"+codeId)
+        return data;
+    },
+
+    getGlobalCodePopulated: async function(){
+        const { data } = await axios.get('/api/codeblock/globalcode/')
         return data;
     }
 }

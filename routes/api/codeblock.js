@@ -5,7 +5,9 @@ router.route("/")
     .post(codeController.saveNewCode)
     // schema needs to updated and have isPrivate as part of it
     .get(codeController.getAllGlobalCode);
-    
+
+router.route("/globalcode")
+    .get(codeController.getAllGlobalCodePopulate);    
 
 router.route("/author/:id")
     .get(codeController.getAllUserCode)
@@ -25,5 +27,7 @@ router.route("/likes/:id")
 
 router.route("/likesarr/:id")
     .get(codeController.getLikeArr);
+
+
 
 module.exports = router;

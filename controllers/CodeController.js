@@ -34,6 +34,18 @@ module.exports = {
         }
     },
 
+    async getAllGlobalCodePopulate(req, res){
+        console.log("Pinged")
+
+        try {
+            const allCode = await db.CodeBlock.find({isPrivate: false}).populate('author', "-snipsArr -Auth0Id -email -date -lastLoginDate -__v -favoritesArr")
+            res.json(allCode)
+        } catch (err) {
+            console.log('err in getAllGlobalCodePopulate: ', err)
+            res.status(422).json(err)
+        }
+    },
+
     async getAllUserCode(req, res) {
         // console.log("req.body in codeController.getAllUserCode", req.params.id);
         try {
